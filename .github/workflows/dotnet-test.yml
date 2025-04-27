@@ -31,12 +31,4 @@ jobs:
       run: dotnet build src/Mahjong2.sln --configuration Release --no-restore
     
     - name: テスト実行
-      run: dotnet test src/Mahjong2.sln --configuration Release --no-restore --no-build --verbosity normal --collect:"XPlat Code Coverage" --results-directory:./TestResults
-    
-    - name: コードカバレッジレポートのアップロード
-      uses: codecov/codecov-action@v3
-      with:
-        files: "**/*.cobertura.xml"
-        directory: ${{ github.workspace }}/TestResults
-        fail_ci_if_error: true
-        verbose: true
+      run: dotnet test src/Mahjong2.sln --configuration Release --no-restore --no-build --verbosity normal
