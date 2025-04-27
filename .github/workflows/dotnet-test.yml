@@ -17,9 +17,7 @@ jobs:
     - name: .NET SDK セットアップ
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: |
-          9.0.x
-          10.0.x
+        dotnet-version: 9.0.x
     
     - name: 依存関係の復元
       run: dotnet restore src/Mahjong2.sln
