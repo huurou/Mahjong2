@@ -12,6 +12,14 @@ public abstract record Fu
     /// </summary>
     public static Futei Futei { get; } = new();
     /// <summary>
+    /// 副底(食い平和)
+    /// </summary>
+    public static FuteiOpenPinfu FuteiOpenPinfu { get; } = new();
+    /// <summary>
+    /// 七対子
+    /// </summary>
+    public static Chiitoitsu Chiitoitsu { get; } = new();
+    /// <summary>
     /// 順子
     /// </summary>
     public static Shuntsu Shuntsu { get; } = new();
@@ -125,6 +133,24 @@ public record Futei : Fu
 {
     public override string Name { get; } = "副底";
     public override int Value { get; } = 20;
+}
+
+/// <summary>
+/// 副底(食い平和)
+/// </summary>
+public record FuteiOpenPinfu : Fu
+{
+    public override string Name { get; } = "副底(食い平和)";
+    public override int Value { get; } = 30;
+}
+
+/// <summary>
+/// 七対子
+/// </summary>
+public record Chiitoitsu : Fu
+{
+    public override string Name { get; } = "七対子";
+    public override int Value { get; } = 25;
 }
 
 /// <summary>
