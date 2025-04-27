@@ -1,6 +1,4 @@
 using Mahjong2.Lib.Tiles;
-using System.Linq;
-using Xunit;
 
 namespace Mahjong2.Tests.Tiles;
 
