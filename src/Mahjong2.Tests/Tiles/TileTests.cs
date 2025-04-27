@@ -175,7 +175,7 @@ public class TileTests
         Assert.True(Tile.Man6.IsChucahn);
         Assert.True(Tile.Man7.IsChucahn);
         Assert.True(Tile.Man8.IsChucahn);
-        
+
         // 筒子
         Assert.True(Tile.Pin2.IsChucahn);
         Assert.True(Tile.Pin3.IsChucahn);
@@ -202,7 +202,7 @@ public class TileTests
         Assert.False(Tile.Pin9.IsChucahn);
         Assert.False(Tile.Sou1.IsChucahn);
         Assert.False(Tile.Sou9.IsChucahn);
-        
+
         // 字牌
         Assert.False(Tile.Ton.IsChucahn);
         Assert.False(Tile.Nan.IsChucahn);
@@ -242,7 +242,7 @@ public class TileTests
         Assert.True(Tile.Pin9.IsYaochu);
         Assert.True(Tile.Sou1.IsYaochu);
         Assert.True(Tile.Sou9.IsYaochu);
-        
+
         // 字牌
         Assert.True(Tile.Ton.IsYaochu);
         Assert.True(Tile.Nan.IsYaochu);
@@ -261,7 +261,7 @@ public class TileTests
         Assert.False(Tile.Man6.IsYaochu);
         Assert.False(Tile.Man7.IsYaochu);
         Assert.False(Tile.Man8.IsYaochu);
-        
+
         // 筒子
         Assert.False(Tile.Pin2.IsYaochu);
         Assert.False(Tile.Pin3.IsYaochu);
@@ -270,7 +270,7 @@ public class TileTests
         Assert.False(Tile.Pin6.IsYaochu);
         Assert.False(Tile.Pin7.IsYaochu);
         Assert.False(Tile.Pin8.IsYaochu);
-        
+
         // 索子
         Assert.False(Tile.Sou2.IsYaochu);
         Assert.False(Tile.Sou3.IsYaochu);
@@ -319,7 +319,7 @@ public class TileTests
         Assert.False(Tile.Man6.IsRoutou);
         Assert.False(Tile.Man7.IsRoutou);
         Assert.False(Tile.Man8.IsRoutou);
-        
+
         // 筒子
         Assert.False(Tile.Pin2.IsRoutou);
         Assert.False(Tile.Pin3.IsRoutou);
@@ -328,7 +328,7 @@ public class TileTests
         Assert.False(Tile.Pin6.IsRoutou);
         Assert.False(Tile.Pin7.IsRoutou);
         Assert.False(Tile.Pin8.IsRoutou);
-        
+
         // 索子
         Assert.False(Tile.Sou2.IsRoutou);
         Assert.False(Tile.Sou3.IsRoutou);
@@ -337,7 +337,7 @@ public class TileTests
         Assert.False(Tile.Sou6.IsRoutou);
         Assert.False(Tile.Sou7.IsRoutou);
         Assert.False(Tile.Sou8.IsRoutou);
-        
+
         // 字牌
         Assert.False(Tile.Ton.IsRoutou);
         Assert.False(Tile.Nan.IsRoutou);
@@ -440,23 +440,150 @@ public class TileTests
         Assert.All(Tile.Honors, tile => Assert.Contains(tile, Tile.All));
 
         // 中張牌の確認
-        Assert.All(Tile.Chuchans, tile => 
+        Assert.All(Tile.Chuchans, tile =>
         {
             Assert.True(tile.IsNumber);
             Assert.True(tile.Number >= 2 && tile.Number <= 8);
         });
 
         // 么九牌の確認
-        Assert.All(Tile.Yaochus, tile => 
-        {
-            Assert.True(tile.IsHonor || tile.Number == 1 || tile.Number == 9);
-        });
+        Assert.All(Tile.Yaochus, tile => Assert.True(tile.IsHonor || tile.Number == 1 || tile.Number == 9));
 
         // 老頭牌の確認
-        Assert.All(Tile.Routous, tile => 
+        Assert.All(Tile.Routous, tile =>
         {
             Assert.True(tile.IsNumber);
             Assert.True(tile.Number == 1 || tile.Number == 9);
         });
+    }
+
+    /// <summary>
+    /// 萬子リストにすべての萬子が漏れなく重複なく含まれているか確認
+    /// </summary>
+    [Fact]
+    public void Mans_リスト内容の確認_すべての萬子が重複なく含まれている()
+    {
+        // Arrange
+        Tile[] allMans = [Tile.Man1, Tile.Man2, Tile.Man3, Tile.Man4, Tile.Man5, Tile.Man6, Tile.Man7, Tile.Man8, Tile.Man9];
+
+        // Act & Assert
+        // 要素数が正しいか
+        Assert.Equal(allMans.Length, Tile.Mans.Count);
+
+        // すべての萬子が含まれているか
+        foreach (var man in allMans)
+        {
+            Assert.Contains(man, Tile.Mans);
+        }
+
+        // 萬子以外の牌が含まれていないか
+        Assert.All(Tile.Mans, tile => Assert.True(tile.IsMan));
+
+        // 重複がないか
+        Assert.Equal(Tile.Mans.Count, Tile.Mans.Distinct().Count());
+    }
+
+    /// <summary>
+    /// 筒子リストにすべての筒子が漏れなく重複なく含まれているか確認
+    /// </summary>
+    [Fact]
+    public void Pins_リスト内容の確認_すべての筒子が重複なく含まれている()
+    {
+        // Arrange
+        Tile[] allPins = [Tile.Pin1, Tile.Pin2, Tile.Pin3, Tile.Pin4, Tile.Pin5, Tile.Pin6, Tile.Pin7, Tile.Pin8, Tile.Pin9];
+
+        // Act & Assert
+        // 要素数が正しいか
+        Assert.Equal(allPins.Length, Tile.Pins.Count);
+
+        // すべての筒子が含まれているか
+        foreach (var pin in allPins)
+        {
+            Assert.Contains(pin, Tile.Pins);
+        }
+
+        // 筒子以外の牌が含まれていないか
+        Assert.All(Tile.Pins, tile => Assert.True(tile.IsPin));
+
+        // 重複がないか
+        Assert.Equal(Tile.Pins.Count, Tile.Pins.Distinct().Count());
+    }
+
+    /// <summary>
+    /// 索子リストにすべての索子が漏れなく重複なく含まれているか確認
+    /// </summary>
+    [Fact]
+    public void Sous_リスト内容の確認_すべての索子が重複なく含まれている()
+    {
+        // Arrange
+        Tile[] allSous = [Tile.Sou1, Tile.Sou2, Tile.Sou3, Tile.Sou4, Tile.Sou5, Tile.Sou6, Tile.Sou7, Tile.Sou8, Tile.Sou9];
+
+        // Act & Assert
+        // 要素数が正しいか
+        Assert.Equal(allSous.Length, Tile.Sous.Count);
+
+        // すべての索子が含まれているか
+        foreach (var sou in allSous)
+        {
+            Assert.Contains(sou, Tile.Sous);
+        }
+
+        // 索子以外の牌が含まれていないか
+        Assert.All(Tile.Sous, tile => Assert.True(tile.IsSou));
+
+        // 重複がないか
+        Assert.Equal(Tile.Sous.Count, Tile.Sous.Distinct().Count());
+    }
+
+    /// <summary>
+    /// 風牌リストにすべての風牌が漏れなく重複なく含まれているか確認
+    /// </summary>
+    [Fact]
+    public void Winds_リスト内容の確認_すべての風牌が重複なく含まれている()
+    {
+        // Arrange
+        Tile[] allWinds = [Tile.Ton, Tile.Nan, Tile.Sha, Tile.Pei];
+
+        // Act & Assert
+        // 要素数が正しいか
+        Assert.Equal(allWinds.Length, Tile.Winds.Count);
+
+        // すべての風牌が含まれているか
+        foreach (var wind in allWinds)
+        {
+            Assert.Contains(wind, Tile.Winds);
+        }
+
+        // 風牌以外の牌が含まれていないか
+        Assert.All(Tile.Winds, tile => Assert.True(tile.IsWind));
+
+        // 重複がないか
+        Assert.Equal(Tile.Winds.Count, Tile.Winds.Distinct().Count());
+    }
+
+    /// <summary>
+    /// 三元牌リストにすべての三元牌が漏れなく重複なく含まれているか確認
+    /// </summary>
+    [Fact]
+    public void Dragons_リスト内容の確認_すべての三元牌が重複なく含まれている()
+    {
+        // Arrange
+        Tile[] allDragons = [Tile.Haku, Tile.Hatsu, Tile.Chun];
+
+        // Act & Assert
+        // 要素数が正しいか
+        Assert.Equal(allDragons.Length, Tile.Dragons.Count);
+
+        // すべての三元牌が含まれているか
+        foreach (var dragon in allDragons)
+        {
+            Assert.Contains(dragon, Tile.Dragons);
+        }
+
+        // 三元牌以外の牌が含まれていないか
+        Assert.All(Tile.Dragons, tile => Assert.True(tile.IsDragon));
+
+        // 重複がないか
+        Assert.Equal(Tile.Dragons.Count, Tile.Dragons.Distinct().Count());
     }
 }
