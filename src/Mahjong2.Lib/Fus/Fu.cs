@@ -108,7 +108,11 @@ public abstract record Fu
     /// </summary>
     public abstract int Value { get; }
 
-    public override string ToString()
+    /// <summary>
+    /// 符のテキスト表現を取得する
+    /// </summary>
+    /// <returns>「名前:値符」の形式の文字列</returns>
+    public sealed override string ToString()
     {
         return $"{Name}:{Value}符";
     }

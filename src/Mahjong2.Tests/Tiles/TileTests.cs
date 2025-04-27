@@ -586,4 +586,83 @@ public class TileTests
         // 重複がないか
         Assert.Equal(Tile.Dragons.Count, Tile.Dragons.Distinct().Count());
     }
+
+    /// <summary>
+    /// 萬子のToString()メソッドの結果を確認
+    /// </summary>
+    [Fact]
+    public void ManTiles_文字列表現の確認_正しい文字列が取得できる()
+    {
+        // Arrange & Act & Assert
+        Assert.Equal("一", Tile.Man1.ToString());
+        Assert.Equal("二", Tile.Man2.ToString());
+        Assert.Equal("三", Tile.Man3.ToString());
+        Assert.Equal("四", Tile.Man4.ToString());
+        Assert.Equal("五", Tile.Man5.ToString());
+        Assert.Equal("六", Tile.Man6.ToString());
+        Assert.Equal("七", Tile.Man7.ToString());
+        Assert.Equal("八", Tile.Man8.ToString());
+        Assert.Equal("九", Tile.Man9.ToString());
+    }
+
+    /// <summary>
+    /// 筒子のToString()メソッドの結果を確認
+    /// </summary>
+    [Fact]
+    public void PinTiles_文字列表現の確認_正しい文字列が取得できる()
+    {
+        // Arrange & Act & Assert
+        Assert.Equal("(1)", Tile.Pin1.ToString());
+        Assert.Equal("(2)", Tile.Pin2.ToString());
+        Assert.Equal("(3)", Tile.Pin3.ToString());
+        Assert.Equal("(4)", Tile.Pin4.ToString());
+        Assert.Equal("(5)", Tile.Pin5.ToString());
+        Assert.Equal("(6)", Tile.Pin6.ToString());
+        Assert.Equal("(7)", Tile.Pin7.ToString());
+        Assert.Equal("(8)", Tile.Pin8.ToString());
+        Assert.Equal("(9)", Tile.Pin9.ToString());
+    }
+
+    /// <summary>
+    /// 索子のToString()メソッドの結果を確認
+    /// </summary>
+    [Fact]
+    public void SouTiles_文字列表現の確認_正しい文字列が取得できる()
+    {
+        // Arrange & Act & Assert
+        Assert.Equal("1", Tile.Sou1.ToString());
+        Assert.Equal("2", Tile.Sou2.ToString());
+        Assert.Equal("3", Tile.Sou3.ToString());
+        Assert.Equal("4", Tile.Sou4.ToString());
+        Assert.Equal("5", Tile.Sou5.ToString());
+        Assert.Equal("6", Tile.Sou6.ToString());
+        Assert.Equal("7", Tile.Sou7.ToString());
+        Assert.Equal("8", Tile.Sou8.ToString());
+        Assert.Equal("9", Tile.Sou9.ToString());
+    }
+
+    /// <summary>
+    /// 風牌のToString()メソッドの結果を確認
+    /// </summary>
+    [Fact]
+    public void WindTiles_文字列表現の確認_正しい文字列が取得できる()
+    {
+        // Arrange & Act & Assert
+        Assert.Equal("東", Tile.Ton.ToString());
+        Assert.Equal("南", Tile.Nan.ToString());
+        Assert.Equal("西", Tile.Sha.ToString());
+        Assert.Equal("北", Tile.Pei.ToString());
+    }
+
+    /// <summary>
+    /// 三元牌のToString()メソッドの結果を確認
+    /// </summary>
+    [Fact]
+    public void DragonTiles_文字列表現の確認_正しい文字列が取得できる()
+    {
+        // Arrange & Act & Assert
+        Assert.Equal("白", Tile.Haku.ToString());
+        Assert.Equal("發", Tile.Hatsu.ToString());
+        Assert.Equal("中", Tile.Chun.ToString());
+    }
 }

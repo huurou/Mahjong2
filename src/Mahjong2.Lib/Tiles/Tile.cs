@@ -284,6 +284,11 @@ public abstract record DragonTile : HonorTile;
 public record Man1 : ManTile
 {
     public override int Number { get; } = 1;
+
+    public override string ToString()
+    {
+        return "一";
+    }
 }
 
 /// <summary>
@@ -292,6 +297,11 @@ public record Man1 : ManTile
 public record Man2 : ManTile
 {
     public override int Number { get; } = 2;
+
+    public override string ToString()
+    {
+        return "二";
+    }
 }
 
 /// <summary>
@@ -300,6 +310,11 @@ public record Man2 : ManTile
 public record Man3 : ManTile
 {
     public override int Number { get; } = 3;
+
+    public override string ToString()
+    {
+        return "三";
+    }
 }
 /// <summary>
 /// 四萬
@@ -307,6 +322,11 @@ public record Man3 : ManTile
 public record Man4 : ManTile
 {
     public override int Number { get; } = 4;
+
+    public override string ToString()
+    {
+        return "四";
+    }
 }
 /// <summary>
 /// 五萬
@@ -314,6 +334,11 @@ public record Man4 : ManTile
 public record Man5 : ManTile
 {
     public override int Number { get; } = 5;
+
+    public override string ToString()
+    {
+        return "五";
+    }
 }
 /// <summary>
 /// 六萬
@@ -321,6 +346,11 @@ public record Man5 : ManTile
 public record Man6 : ManTile
 {
     public override int Number { get; } = 6;
+
+    public override string ToString()
+    {
+        return "六";
+    }
 }
 /// <summary>
 /// 七萬
@@ -328,6 +358,11 @@ public record Man6 : ManTile
 public record Man7 : ManTile
 {
     public override int Number { get; } = 7;
+
+    public override string ToString()
+    {
+        return "七";
+    }
 }
 /// <summary>
 /// 八萬
@@ -335,6 +370,11 @@ public record Man7 : ManTile
 public record Man8 : ManTile
 {
     public override int Number { get; } = 8;
+
+    public override string ToString()
+    {
+        return "八";
+    }
 }
 /// <summary>
 /// 九萬
@@ -342,6 +382,11 @@ public record Man8 : ManTile
 public record Man9 : ManTile
 {
     public override int Number { get; } = 9;
+
+    public override string ToString()
+    {
+        return "九";
+    }
 }
 
 /// <summary>
@@ -350,6 +395,11 @@ public record Man9 : ManTile
 public record Pin1 : PinTile
 {
     public override int Number { get; } = 1;
+
+    public override string ToString()
+    {
+        return "(1)";
+    }
 }
 /// <summary>
 /// 二筒
@@ -357,6 +407,11 @@ public record Pin1 : PinTile
 public record Pin2 : PinTile
 {
     public override int Number { get; } = 2;
+
+    public override string ToString()
+    {
+        return "(2)";
+    }
 }
 /// <summary>
 /// 三筒
@@ -364,6 +419,11 @@ public record Pin2 : PinTile
 public record Pin3 : PinTile
 {
     public override int Number { get; } = 3;
+
+    public override string ToString()
+    {
+        return "(3)";
+    }
 }
 /// <summary>
 /// 四筒
@@ -371,6 +431,11 @@ public record Pin3 : PinTile
 public record Pin4 : PinTile
 {
     public override int Number { get; } = 4;
+
+    public override string ToString()
+    {
+        return "(4)";
+    }
 }
 /// <summary>
 /// 五筒
@@ -378,6 +443,11 @@ public record Pin4 : PinTile
 public record Pin5 : PinTile
 {
     public override int Number { get; } = 5;
+
+    public override string ToString()
+    {
+        return "(5)";
+    }
 }
 /// <summary>
 /// 六筒
@@ -385,6 +455,11 @@ public record Pin5 : PinTile
 public record Pin6 : PinTile
 {
     public override int Number { get; } = 6;
+
+    public override string ToString()
+    {
+        return "(6)";
+    }
 }
 /// <summary>
 /// 七筒
@@ -392,6 +467,11 @@ public record Pin6 : PinTile
 public record Pin7 : PinTile
 {
     public override int Number { get; } = 7;
+
+    public override string ToString()
+    {
+        return "(7)";
+    }
 }
 /// <summary>
 /// 八筒
@@ -399,6 +479,11 @@ public record Pin7 : PinTile
 public record Pin8 : PinTile
 {
     public override int Number { get; } = 8;
+
+    public override string ToString()
+    {
+        return "(8)";
+    }
 }
 /// <summary>
 /// 九筒
@@ -406,6 +491,11 @@ public record Pin8 : PinTile
 public record Pin9 : PinTile
 {
     public override int Number { get; } = 9;
+
+    public override string ToString()
+    {
+        return "(9)";
+    }
 }
 
 /// <summary>
@@ -414,6 +504,11 @@ public record Pin9 : PinTile
 public record Sou1 : SouTile
 {
     public override int Number { get; } = 1;
+
+    public override string ToString()
+    {
+        return "1";
+    }
 }
 /// <summary>
 /// 二索
@@ -421,6 +516,11 @@ public record Sou1 : SouTile
 public record Sou2 : SouTile
 {
     public override int Number { get; } = 2;
+
+    public override string ToString()
+    {
+        return "2";
+    }
 }
 /// <summary>
 /// 三索
@@ -428,6 +528,11 @@ public record Sou2 : SouTile
 public record Sou3 : SouTile
 {
     public override int Number { get; } = 3;
+
+    public override string ToString()
+    {
+        return "3";
+    }
 }
 /// <summary>
 /// 四索
@@ -435,6 +540,11 @@ public record Sou3 : SouTile
 public record Sou4 : SouTile
 {
     public override int Number { get; } = 4;
+
+    public override string ToString()
+    {
+        return "4";
+    }
 }
 /// <summary>
 /// 五索
@@ -442,6 +552,11 @@ public record Sou4 : SouTile
 public record Sou5 : SouTile
 {
     public override int Number { get; } = 5;
+
+    public override string ToString()
+    {
+        return "5";
+    }
 }
 /// <summary>
 /// 六索
@@ -449,6 +564,11 @@ public record Sou5 : SouTile
 public record Sou6 : SouTile
 {
     public override int Number { get; } = 6;
+
+    public override string ToString()
+    {
+        return "6";
+    }
 }
 /// <summary>
 /// 七索
@@ -456,6 +576,11 @@ public record Sou6 : SouTile
 public record Sou7 : SouTile
 {
     public override int Number { get; } = 7;
+
+    public override string ToString()
+    {
+        return "7";
+    }
 }
 /// <summary>
 /// 八索
@@ -463,6 +588,11 @@ public record Sou7 : SouTile
 public record Sou8 : SouTile
 {
     public override int Number { get; } = 8;
+
+    public override string ToString()
+    {
+        return "8";
+    }
 }
 /// <summary>
 /// 九索
@@ -470,6 +600,11 @@ public record Sou8 : SouTile
 public record Sou9 : SouTile
 {
     public override int Number { get; } = 9;
+
+    public override string ToString()
+    {
+        return "9";
+    }
 }
 
 /// <summary>
@@ -478,6 +613,11 @@ public record Sou9 : SouTile
 public record Ton : WindTile
 {
     public override int Number { get; } = 0;
+
+    public override string ToString()
+    {
+        return "東";
+    }
 }
 
 /// <summary>
@@ -486,6 +626,11 @@ public record Ton : WindTile
 public record Nan : WindTile
 {
     public override int Number { get; } = 0;
+
+    public override string ToString()
+    {
+        return "南";
+    }
 }
 
 /// <summary>
@@ -494,6 +639,11 @@ public record Nan : WindTile
 public record Sha : WindTile
 {
     public override int Number { get; } = 0;
+
+    public override string ToString()
+    {
+        return "西";
+    }
 }
 /// <summary>
 /// 北
@@ -501,6 +651,11 @@ public record Sha : WindTile
 public record Pei : WindTile
 {
     public override int Number { get; } = 0;
+
+    public override string ToString()
+    {
+        return "北";
+    }
 }
 
 /// <summary>
@@ -509,6 +664,11 @@ public record Pei : WindTile
 public record Haku : DragonTile
 {
     public override int Number { get; } = 0;
+
+    public override string ToString()
+    {
+        return "白";
+    }
 }
 /// <summary>
 /// 發
@@ -516,6 +676,11 @@ public record Haku : DragonTile
 public record Hatsu : DragonTile
 {
     public override int Number { get; } = 0;
+
+    public override string ToString()
+    {
+        return "發";
+    }
 }
 /// <summary>
 /// 中
@@ -523,4 +688,9 @@ public record Hatsu : DragonTile
 public record Chun : DragonTile
 {
     public override int Number { get; } = 0;
+
+    public override string ToString()
+    {
+        return "中";
+    }
 }

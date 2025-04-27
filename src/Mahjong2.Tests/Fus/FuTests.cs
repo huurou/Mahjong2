@@ -361,6 +361,28 @@ namespace Mahjong2.Tests.Fus
         }
 
         /// <summary>
+        /// ToString_フォーマット確認_正しい形式の文字列が返る
+        /// </summary>
+        [Fact]
+        public void ToString_フォーマット確認_正しい形式の文字列が返る()
+        {
+            // Arrange
+            var futei = Fu.Futei;
+            var shuntsu = Fu.Shuntsu;
+            var minkoChuchan = Fu.MinkoChuchan;
+
+            // Act
+            var futeiString = futei.ToString();
+            var shuntsuString = shuntsu.ToString();
+            var minkoChuchanString = minkoChuchan.ToString();
+
+            // Assert
+            Assert.Equal("副底:20符", futeiString);
+            Assert.Equal("順子:0符", shuntsuString);
+            Assert.Equal("中張牌の明刻:2符", minkoChuchanString);
+        }
+
+        /// <summary>
         /// シングルトンの一意性をテストする
         /// </summary>
         [Fact]
