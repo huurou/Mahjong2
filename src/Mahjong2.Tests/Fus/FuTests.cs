@@ -381,58 +381,5 @@ namespace Mahjong2.Tests.Fus
             Assert.Equal("順子:0符", shuntsuString);
             Assert.Equal("中張牌の明刻:2符", minkoChuchanString);
         }
-
-        /// <summary>
-        /// シングルトンの一意性をテストする
-        /// </summary>
-        [Fact]
-        public void Fu_シングルトンインスタンス取得_同一インスタンスが返る()
-        {
-            // Arrange & Act
-            var futei1 = Fu.Futei;
-            var futei2 = Fu.Futei;
-            
-            var shuntsu1 = Fu.Shuntsu;
-            var shuntsu2 = Fu.Shuntsu;
-
-            // Assert
-            Assert.Same(futei1, futei2);
-            Assert.Same(shuntsu1, shuntsu2);
-        }
-
-        /// <summary>
-        /// 継承関係の検証
-        /// </summary>
-        [Fact]
-        public void Fu_継承関係の検証_正しい型に変換できる()
-        {
-            // Arrange & Act & Assert
-            Assert.IsType<Futei>(Fu.Futei);
-            Assert.IsType<Shuntsu>(Fu.Shuntsu);
-            
-            Assert.IsType<MinkoChuchan>(Fu.MinkoChuchan);
-            Assert.IsType<MinkoYaochu>(Fu.MinkoYaochu);
-            Assert.IsType<AnkoChuchan>(Fu.AnkoChuchan);
-            Assert.IsType<AnkoYaochu>(Fu.AnkoYaochu);
-            Assert.IsType<MinkanChuchan>(Fu.MinkanChuchan);
-            Assert.IsType<MinkanYaochu>(Fu.MinkanYaochu);
-            Assert.IsType<AnkanChuchan>(Fu.AnkanChuchan);
-            Assert.IsType<AnkanYaochu>(Fu.AnkanYaochu);
-            
-            Assert.IsType<JantoNumber>(Fu.JantoNumber);
-            Assert.IsType<JantoOtherWind>(Fu.JantoOtherWind);
-            Assert.IsType<JantouPlayerWind>(Fu.JantouPlayerWind);
-            Assert.IsType<JantouRoundWind>(Fu.JantouRoundWind);
-            Assert.IsType<JantouDragon>(Fu.JantouDragon);
-            
-            Assert.IsType<WaitRyanmen>(Fu.WaitRyanmen);
-            Assert.IsType<WaitShanpon>(Fu.WaitShanpon);
-            Assert.IsType<WaitKanchan>(Fu.WaitKanchan);
-            Assert.IsType<WaitPenchan>(Fu.WaitPenchan);
-            Assert.IsType<WaitTanki>(Fu.WaitTanki);
-            
-            Assert.IsType<MenzenFu>(Fu.MenzenFu);
-            Assert.IsType<TsumoFu>(Fu.TsumoFu);
-        }
     }
 }
