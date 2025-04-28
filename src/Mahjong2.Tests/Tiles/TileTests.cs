@@ -62,22 +62,6 @@ public class TileTests
     }
 
     /// <summary>
-    /// 字牌の数値がすべて0であることを確認
-    /// </summary>
-    [Fact]
-    public void HonorTiles_数値の確認_すべて0が取得できる()
-    {
-        // Arrange & Act & Assert
-        Assert.Equal(0, Tile.Ton.Number);
-        Assert.Equal(0, Tile.Nan.Number);
-        Assert.Equal(0, Tile.Sha.Number);
-        Assert.Equal(0, Tile.Pei.Number);
-        Assert.Equal(0, Tile.Haku.Number);
-        Assert.Equal(0, Tile.Hatsu.Number);
-        Assert.Equal(0, Tile.Chun.Number);
-    }
-
-    /// <summary>
     /// 全ての牌リストの要素数が34であることを確認
     /// </summary>
     [Fact]
@@ -418,9 +402,14 @@ public class TileTests
     /// 各グループの牌リストが正しく、漏れなく設定されているか確認
     /// </summary>
     [Fact]
-    public void TileLists_リスト内容の確認_重複がなく漏れもない()
+    public void Tile_リスト内容の確認_重複がなく漏れもない()
     {
         // Arrange & Act & Assert
+        // 全ての牌の確認
+        Assert.Equal(Tile.Numbers.Count + Tile.Honors.Count, Tile.All.Count);
+        Assert.All(Tile.Numbers, tile => Assert.Contains(tile, Tile.All));
+        Assert.All(Tile.Honors, tile => Assert.Contains(tile, Tile.All));
+
         // 数牌の確認
         Assert.Equal(Tile.Mans.Count + Tile.Pins.Count + Tile.Sous.Count, Tile.Numbers.Count);
         Assert.All(Tile.Mans, tile => Assert.Contains(tile, Tile.Numbers));
@@ -432,11 +421,6 @@ public class TileTests
         Assert.All(Tile.Winds, tile => Assert.Contains(tile, Tile.Honors));
         Assert.All(Tile.Dragons, tile => Assert.Contains(tile, Tile.Honors));
 
-        // 全ての牌の確認
-        Assert.Equal(Tile.Numbers.Count + Tile.Honors.Count, Tile.All.Count);
-        Assert.All(Tile.Numbers, tile => Assert.Contains(tile, Tile.All));
-        Assert.All(Tile.Honors, tile => Assert.Contains(tile, Tile.All));
-
         // 中張牌の確認
         Assert.All(Tile.Chuchans, tile =>
         {
@@ -445,7 +429,7 @@ public class TileTests
         });
 
         // 么九牌の確認
-        Assert.All(Tile.Yaochus, tile => Assert.True(tile.IsHonor || tile.Number == 1 || tile.Number == 9));
+        Assert.All(Tile.Yaochus, tile => Assert.True(tile.IsHonor || tile is NumberTile { Number: 1 } || tile is NumberTile { Number: 9 }));
 
         // 老頭牌の確認
         Assert.All(Tile.Routous, tile =>
@@ -589,7 +573,7 @@ public class TileTests
     /// 萬子のToString()メソッドの結果を確認
     /// </summary>
     [Fact]
-    public void ManTiles_文字列表現の確認_正しい文字列が取得できる()
+    public void ManTile_文字列表現の確認_正しい文字列が取得できる()
     {
         // Arrange & Act & Assert
         Assert.Equal("一", Tile.Man1.ToString());
@@ -607,7 +591,7 @@ public class TileTests
     /// 筒子のToString()メソッドの結果を確認
     /// </summary>
     [Fact]
-    public void PinTiles_文字列表現の確認_正しい文字列が取得できる()
+    public void PinTile_文字列表現の確認_正しい文字列が取得できる()
     {
         // Arrange & Act & Assert
         Assert.Equal("(1)", Tile.Pin1.ToString());
@@ -625,7 +609,7 @@ public class TileTests
     /// 索子のToString()メソッドの結果を確認
     /// </summary>
     [Fact]
-    public void SouTiles_文字列表現の確認_正しい文字列が取得できる()
+    public void SouTile_文字列表現の確認_正しい文字列が取得できる()
     {
         // Arrange & Act & Assert
         Assert.Equal("1", Tile.Sou1.ToString());
@@ -643,7 +627,7 @@ public class TileTests
     /// 風牌のToString()メソッドの結果を確認
     /// </summary>
     [Fact]
-    public void WindTiles_文字列表現の確認_正しい文字列が取得できる()
+    public void WindTile_文字列表現の確認_正しい文字列が取得できる()
     {
         // Arrange & Act & Assert
         Assert.Equal("東", Tile.Ton.ToString());
@@ -656,11 +640,208 @@ public class TileTests
     /// 三元牌のToString()メソッドの結果を確認
     /// </summary>
     [Fact]
-    public void DragonTiles_文字列表現の確認_正しい文字列が取得できる()
+    public void DragonTile_文字列表現の確認_正しい文字列が取得できる()
     {
         // Arrange & Act & Assert
         Assert.Equal("白", Tile.Haku.ToString());
         Assert.Equal("發", Tile.Hatsu.ToString());
         Assert.Equal("中", Tile.Chun.ToString());
+    }
+
+    /// <summary>
+    /// CompareTo()メソッドが牌の種類に基づいて正しく比較できることを確認
+    /// </summary>
+    [Fact]
+    public void CompareTo_牌の種類での比較_正しい順序で比較できる()
+    {
+        // Arrange & Act & Assert
+        // 萬子 < 筒子 < 索子 < 風牌 < 三元牌
+        Assert.True(Tile.Man1.CompareTo(Tile.Pin1) < 0); // 萬子 < 筒子
+        Assert.True(Tile.Pin1.CompareTo(Tile.Sou1) < 0);  // 筒子 < 索子
+        Assert.True(Tile.Sou1.CompareTo(Tile.Ton) < 0);   // 索子 < 風牌
+        Assert.True(Tile.Ton.CompareTo(Tile.Haku) < 0);   // 風牌 < 三元牌
+
+        // 逆の比較も確認
+        Assert.True(Tile.Pin1.CompareTo(Tile.Man1) > 0);
+        Assert.True(Tile.Sou1.CompareTo(Tile.Pin1) > 0);
+        Assert.True(Tile.Ton.CompareTo(Tile.Sou1) > 0);
+        Assert.True(Tile.Haku.CompareTo(Tile.Ton) > 0);
+    }
+
+    /// <summary>
+    /// CompareTo()メソッドが同じ種類の数牌で数字に基づいて正しく比較できることを確認
+    /// </summary>
+    [Fact]
+    public void CompareTo_同じ種類の数牌での比較_数字順で比較できる()
+    {
+        // Arrange & Act & Assert
+        // 萬子での比較（数字の昇順）
+        Assert.True(Tile.Man1.CompareTo(Tile.Man2) < 0);
+        Assert.True(Tile.Man5.CompareTo(Tile.Man9) < 0);
+
+        // 筒子での比較
+        Assert.True(Tile.Pin3.CompareTo(Tile.Pin7) < 0);
+        Assert.True(Tile.Pin9.CompareTo(Tile.Pin5) > 0);
+
+        // 索子での比較
+        Assert.True(Tile.Sou1.CompareTo(Tile.Sou4) < 0);
+        Assert.True(Tile.Sou8.CompareTo(Tile.Sou2) > 0);
+
+        // 同じ牌どうしの比較は0
+        Assert.Equal(0, Tile.Man5.CompareTo(Tile.Man5));
+        Assert.Equal(0, Tile.Pin7.CompareTo(Tile.Pin7));
+        Assert.Equal(0, Tile.Sou3.CompareTo(Tile.Sou3));
+    }
+
+    /// <summary>
+    /// CompareTo()メソッドが風牌どうしで正しく比較できることを確認
+    /// </summary>
+    [Fact]
+    public void CompareTo_風牌どうしの比較_東南西北の順で比較できる()
+    {
+        // Arrange & Act & Assert
+        // 風牌の順序: 東 < 南 < 西 < 北
+        Assert.True(Tile.Ton.CompareTo(Tile.Nan) < 0); // 東 < 南
+        Assert.True(Tile.Nan.CompareTo(Tile.Sha) < 0); // 南 < 西
+        Assert.True(Tile.Sha.CompareTo(Tile.Pei) < 0); // 西 < 北
+
+        // 逆の比較も確認
+        Assert.True(Tile.Nan.CompareTo(Tile.Ton) > 0);
+        Assert.True(Tile.Sha.CompareTo(Tile.Nan) > 0);
+        Assert.True(Tile.Pei.CompareTo(Tile.Sha) > 0);
+
+        // 同じ牌どうしの比較は0
+        Assert.Equal(0, Tile.Ton.CompareTo(Tile.Ton));
+        Assert.Equal(0, Tile.Nan.CompareTo(Tile.Nan));
+        Assert.Equal(0, Tile.Sha.CompareTo(Tile.Sha));
+        Assert.Equal(0, Tile.Pei.CompareTo(Tile.Pei));
+    }
+
+    /// <summary>
+    /// CompareTo()メソッドが三元牌どうしで正しく比較できることを確認
+    /// </summary>
+    [Fact]
+    public void CompareTo_三元牌どうしの比較_白發中の順で比較できる()
+    {
+        // Arrange & Act & Assert
+        // 三元牌の順序: 白 < 發 < 中
+        Assert.True(Tile.Haku.CompareTo(Tile.Hatsu) < 0);  // 白 < 發
+        Assert.True(Tile.Hatsu.CompareTo(Tile.Chun) < 0);  // 發 < 中
+
+        // 逆の比較も確認
+        Assert.True(Tile.Hatsu.CompareTo(Tile.Haku) > 0);
+        Assert.True(Tile.Chun.CompareTo(Tile.Hatsu) > 0);
+
+        // 同じ牌どうしの比較は0
+        Assert.Equal(0, Tile.Haku.CompareTo(Tile.Haku));
+        Assert.Equal(0, Tile.Hatsu.CompareTo(Tile.Hatsu));
+        Assert.Equal(0, Tile.Chun.CompareTo(Tile.Chun));
+    }
+
+    /// <summary>
+    /// CompareTo()メソッドがnullと比較した場合に正しく動作することを確認
+    /// </summary>
+    [Fact]
+    public void CompareTo_null値との比較_正の値を返す()
+    {
+        // Arrange & Act & Assert
+        // null値との比較は常に1(正の値)を返す
+        Assert.True(Tile.Man1.CompareTo(null) > 0);
+        Assert.True(Tile.Pin5.CompareTo(null) > 0);
+        Assert.True(Tile.Sou9.CompareTo(null) > 0);
+        Assert.True(Tile.Ton.CompareTo(null) > 0);
+        Assert.True(Tile.Haku.CompareTo(null) > 0);
+    }
+
+    /// <summary>
+    /// 比較演算子が正しく動作することを確認
+    /// </summary>
+    [Fact]
+    public void 比較演算子_各種比較演算子_正しく比較できる()
+    {
+        // Arrange & Act & Assert
+        // < 演算子のテスト
+        Assert.True(Tile.Man1 < Tile.Pin1); // 萬子 < 筒子
+        Assert.True(Tile.Man1 < Tile.Man2); // 同じ種類では数字順
+        Assert.True(Tile.Ton < Tile.Nan);   // 字牌も順序通り
+        Assert.False(Tile.Pin1 < Tile.Man1);
+        Assert.False(Tile.Man2 < Tile.Man2); // 等しい場合はfalse
+
+        // > 演算子のテスト
+        Assert.True(Tile.Pin1 > Tile.Man1);
+        Assert.True(Tile.Man5 > Tile.Man3);
+        Assert.True(Tile.Hatsu > Tile.Haku);
+        Assert.False(Tile.Man1 > Tile.Pin1);
+        Assert.False(Tile.Man2 > Tile.Man2); // 等しい場合はfalse
+
+        // <= 演算子のテスト
+        Assert.True(Tile.Man1 <= Tile.Pin1);
+        Assert.True(Tile.Man1 <= Tile.Man2);
+        Assert.True(Tile.Man2 <= Tile.Man2); // 等しい場合はtrue
+        Assert.False(Tile.Pin1 <= Tile.Man1);
+
+        // >= 演算子のテスト
+        Assert.True(Tile.Pin1 >= Tile.Man1);
+        Assert.True(Tile.Man5 >= Tile.Man3);
+        Assert.True(Tile.Man2 >= Tile.Man2); // 等しい場合はtrue
+        Assert.False(Tile.Man1 >= Tile.Pin1);
+    }
+
+    /// <summary>
+    /// null値との比較演算子が正しく動作することを確認
+    /// </summary>
+    [Fact]
+    public void 比較演算子_null値との比較_正しく比較できる()
+    {
+        // Arrange & Act & Assert
+        // null との比較
+        Assert.True(Tile.Man1 > null);      // 任意の牌 > null
+        Assert.True(Tile.Pin9 > null);
+        Assert.True(Tile.Chun > null);
+
+        Assert.False(Tile.Man1 < null);     // null < 任意の牌
+        Assert.False(Tile.Pin9 < null);
+        Assert.False(Tile.Chun < null);
+
+        Assert.True(Tile.Man1 >= null);     // 任意の牌 >= null
+        Assert.True(null <= Tile.Man1);     // null <= 任意の牌
+
+        Assert.False(Tile.Man1 <= null);    // 任意の牌 <= null
+        Assert.False(null >= Tile.Man1);    // null >= 任意の牌
+    }
+
+    /// <summary>
+    /// ソートが正しく動作することを確認
+    /// </summary>
+    [Fact]
+    public void 比較演算子_ソートでの利用_順序通りにソートできる()
+    {
+        // Arrange
+        var unsortedTiles = new List<Tile>
+        {
+            Tile.Chun, Tile.Ton, Tile.Man5, Tile.Sou1, Tile.Pin9,
+            Tile.Haku, Tile.Pei, Tile.Man1, Tile.Pin1, Tile.Sou9,
+            Tile.Sha, Tile.Man9, Tile.Hatsu, Tile.Nan, Tile.Pin3
+        };
+
+        var expectedOrder = new List<Tile>
+        {
+            // 萬子
+            Tile.Man1, Tile.Man5, Tile.Man9,
+            // 筒子
+            Tile.Pin1, Tile.Pin3, Tile.Pin9,
+            // 索子
+            Tile.Sou1, Tile.Sou9,
+            // 風牌
+            Tile.Ton, Tile.Nan, Tile.Sha, Tile.Pei,
+            // 三元牌
+            Tile.Haku, Tile.Hatsu, Tile.Chun
+        };
+
+        // Act
+        var sortedTiles = unsortedTiles.OrderBy(t => t).ToList();
+
+        // Assert
+        Assert.Equal(expectedOrder, sortedTiles);
     }
 }

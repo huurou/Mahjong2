@@ -5,7 +5,7 @@ namespace Mahjong2.Lib.Tiles;
 /// <summary>
 /// 牌を表現するクラス
 /// </summary>
-public abstract record Tile
+public abstract record Tile : IComparable<Tile>
 {
     #region シングルトンプロパティ
 
@@ -233,7 +233,7 @@ public abstract record Tile
     /// <summary>
     /// 中張牌かどうか
     /// </summary>
-    public bool IsChucahn => Number is >= 2 and <= 8;
+    public bool IsChucahn => this is NumberTile numberTile && numberTile.Number is >= 2 and <= 8;
     /// <summary>
     /// 么九牌かどうか
     /// </summary>
@@ -241,30 +241,159 @@ public abstract record Tile
     /// <summary>
     /// 老頭牌かどうか
     /// </summary>
-    public bool IsRoutou => Number is 1 or 9;
+    public bool IsRoutou => this is NumberTile numberTile && numberTile.Number is 1 or 9;
+
+    public int CompareTo(Tile? other)
+    {
+        if (other is null) { return 1; }
+
+        // 牌の種類での比較を最初に行う
+        var typeComparison = GetTileTypeValue(this).CompareTo(GetTileTypeValue(other));
+        if (typeComparison != 0) { return typeComparison; }
+
+        // 同じ種類の牌の場合の比較
+        if (this is NumberTile thisNumberTile && other is NumberTile otherNumberTile)
+        {
+            return thisNumberTile.Number.CompareTo(otherNumberTile.Number);
+        }
+        if (this is WindTile thisWindTile && other is WindTile otherWindTile)
+        {
+            return GetWindNumber(thisWindTile).CompareTo(GetWindNumber(otherWindTile));
+        }
+        if (this is DragonTile thisDragonTile && other is DragonTile otherDragonTile)
+        {
+            return GetDragonValue(thisDragonTile).CompareTo(GetDragonValue(otherDragonTile));
+        }
+        return 0;
+
+        static int GetTileTypeValue(Tile tile)
+        {
+            return tile switch
+            {
+                ManTile => 0,
+                PinTile => 1,
+                SouTile => 2,
+                WindTile => 3,
+                DragonTile => 4,
+                _ => throw new ArgumentException("不明な牌種類です", nameof(tile)),
+            };
+        }
+        static int GetWindNumber(WindTile windTile)
+        {
+            return windTile switch
+            {
+                Tiles.Ton => 0,
+                Tiles.Nan => 1,
+                Tiles.Sha => 2,
+                Tiles.Pei => 3,
+                _ => throw new ArgumentException("不明な風牌です", nameof(windTile)),
+            };
+        }
+        static int GetDragonValue(DragonTile dragonTile)
+        {
+            return dragonTile switch
+            {
+                Tiles.Haku => 0,
+                Tiles.Hatsu => 1,
+                Tiles.Chun => 2,
+                _ => throw new ArgumentException("不明な三元牌です", nameof(dragonTile)),
+            };
+        }
+    }
 
     /// <summary>
-    /// 絵柄の数字 字牌はすべて0
+    /// 小なり演算子の実装
     /// </summary>
-    public abstract int Number { get; }
+    /// <param name="left">左辺の牌</param>
+    /// <param name="right">右辺の牌</param>
+    /// <returns>左辺が右辺より小さい場合はtrue、そうでない場合はfalse</returns>
+    public static bool operator <(Tile? left, Tile? right)
+    {
+        return left is not null ? left.CompareTo(right) < 0 : right is not null;
+    }
+    /// <summary>
+    /// 大なり演算子の実装
+    /// </summary>
+    /// <param name="left">左辺の牌</param>
+    /// <param name="right">右辺の牌</param>
+    /// <returns>左辺が右辺より大きい場合はtrue、そうでない場合はfalse</returns>
+    public static bool operator >(Tile? left, Tile? right)
+    {
+        return right is not null ? right.CompareTo(left) < 0 : left is not null;
+    }
+    /// <summary>
+    /// 以下演算子の実装
+    /// </summary>
+    /// <param name="left">左辺の牌</param>
+    /// <param name="right">右辺の牌</param>
+    /// <returns>左辺が右辺以下の場合はtrue、そうでない場合はfalse</returns>
+    public static bool operator <=(Tile? left, Tile? right)
+    {
+        return left is null || left.CompareTo(right) <= 0;
+    }
+    /// <summary>
+    /// 以上演算子の実装
+    /// </summary>
+    /// <param name="left">左辺の牌</param>
+    /// <param name="right">右辺の牌</param>
+    /// <returns>左辺が右辺以上の場合はtrue、そうでない場合はfalse</returns>
+    public static bool operator >=(Tile? left, Tile? right)
+    {
+        return right is null || right.CompareTo(left) <= 0;
+    }
+
+    /// <summary>
+    /// 牌の表示名を取得する
+    /// </summary>
+    /// <returns>牌の表示名</returns>
+    public override sealed string ToString()
+    {
+        return this switch
+        {
+            ManTile manTile => manTile.Number switch
+            {
+                1 => "一",
+                2 => "二",
+                3 => "三",
+                4 => "四",
+                5 => "五",
+                6 => "六",
+                7 => "七",
+                8 => "八",
+                9 => "九",
+                _ => throw new InvalidOperationException($"無効な萬子の数字: {manTile.Number}")
+            },
+            PinTile pinTile => $"({pinTile.Number})",
+            SouTile souTile => souTile.Number.ToString(),
+            Tiles.Ton => "東",
+            Tiles.Nan => "南",
+            Tiles.Sha => "西",
+            Tiles.Pei => "北",
+            Tiles.Haku => "白",
+            Tiles.Hatsu => "發",
+            Tiles.Chun => "中",
+            _ => throw new InvalidOperationException($"不明な牌です: {GetType().Name}")
+        };
+    }
 }
 
 /// <summary>
 /// 数牌
 /// </summary>
-public abstract record NumberTile : Tile;
+/// <param name="Number">絵柄の数字</param>
+public abstract record NumberTile(int Number) : Tile;
 /// <summary>
 /// 萬子
 /// </summary>
-public abstract record ManTile : NumberTile;
+public abstract record ManTile(int Number) : NumberTile(Number);
 /// <summary>
 /// 筒子
 /// </summary>
-public abstract record PinTile : NumberTile;
+public abstract record PinTile(int Number) : NumberTile(Number);
 /// <summary>
 /// 索子
 /// </summary>
-public abstract record SouTile : NumberTile;
+public abstract record SouTile(int Number) : NumberTile(Number);
 /// <summary>
 /// 字牌
 /// </summary>
@@ -281,416 +410,140 @@ public abstract record DragonTile : HonorTile;
 /// <summary>
 /// 一萬
 /// </summary>
-public record Man1 : ManTile
-{
-    public override int Number { get; } = 1;
-
-    public override string ToString()
-    {
-        return "一";
-    }
-}
-
+public record Man1() : ManTile(1);
 /// <summary>
 /// 二萬
 /// </summary>
-public record Man2 : ManTile
-{
-    public override int Number { get; } = 2;
-
-    public override string ToString()
-    {
-        return "二";
-    }
-}
-
+public record Man2() : ManTile(2);
 /// <summary>
 /// 三萬
 /// </summary>
-public record Man3 : ManTile
-{
-    public override int Number { get; } = 3;
-
-    public override string ToString()
-    {
-        return "三";
-    }
-}
+public record Man3() : ManTile(3);
 /// <summary>
 /// 四萬
 /// </summary>
-public record Man4 : ManTile
-{
-    public override int Number { get; } = 4;
-
-    public override string ToString()
-    {
-        return "四";
-    }
-}
+public record Man4() : ManTile(4);
 /// <summary>
 /// 五萬
 /// </summary>
-public record Man5 : ManTile
-{
-    public override int Number { get; } = 5;
-
-    public override string ToString()
-    {
-        return "五";
-    }
-}
+public record Man5() : ManTile(5);
 /// <summary>
 /// 六萬
 /// </summary>
-public record Man6 : ManTile
-{
-    public override int Number { get; } = 6;
-
-    public override string ToString()
-    {
-        return "六";
-    }
-}
+public record Man6() : ManTile(6);
 /// <summary>
 /// 七萬
 /// </summary>
-public record Man7 : ManTile
-{
-    public override int Number { get; } = 7;
-
-    public override string ToString()
-    {
-        return "七";
-    }
-}
+public record Man7() : ManTile(7);
 /// <summary>
 /// 八萬
 /// </summary>
-public record Man8 : ManTile
-{
-    public override int Number { get; } = 8;
-
-    public override string ToString()
-    {
-        return "八";
-    }
-}
+public record Man8() : ManTile(8);
 /// <summary>
 /// 九萬
 /// </summary>
-public record Man9 : ManTile
-{
-    public override int Number { get; } = 9;
-
-    public override string ToString()
-    {
-        return "九";
-    }
-}
+public record Man9() : ManTile(9);
 
 /// <summary>
 /// 一筒
 /// </summary>
-public record Pin1 : PinTile
-{
-    public override int Number { get; } = 1;
-
-    public override string ToString()
-    {
-        return "(1)";
-    }
-}
+public record Pin1() : PinTile(1);
 /// <summary>
 /// 二筒
 /// </summary>
-public record Pin2 : PinTile
-{
-    public override int Number { get; } = 2;
-
-    public override string ToString()
-    {
-        return "(2)";
-    }
-}
+public record Pin2() : PinTile(2);
 /// <summary>
 /// 三筒
 /// </summary>
-public record Pin3 : PinTile
-{
-    public override int Number { get; } = 3;
-
-    public override string ToString()
-    {
-        return "(3)";
-    }
-}
+public record Pin3() : PinTile(3);
 /// <summary>
 /// 四筒
 /// </summary>
-public record Pin4 : PinTile
-{
-    public override int Number { get; } = 4;
-
-    public override string ToString()
-    {
-        return "(4)";
-    }
-}
+public record Pin4() : PinTile(4);
 /// <summary>
 /// 五筒
 /// </summary>
-public record Pin5 : PinTile
-{
-    public override int Number { get; } = 5;
-
-    public override string ToString()
-    {
-        return "(5)";
-    }
-}
+public record Pin5() : PinTile(5);
 /// <summary>
 /// 六筒
 /// </summary>
-public record Pin6 : PinTile
-{
-    public override int Number { get; } = 6;
-
-    public override string ToString()
-    {
-        return "(6)";
-    }
-}
+public record Pin6() : PinTile(6);
 /// <summary>
 /// 七筒
 /// </summary>
-public record Pin7 : PinTile
-{
-    public override int Number { get; } = 7;
-
-    public override string ToString()
-    {
-        return "(7)";
-    }
-}
+public record Pin7() : PinTile(7);
 /// <summary>
 /// 八筒
 /// </summary>
-public record Pin8 : PinTile
-{
-    public override int Number { get; } = 8;
-
-    public override string ToString()
-    {
-        return "(8)";
-    }
-}
+public record Pin8() : PinTile(8);
 /// <summary>
 /// 九筒
 /// </summary>
-public record Pin9 : PinTile
-{
-    public override int Number { get; } = 9;
-
-    public override string ToString()
-    {
-        return "(9)";
-    }
-}
+public record Pin9() : PinTile(9);
 
 /// <summary>
 /// 一索
 /// </summary>
-public record Sou1 : SouTile
-{
-    public override int Number { get; } = 1;
-
-    public override string ToString()
-    {
-        return "1";
-    }
-}
+public record Sou1() : SouTile(1);
 /// <summary>
 /// 二索
 /// </summary>
-public record Sou2 : SouTile
-{
-    public override int Number { get; } = 2;
-
-    public override string ToString()
-    {
-        return "2";
-    }
-}
+public record Sou2() : SouTile(2);
 /// <summary>
 /// 三索
 /// </summary>
-public record Sou3 : SouTile
-{
-    public override int Number { get; } = 3;
-
-    public override string ToString()
-    {
-        return "3";
-    }
-}
+public record Sou3() : SouTile(3);
 /// <summary>
 /// 四索
 /// </summary>
-public record Sou4 : SouTile
-{
-    public override int Number { get; } = 4;
-
-    public override string ToString()
-    {
-        return "4";
-    }
-}
+public record Sou4() : SouTile(4);
 /// <summary>
 /// 五索
 /// </summary>
-public record Sou5 : SouTile
-{
-    public override int Number { get; } = 5;
-
-    public override string ToString()
-    {
-        return "5";
-    }
-}
+public record Sou5() : SouTile(5);
 /// <summary>
 /// 六索
 /// </summary>
-public record Sou6 : SouTile
-{
-    public override int Number { get; } = 6;
-
-    public override string ToString()
-    {
-        return "6";
-    }
-}
+public record Sou6() : SouTile(6);
 /// <summary>
 /// 七索
 /// </summary>
-public record Sou7 : SouTile
-{
-    public override int Number { get; } = 7;
-
-    public override string ToString()
-    {
-        return "7";
-    }
-}
+public record Sou7() : SouTile(7);
 /// <summary>
 /// 八索
 /// </summary>
-public record Sou8 : SouTile
-{
-    public override int Number { get; } = 8;
-
-    public override string ToString()
-    {
-        return "8";
-    }
-}
+public record Sou8() : SouTile(8);
 /// <summary>
 /// 九索
 /// </summary>
-public record Sou9 : SouTile
-{
-    public override int Number { get; } = 9;
-
-    public override string ToString()
-    {
-        return "9";
-    }
-}
+public record Sou9() : SouTile(9);
 
 /// <summary>
 /// 東
 /// </summary>
-public record Ton : WindTile
-{
-    public override int Number { get; } = 0;
-
-    public override string ToString()
-    {
-        return "東";
-    }
-}
-
+public record Ton() : WindTile;
 /// <summary>
 /// 南
 /// </summary>
-public record Nan : WindTile
-{
-    public override int Number { get; } = 0;
-
-    public override string ToString()
-    {
-        return "南";
-    }
-}
-
+public record Nan() : WindTile;
 /// <summary>
 /// 西
 /// </summary>
-public record Sha : WindTile
-{
-    public override int Number { get; } = 0;
-
-    public override string ToString()
-    {
-        return "西";
-    }
-}
+public record Sha() : WindTile;
 /// <summary>
 /// 北
 /// </summary>
-public record Pei : WindTile
-{
-    public override int Number { get; } = 0;
-
-    public override string ToString()
-    {
-        return "北";
-    }
-}
+public record Pei() : WindTile;
 
 /// <summary>
 /// 白
 /// </summary>
-public record Haku : DragonTile
-{
-    public override int Number { get; } = 0;
-
-    public override string ToString()
-    {
-        return "白";
-    }
-}
+public record Haku() : DragonTile;
 /// <summary>
 /// 發
 /// </summary>
-public record Hatsu : DragonTile
-{
-    public override int Number { get; } = 0;
-
-    public override string ToString()
-    {
-        return "發";
-    }
-}
+public record Hatsu() : DragonTile;
 /// <summary>
 /// 中
 /// </summary>
-public record Chun : DragonTile
-{
-    public override int Number { get; } = 0;
-
-    public override string ToString()
-    {
-        return "中";
-    }
-}
+public record Chun() : DragonTile;
