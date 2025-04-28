@@ -1,4 +1,7 @@
-﻿using System.Collections.Immutable;
+﻿using Mahjong2.Lib.Tiles.HonotTiles;
+using Mahjong2.Lib.Tiles.NumberTiles;
+using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Mahjong2.Lib.Tiles;
 
@@ -161,6 +164,7 @@ public abstract record Tile : IComparable<Tile>
         Sou1, Sou2, Sou3, Sou4, Sou5, Sou6, Sou7, Sou8, Sou9,
         Ton, Nan, Sha, Pei, Haku, Hatsu, Chun,
     ];
+
     /// <summary>
     /// 数牌のリスト
     /// </summary>
@@ -311,39 +315,5 @@ public abstract record Tile : IComparable<Tile>
     public static bool operator >=(Tile? left, Tile? right)
     {
         return right is null || right.CompareTo(left) <= 0;
-    }
-
-    /// <summary>
-    /// 牌の表示名を取得する
-    /// </summary>
-    /// <returns>牌の表示名</returns>
-    public override sealed string ToString()
-    {
-        return this switch
-        {
-            ManTile manTile => manTile.Number switch
-            {
-                1 => "一",
-                2 => "二",
-                3 => "三",
-                4 => "四",
-                5 => "五",
-                6 => "六",
-                7 => "七",
-                8 => "八",
-                9 => "九",
-                _ => throw new InvalidOperationException($"無効な萬子の数字: {manTile.Number}")
-            },
-            PinTile pinTile => $"({pinTile.Number})",
-            SouTile souTile => souTile.Number.ToString(),
-            Tiles.Ton => "東",
-            Tiles.Nan => "南",
-            Tiles.Sha => "西",
-            Tiles.Pei => "北",
-            Tiles.Haku => "白",
-            Tiles.Hatsu => "發",
-            Tiles.Chun => "中",
-            _ => throw new InvalidOperationException($"不明な牌です: {GetType().Name}")
-        };
     }
 }
