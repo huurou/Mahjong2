@@ -1,7 +1,6 @@
 ﻿using Mahjong2.Lib.Tiles.HonotTiles;
 using Mahjong2.Lib.Tiles.NumberTiles;
 using System.Collections.Immutable;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Mahjong2.Lib.Tiles;
 

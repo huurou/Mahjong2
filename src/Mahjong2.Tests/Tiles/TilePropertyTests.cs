@@ -1,5 +1,4 @@
 using Mahjong2.Lib.Tiles;
-using Mahjong2.Lib.Tiles.NumberTiles;
 
 namespace Mahjong2.Tests.Tiles;
 
