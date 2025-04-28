@@ -1,5 +1,4 @@
 using Mahjong2.Lib.Fus;
-using Xunit;
 
 namespace Mahjong2.Tests.Fus
 {
@@ -8,322 +7,47 @@ namespace Mahjong2.Tests.Fus
     /// </summary>
     public class FuTests
     {
-        [Fact]
-        public void Futei_値取得_20が返る()
+        [Theory]
+        [InlineData(nameof(Fu.Futei), 20)]
+        [InlineData(nameof(Fu.Shuntsu), 0)]
+        [InlineData(nameof(Fu.MinkoChuchan), 2)]
+        [InlineData(nameof(Fu.MinkoYaochu), 4)]
+        [InlineData(nameof(Fu.AnkoChuchan), 4)]
+        [InlineData(nameof(Fu.AnkoYaochu), 8)]
+        [InlineData(nameof(Fu.MinkanChuchan), 8)]
+        [InlineData(nameof(Fu.MinkanYaochu), 16)]
+        [InlineData(nameof(Fu.AnkanChuchan), 16)]
+        [InlineData(nameof(Fu.AnkanYaochu), 32)]
+        [InlineData(nameof(Fu.JantoNumber), 0)]
+        [InlineData(nameof(Fu.JantoOtherWind), 0)]
+        [InlineData(nameof(Fu.JantouPlayerWind), 2)]
+        [InlineData(nameof(Fu.JantouRoundWind), 2)]
+        [InlineData(nameof(Fu.JantouDragon), 2)]
+        [InlineData(nameof(Fu.WaitRyanmen), 0)]
+        [InlineData(nameof(Fu.WaitShanpon), 0)]
+        [InlineData(nameof(Fu.WaitKanchan), 2)]
+        [InlineData(nameof(Fu.WaitPenchan), 2)]
+        [InlineData(nameof(Fu.WaitTanki), 2)]
+        [InlineData(nameof(Fu.MenzenFu), 10)]
+        [InlineData(nameof(Fu.TsumoFu), 2)]
+        [InlineData(nameof(Fu.FuteiOpenPinfu), 30)]
+        [InlineData(nameof(Fu.Chiitoitsu), 25)]
+        public void Fuクラス_値取得_期待値が返る(string propertyName, int expectedValue)
         {
-            // Arrange  
-            var futei = Fu.Futei;
+            // Arrange
+            var fu = (typeof(Fu).GetProperty(propertyName)?.GetValue(null) as Fu) ?? throw new InvalidOperationException($"プロパティ {propertyName} が見つかりませんでした。");
 
-            // Act  
-            var value = futei.Value;
+            // Act
+            var value = fu.Value;
 
-            // Assert  
-            Assert.Equal(20, value);
-        }
-
-        [Fact]
-        public void Shuntsu_値取得_0が返る()
-        {
-            // Arrange  
-            var shuntsu = Fu.Shuntsu;
-
-            // Act  
-            var value = shuntsu.Value;
-
-            // Assert  
-            Assert.Equal(0, value);
-        }
-
-        [Fact]
-        public void MinkoChuchan_値取得_2が返る()
-        {
-            // Arrange  
-            var minkoChuchan = Fu.MinkoChuchan;
-
-            // Act  
-            var value = minkoChuchan.Value;
-
-            // Assert  
-            Assert.Equal(2, value);
-        }
-
-        [Fact]
-        public void MinkoYaochu_値取得_4が返る()
-        {
-            // Arrange  
-            var minkoYaochu = Fu.MinkoYaochu;
-
-            // Act  
-            var value = minkoYaochu.Value;
-
-            // Assert  
-            Assert.Equal(4, value);
-        }
-
-        [Fact]
-        public void AnkoChuchan_値取得_4が返る()
-        {
-            // Arrange  
-            var ankoChuchan = Fu.AnkoChuchan;
-
-            // Act  
-            var value = ankoChuchan.Value;
-
-            // Assert  
-            Assert.Equal(4, value);
-        }
-
-        [Fact]
-        public void AnkoYaochu_値取得_8が返る()
-        {
-            // Arrange  
-            var ankoYaochu = Fu.AnkoYaochu;
-
-            // Act  
-            var value = ankoYaochu.Value;
-
-            // Assert  
-            Assert.Equal(8, value);
-        }
-
-        [Fact]
-        public void MinkanChuchan_値取得_8が返る()
-        {
-            // Arrange  
-            var minkanChuchan = Fu.MinkanChuchan;
-
-            // Act  
-            var value = minkanChuchan.Value;
-
-            // Assert  
-            Assert.Equal(8, value);
-        }
-
-        [Fact]
-        public void MinkanYaochu_値取得_16が返る()
-        {
-            // Arrange  
-            var minkanYaochu = Fu.MinkanYaochu;
-
-            // Act  
-            var value = minkanYaochu.Value;
-
-            // Assert  
-            Assert.Equal(16, value);
-        }
-
-        [Fact]
-        public void AnkanChuchan_値取得_16が返る()
-        {
-            // Arrange  
-            var ankanChuchan = Fu.AnkanChuchan;
-
-            // Act  
-            var value = ankanChuchan.Value;
-
-            // Assert  
-            Assert.Equal(16, value);
-        }
-
-        [Fact]
-        public void AnkanYaochu_値取得_32が返る()
-        {
-            // Arrange  
-            var ankanYaochu = Fu.AnkanYaochu;
-
-            // Act  
-            var value = ankanYaochu.Value;
-
-            // Assert  
-            Assert.Equal(32, value);
-        }
-
-        [Fact]
-        public void JantoNumber_値取得_0が返る()
-        {
-            // Arrange  
-            var jantoNumber = Fu.JantoNumber;
-
-            // Act  
-            var value = jantoNumber.Value;
-
-            // Assert  
-            Assert.Equal(0, value);
-        }
-
-        [Fact]
-        public void JantoOtherWind_値取得_0が返る()
-        {
-            // Arrange  
-            var jantoOtherWind = Fu.JantoOtherWind;
-
-            // Act  
-            var value = jantoOtherWind.Value;
-
-            // Assert  
-            Assert.Equal(0, value);
-        }
-
-        [Fact]
-        public void JantouPlayerWind_値取得_2が返る()
-        {
-            // Arrange  
-            var jantouPlayerWind = Fu.JantouPlayerWind;
-
-            // Act  
-            var value = jantouPlayerWind.Value;
-
-            // Assert  
-            Assert.Equal(2, value);
-        }
-
-        [Fact]
-        public void JantouRoundWind_値取得_2が返る()
-        {
-            // Arrange  
-            var jantouRoundWind = Fu.JantouRoundWind;
-
-            // Act  
-            var value = jantouRoundWind.Value;
-
-            // Assert  
-            Assert.Equal(2, value);
-        }
-
-        [Fact]
-        public void JantouDragon_値取得_2が返る()
-        {
-            // Arrange  
-            var jantouDragon = Fu.JantouDragon;
-
-            // Act  
-            var value = jantouDragon.Value;
-
-            // Assert  
-            Assert.Equal(2, value);
-        }
-
-        [Fact]
-        public void WaitRyanmen_値取得_0が返る()
-        {
-            // Arrange  
-            var waitRyanmen = Fu.WaitRyanmen;
-
-            // Act  
-            var value = waitRyanmen.Value;
-
-            // Assert  
-            Assert.Equal(0, value);
-        }
-
-        [Fact]
-        public void WaitShanpon_値取得_0が返る()
-        {
-            // Arrange  
-            var waitShanpon = Fu.WaitShanpon;
-
-            // Act  
-            var value = waitShanpon.Value;
-
-            // Assert  
-            Assert.Equal(0, value);
-        }
-
-        [Fact]
-        public void WaitKanchan_値取得_2が返る()
-        {
-            // Arrange  
-            var waitKanchan = Fu.WaitKanchan;
-
-            // Act  
-            var value = waitKanchan.Value;
-
-            // Assert  
-            Assert.Equal(2, value);
-        }
-
-        [Fact]
-        public void WaitPenchan_値取得_2が返る()
-        {
-            // Arrange  
-            var waitPenchan = Fu.WaitPenchan;
-
-            // Act  
-            var value = waitPenchan.Value;
-
-            // Assert  
-            Assert.Equal(2, value);
-        }
-
-        [Fact]
-        public void WaitTanki_値取得_2が返る()
-        {
-            // Arrange  
-            var waitTanki = Fu.WaitTanki;
-
-            // Act  
-            var value = waitTanki.Value;
-
-            // Assert  
-            Assert.Equal(2, value);
-        }
-
-        [Fact]
-        public void MenzenFu_値取得_10が返る()
-        {
-            // Arrange  
-            var menzenFu = Fu.MenzenFu;
-
-            // Act  
-            var value = menzenFu.Value;
-
-            // Assert  
-            Assert.Equal(10, value);
-        }
-
-        [Fact]
-        public void TsumoFu_値取得_2が返る()
-        {
-            // Arrange  
-            var tsumoFu = Fu.TsumoFu;
-
-            // Act  
-            var value = tsumoFu.Value;
-
-            // Assert  
-            Assert.Equal(2, value);
-        }
-
-        [Fact]
-        public void FuteiOpenPinfu_値取得_30が返る()
-        {
-            // Arrange  
-            var futeiOpenPinfu = Fu.FuteiOpenPinfu;
-
-            // Act  
-            var value = futeiOpenPinfu.Value;
-
-            // Assert  
-            Assert.Equal(30, value);
-        }
-
-        [Fact]
-        public void Chiitoitsu_値取得_25が返る()
-        {
-            // Arrange  
-            var chiitoitsu = Fu.Chiitoitsu;
-
-            // Act  
-            var value = chiitoitsu.Value;
-
-            // Assert  
-            Assert.Equal(25, value);
+            // Assert
+            Assert.Equal(expectedValue, value);
         }
 
         [Fact]
         public void ToString_フォーマット確認_正しい形式の文字列が返る()
         {
-            // Arrange  
+            // Arrange
             var futei = Fu.Futei;
             var futeiOpenPinfu = Fu.FuteiOpenPinfu;
             var chiitoitsu = Fu.Chiitoitsu;
@@ -349,7 +73,7 @@ namespace Mahjong2.Tests.Fus
             var menzenFu = Fu.MenzenFu;
             var tsumoFu = Fu.TsumoFu;
 
-            // Act  
+            // Act
             var futeiString = futei.ToString();
             var futeiOpenPinfuString = futeiOpenPinfu.ToString();
             var chiitoitsuString = chiitoitsu.ToString();
@@ -375,7 +99,7 @@ namespace Mahjong2.Tests.Fus
             var menzenFuString = menzenFu.ToString();
             var tsumoFuString = tsumoFu.ToString();
 
-            // Assert  
+            // Assert
             Assert.Equal("副底:20符", futeiString);
             Assert.Equal("副底(食い平和):30符", futeiOpenPinfuString);
             Assert.Equal("七対子:25符", chiitoitsuString);

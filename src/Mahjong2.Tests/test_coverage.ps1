@@ -65,6 +65,3 @@ catch {
     Write-Error "エラーが発生しました: $_"
     Write-Error "スタックトレース: $($_.ScriptStackTrace)"
 }
-finally {
-    Pause
-}
