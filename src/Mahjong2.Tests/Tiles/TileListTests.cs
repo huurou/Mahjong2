@@ -257,7 +257,21 @@ public class TileListTests
     }
 
     [Fact]
-    public void 比較演算子_牌リストの比較演算子_正しく比較できる()
+    public void 演算子小なり_左辺が右辺より小さい場合_trueを返す()
+    {
+        // Arrange
+        TileList list1 = [Tile.Man1, Tile.Man2];
+        TileList list2 = [Tile.Man1, Tile.Man3];
+
+        // Act & Assert
+        Assert.True(list1 < list2);
+        Assert.False(list2 < list1);
+        Assert.True(null < list1);
+        Assert.False(list1 < null);
+    }
+
+    [Fact]
+    public void 演算子以下_左辺が右辺以下の場合_trueを返す()
     {
         // Arrange
         TileList list1 = [Tile.Man1, Tile.Man2];
@@ -265,36 +279,41 @@ public class TileListTests
         TileList list3 = [Tile.Man1, Tile.Man2];
 
         // Act & Assert
-        // < 演算子のテスト
-        Assert.True(list1 < list2);
-        Assert.False(list2 < list1);
-        Assert.False(list1 < list3);
-
-        // <= 演算子のテスト
         Assert.True(list1 <= list2);
         Assert.False(list2 <= list1);
         Assert.True(list1 <= list3);
+        Assert.True(null <= list1);
+        Assert.False(list1 <= null);
+    }
 
-        // > 演算子のテスト
+    [Fact]
+    public void 演算子大なり_左辺が右辺より大きい場合_trueを返す()
+    {
+        // Arrange
+        TileList list1 = [Tile.Man1, Tile.Man2];
+        TileList list2 = [Tile.Man1, Tile.Man3];
+
+        // Act & Assert
         Assert.False(list1 > list2);
         Assert.True(list2 > list1);
-        Assert.False(list1 > list3);
+        Assert.False(null > list1);
+        Assert.True(list1 > null);
+    }
 
-        // >= 演算子のテスト
+    [Fact]
+    public void 演算子以上_左辺が右辺以上の場合_trueを返す()
+    {
+        // Arrange
+        TileList list1 = [Tile.Man1, Tile.Man2];
+        TileList list2 = [Tile.Man1, Tile.Man3];
+        TileList list3 = [Tile.Man1, Tile.Man2];
+
+        // Act & Assert
         Assert.False(list1 >= list2);
         Assert.True(list2 >= list1);
         Assert.True(list1 >= list3);
-
-        // NULL比較のテスト
-        Assert.True(list1 > null);
-        Assert.True(list1 >= null);
-        Assert.False(list1 < null);
-        Assert.False(list1 <= null);
-
-        Assert.False(null > list1);
         Assert.False(null >= list1);
-        Assert.True(null < list1);
-        Assert.True(null <= list1);
+        Assert.True(list1 >= null);
     }
 
     [Fact]
@@ -318,9 +337,31 @@ public class TileListTests
 
         // Assert
         Assert.Equal(expected.Count, actual.Count);
-        for (int i = 0; i < expected.Count; i++)
+        for (var i = 0; i < expected.Count; i++)
         {
             Assert.Equal(expected[i], actual[i]);
         }
+    }
+
+    [Fact]
+    public void ToString_牌リストの文字列表現_正しく変換される()
+    {
+        // Arrange
+        TileList tileList1 = [Tile.Man1, Tile.Man2, Tile.Man3];
+        TileList tileList2 = [Tile.Pin4, Tile.Pin5, Tile.Pin6];
+        TileList tileList3 = [Tile.Ton, Tile.Nan, Tile.Sha, Tile.Pei];
+        TileList tileList4 = [Tile.Man1, Tile.Pin2, Tile.Sou3, Tile.Ton];
+
+        // Act
+        var actual1 = tileList1.ToString();
+        var actual2 = tileList2.ToString();
+        var actual3 = tileList3.ToString();
+        var actual4 = tileList4.ToString();
+
+        // Assert
+        Assert.Equal("一二三", actual1);
+        Assert.Equal("(4)(5)(6)", actual2);
+        Assert.Equal("東南西北", actual3);
+        Assert.Equal("一(2)3東", actual4);
     }
 }

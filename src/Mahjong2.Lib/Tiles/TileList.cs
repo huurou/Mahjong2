@@ -10,7 +10,7 @@ namespace Mahjong2.Lib.Tiles;
 /// 牌の集合を表現するクラス
 /// </summary>
 [CollectionBuilder(typeof(TileListBuilder), "Create")]
-public record TileList : IEnumerable<Tile>, IComparable<TileList>
+public record TileList : IEnumerable<Tile>, IComparable<TileList>, IEquatable<TileList>
 {
     /// <summary>
     /// 全ての牌が萬子かどうか
@@ -230,6 +230,37 @@ public record TileList : IEnumerable<Tile>, IComparable<TileList>
     public static bool operator >=(TileList? left, TileList? right)
     {
         return left is null ? right is null : left.CompareTo(right) >= 0;
+    }
+
+    /// <summary>
+    /// 指定されたTileListオブジェクトと現在のTileListオブジェクトが等しいかどうかを判断します
+    /// </summary>
+    /// <param name="other">このオブジェクトと比較する牌リスト</param>
+    /// <returns>指定されたオブジェクトと現在のオブジェクトが等しい場合はtrue、それ以外の場合はfalse</returns>
+    public virtual bool Equals(TileList? other)
+    {
+        if (other is null) { return false; }
+        if (ReferenceEquals(this, other)) { return true; }
+
+        return tiles_.SequenceEqual(other.tiles_);
+    }
+
+    /// <summary>
+    /// オブジェクトのハッシュコードを計算します
+    /// </summary>
+    /// <returns>このオブジェクトのハッシュコード</returns>
+    public override int GetHashCode()
+    {
+        return tiles_.Aggregate(0, (hash, tile) => hash * 31 + tile.GetHashCode());
+    }
+
+    /// <summary>
+    /// 牌リストの文字列表現を取得します
+    /// </summary>
+    /// <returns>牌リストに含まれる全ての牌を連結した文字列</returns>
+    public sealed override string ToString()
+    {
+        return string.Join("", this);
     }
 
     public static class TileListBuilder
