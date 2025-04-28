@@ -26,7 +26,7 @@ public abstract record HonorTile : Tile, IComparable<HonorTile>
             honorTile = dragonTile;
             return true;
         }
-        return honorTile is not null;
+        return false;
     }
 
     /// <summary>
