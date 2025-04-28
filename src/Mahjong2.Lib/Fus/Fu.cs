@@ -3,7 +3,6 @@
 /// <summary>
 /// 符を表現するクラス
 /// </summary>
-[Serializable]
 public abstract record Fu
 {
     #region シングルトンプロパティ
