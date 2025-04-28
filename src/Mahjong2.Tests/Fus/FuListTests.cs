@@ -21,35 +21,6 @@ public class FuListTests
     }
 
     [Fact]
-    public void FuListに符を追加した場合_符数が増加すること()
-    {
-        // Arrange
-        var fuList = new FuList([]);
-
-        // Act
-        var newFuList = fuList.Add(Fu.Futei);
-
-        // Assert
-        Assert.Equal(0, fuList.Count);  // 元のリストは変更されない
-        Assert.Equal(1, newFuList.Count);
-    }
-
-    [Fact]
-    public void FuListに複数の符を追加した場合_符の合計が計算されること()
-    {
-        // Arrange
-        var fuList = new FuList([Fu.Futei]); // 20符
-
-        // Act
-        var newFuList = fuList
-            .Add(Fu.TsumoFu)       // 2符
-            .Add(Fu.WaitKanchan);  // 2符
-
-        // Assert
-        Assert.Equal(30, newFuList.Total); // 20 + 2 + 2 = 24符 → 30符に切り上げ
-    }
-
-    [Fact]
     public void 七対子を含むFuListの場合_合計符数が25固定であること()
     {
         // Arrange

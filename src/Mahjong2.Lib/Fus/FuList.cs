@@ -24,6 +24,11 @@ public record FuList : IEnumerable<Fu>
 
     private readonly ImmutableList<Fu> fus_;
 
+    public FuList()
+    {
+        fus_ = [];
+    }
+
     /// <summary>
     /// 指定された符のコレクションから新しい符リストを初期化します
     /// </summary>
@@ -31,16 +36,6 @@ public record FuList : IEnumerable<Fu>
     public FuList(IEnumerable<Fu> fus)
     {
         fus_ = [.. fus];
-    }
-
-    /// <summary>
-    /// 符リストに符を追加します
-    /// </summary>
-    /// <param name="fu">符</param>
-    /// <returns>新しい符リスト</returns>
-    public FuList Add(Fu fu)
-    {
-        return new(fus_.Add(fu));
     }
 
     /// <summary>

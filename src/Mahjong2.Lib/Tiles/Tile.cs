@@ -243,6 +243,13 @@ public abstract record Tile : IComparable<Tile>
     /// </summary>
     public bool IsRoutou => this is NumberTile numberTile && numberTile.Number is 1 or 9;
 
+    /// <summary>
+    /// 牌を比較します
+    /// </summary>
+    /// <param name="other">比較対象の牌</param>
+    /// <returns>この牌が<paramref name="other"/>より小さい場合は負の値、等しい場合は0、大きい場合は正の値</returns>
+    /// <exception cref="InvalidOperationException">不明な牌の比較が行われた場合</exception>
+    /// <exception cref="ArgumentException">不明な牌が指定された場合</exception>
     public int CompareTo(Tile? other)
     {
         if (other is null) { return 1; }
@@ -250,53 +257,17 @@ public abstract record Tile : IComparable<Tile>
         // 牌の種類での比較を最初に行う
         var typeComparison = GetTileTypeValue(this).CompareTo(GetTileTypeValue(other));
         if (typeComparison != 0) { return typeComparison; }
-
-        // 同じ種類の牌の場合の比較
-        if (this is NumberTile thisNumberTile && other is NumberTile otherNumberTile)
-        {
-            return thisNumberTile.Number.CompareTo(otherNumberTile.Number);
-        }
-        if (this is WindTile thisWindTile && other is WindTile otherWindTile)
-        {
-            return GetWindNumber(thisWindTile).CompareTo(GetWindNumber(otherWindTile));
-        }
-        if (this is DragonTile thisDragonTile && other is DragonTile otherDragonTile)
-        {
-            return GetDragonValue(thisDragonTile).CompareTo(GetDragonValue(otherDragonTile));
-        }
-        return 0;
+        if (this is NumberTile thisNumberTile && other is NumberTile otherNumberTile) { return thisNumberTile.CompareTo(otherNumberTile); }
+        if (this is HonorTile thisHonorTile && other is HonorTile otherHonorTile) { return thisHonorTile.CompareTo(otherHonorTile); }
+        throw new InvalidOperationException($"不明な牌の比較です: {this} vs {other}");
 
         static int GetTileTypeValue(Tile tile)
         {
             return tile switch
             {
-                ManTile => 0,
-                PinTile => 1,
-                SouTile => 2,
-                WindTile => 3,
-                DragonTile => 4,
-                _ => throw new ArgumentException("不明な牌種類です", nameof(tile)),
-            };
-        }
-        static int GetWindNumber(WindTile windTile)
-        {
-            return windTile switch
-            {
-                Tiles.Ton => 0,
-                Tiles.Nan => 1,
-                Tiles.Sha => 2,
-                Tiles.Pei => 3,
-                _ => throw new ArgumentException("不明な風牌です", nameof(windTile)),
-            };
-        }
-        static int GetDragonValue(DragonTile dragonTile)
-        {
-            return dragonTile switch
-            {
-                Tiles.Haku => 0,
-                Tiles.Hatsu => 1,
-                Tiles.Chun => 2,
-                _ => throw new ArgumentException("不明な三元牌です", nameof(dragonTile)),
+                NumberTile => 0,
+                HonorTile => 1,
+                _ => throw new ArgumentException("不明な牌です", nameof(tile)),
             };
         }
     }
@@ -376,174 +347,3 @@ public abstract record Tile : IComparable<Tile>
         };
     }
 }
-
-/// <summary>
-/// 数牌
-/// </summary>
-/// <param name="Number">絵柄の数字</param>
-public abstract record NumberTile(int Number) : Tile;
-/// <summary>
-/// 萬子
-/// </summary>
-public abstract record ManTile(int Number) : NumberTile(Number);
-/// <summary>
-/// 筒子
-/// </summary>
-public abstract record PinTile(int Number) : NumberTile(Number);
-/// <summary>
-/// 索子
-/// </summary>
-public abstract record SouTile(int Number) : NumberTile(Number);
-/// <summary>
-/// 字牌
-/// </summary>
-public abstract record HonorTile : Tile;
-/// <summary>
-/// 風牌
-/// </summary>
-public abstract record WindTile : HonorTile;
-/// <summary>
-/// 三元牌
-/// </summary>
-public abstract record DragonTile : HonorTile;
-
-/// <summary>
-/// 一萬
-/// </summary>
-public record Man1() : ManTile(1);
-/// <summary>
-/// 二萬
-/// </summary>
-public record Man2() : ManTile(2);
-/// <summary>
-/// 三萬
-/// </summary>
-public record Man3() : ManTile(3);
-/// <summary>
-/// 四萬
-/// </summary>
-public record Man4() : ManTile(4);
-/// <summary>
-/// 五萬
-/// </summary>
-public record Man5() : ManTile(5);
-/// <summary>
-/// 六萬
-/// </summary>
-public record Man6() : ManTile(6);
-/// <summary>
-/// 七萬
-/// </summary>
-public record Man7() : ManTile(7);
-/// <summary>
-/// 八萬
-/// </summary>
-public record Man8() : ManTile(8);
-/// <summary>
-/// 九萬
-/// </summary>
-public record Man9() : ManTile(9);
-
-/// <summary>
-/// 一筒
-/// </summary>
-public record Pin1() : PinTile(1);
-/// <summary>
-/// 二筒
-/// </summary>
-public record Pin2() : PinTile(2);
-/// <summary>
-/// 三筒
-/// </summary>
-public record Pin3() : PinTile(3);
-/// <summary>
-/// 四筒
-/// </summary>
-public record Pin4() : PinTile(4);
-/// <summary>
-/// 五筒
-/// </summary>
-public record Pin5() : PinTile(5);
-/// <summary>
-/// 六筒
-/// </summary>
-public record Pin6() : PinTile(6);
-/// <summary>
-/// 七筒
-/// </summary>
-public record Pin7() : PinTile(7);
-/// <summary>
-/// 八筒
-/// </summary>
-public record Pin8() : PinTile(8);
-/// <summary>
-/// 九筒
-/// </summary>
-public record Pin9() : PinTile(9);
-
-/// <summary>
-/// 一索
-/// </summary>
-public record Sou1() : SouTile(1);
-/// <summary>
-/// 二索
-/// </summary>
-public record Sou2() : SouTile(2);
-/// <summary>
-/// 三索
-/// </summary>
-public record Sou3() : SouTile(3);
-/// <summary>
-/// 四索
-/// </summary>
-public record Sou4() : SouTile(4);
-/// <summary>
-/// 五索
-/// </summary>
-public record Sou5() : SouTile(5);
-/// <summary>
-/// 六索
-/// </summary>
-public record Sou6() : SouTile(6);
-/// <summary>
-/// 七索
-/// </summary>
-public record Sou7() : SouTile(7);
-/// <summary>
-/// 八索
-/// </summary>
-public record Sou8() : SouTile(8);
-/// <summary>
-/// 九索
-/// </summary>
-public record Sou9() : SouTile(9);
-
-/// <summary>
-/// 東
-/// </summary>
-public record Ton() : WindTile;
-/// <summary>
-/// 南
-/// </summary>
-public record Nan() : WindTile;
-/// <summary>
-/// 西
-/// </summary>
-public record Sha() : WindTile;
-/// <summary>
-/// 北
-/// </summary>
-public record Pei() : WindTile;
-
-/// <summary>
-/// 白
-/// </summary>
-public record Haku() : DragonTile;
-/// <summary>
-/// 發
-/// </summary>
-public record Hatsu() : DragonTile;
-/// <summary>
-/// 中
-/// </summary>
-public record Chun() : DragonTile;
