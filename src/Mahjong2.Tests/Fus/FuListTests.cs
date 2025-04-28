@@ -3,6 +3,9 @@ using System.Collections;
 
 namespace Mahjong2.Tests.Fus;
 
+/// <summary>
+/// FuListクラスのテスト
+/// </summary>
 public class FuListTests
 {
     [Fact]

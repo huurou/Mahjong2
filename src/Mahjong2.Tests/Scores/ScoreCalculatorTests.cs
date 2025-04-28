@@ -2,6 +2,9 @@ using Mahjong2.Lib.Scores;
 
 namespace Mahjong2.Tests.Scores;
 
+/// <summary>
+/// ScoreCalculatorクラスのテスト
+/// </summary>
 public class ScoreCalculatorTests
 {
     [Theory]

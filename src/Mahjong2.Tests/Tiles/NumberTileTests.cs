@@ -3,6 +3,9 @@ using Mahjong2.Lib.Tiles.NumberTiles;
 
 namespace Mahjong2.Tests.Tiles;
 
+/// <summary>
+/// NumberTileクラスのテスト
+/// </summary>
 public class NumberTileTests
 {
     [Fact]
@@ -97,9 +100,6 @@ public class NumberTileTests
         Assert.Null(pinTile);
     }
 
-    /// <summary>
-    /// SouTileのTryFromNumberメソッドが正常な入力値で正しく動作することを確認
-    /// </summary>
     [Fact]
     public void SouTile_TryFromNumber_正常な入力値で正しい牌を取得できる()
     {
@@ -129,9 +129,6 @@ public class NumberTileTests
         }
     }
 
-    /// <summary>
-    /// SouTileのTryFromNumberメソッドが範囲外の入力値で正しく動作することを確認
-    /// </summary>
     [Fact]
     public void SouTile_TryFromNumber_範囲外の入力値でfalseを返す()
     {

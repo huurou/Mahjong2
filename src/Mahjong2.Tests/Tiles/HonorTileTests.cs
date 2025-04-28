@@ -3,6 +3,9 @@ using Mahjong2.Lib.Tiles.HonotTiles;
 
 namespace Mahjong2.Tests.Tiles;
 
+/// <summary>
+/// HonorTileクラスのテスト
+/// </summary>
 public class HonorTileTests
 {
     [Fact]
