@@ -32,6 +32,18 @@ public abstract record PinTile : NumberTile
     }
 
     /// <summary>
+    /// 文字から筒子に変換を試みます
+    /// </summary>
+    /// <param name="c">変換する文字</param>
+    /// <param name="pinTile">変換された筒子。変換に失敗した場合はnull</param>
+    /// <returns>変換に成功した場合はtrue、失敗した場合はfalse</returns>
+    public static bool TryFromChar(char c, [NotNullWhen(true)] out PinTile? pinTile)
+    {
+        pinTile = null;
+        return int.TryParse(c.ToString(), out var num) && TryFromNumber(num, out pinTile);
+    }
+
+    /// <summary>
     /// 現在の筒子から指定された距離だけ離れた筒子を取得します
     /// </summary>
     /// <param name="distance">移動する距離（正の値は大きい数字の牌へ、負の値は小さい数字の牌へ）</param>

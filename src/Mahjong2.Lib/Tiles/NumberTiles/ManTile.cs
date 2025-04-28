@@ -32,6 +32,18 @@ public abstract record ManTile : NumberTile
     }
 
     /// <summary>
+    /// 文字から萬子に変換を試みます
+    /// </summary>
+    /// <param name="c">変換する文字</param>
+    /// <param name="manTile">変換された萬子。変換に失敗した場合はnull</param>
+    /// <returns>変換に成功した場合はtrue、失敗した場合はfalse</returns>
+    public static bool TryFromChar(char c, [NotNullWhen(true)] out ManTile? manTile)
+    {
+        manTile = null;
+        return int.TryParse(c.ToString(), out var num) && TryFromNumber(num, out manTile);
+    }
+
+    /// <summary>
     /// 現在の萬子から指定された距離だけ離れた萬子を取得します
     /// </summary>
     /// <param name="distance">移動する距離（正の値は大きい数字の牌へ、負の値は小さい数字の牌へ）</param>
