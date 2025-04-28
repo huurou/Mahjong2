@@ -121,13 +121,13 @@ public class TileListTests
     public void IsToitsu_対子の場合_trueを返す()
     {
         // Arrange
-        TileList toitsu1 = [Tile.Man1, Tile.Man1];
-        TileList toitsu2 = [Tile.Pin5, Tile.Pin5];
-        TileList toitsu3 = [Tile.Ton, Tile.Ton];
+        var toitsu1 = new TileList(man: "11");
+        var toitsu2 = new TileList(pin: "55");
+        var toitsu3 = new TileList(honor: "tt"); // 東東
 
-        TileList notToitsu1 = [Tile.Man1, Tile.Man2];
-        TileList notToitsu2 = [Tile.Man1];
-        TileList notToitsu3 = [Tile.Man1, Tile.Man1, Tile.Man1];
+        var notToitsu1 = new TileList(man: "12");
+        var notToitsu2 = new TileList(man: "1");
+        var notToitsu3 = new TileList(man: "111");
 
         // Act & Assert
         Assert.True(toitsu1.IsToitsu);
@@ -143,14 +143,14 @@ public class TileListTests
     public void IsShuntsu_順子の場合_trueを返す()
     {
         // Arrange
-        TileList shuntsu1 = [Tile.Man1, Tile.Man2, Tile.Man3];
-        TileList shuntsu2 = [Tile.Pin3, Tile.Pin4, Tile.Pin5];
-        TileList shuntsu3 = [Tile.Sou7, Tile.Sou8, Tile.Sou9];
+        var shuntsu1 = new TileList(man: "123");
+        var shuntsu2 = new TileList(pin: "345");
+        var shuntsu3 = new TileList(sou: "789");
 
-        TileList notShuntsu1 = [Tile.Man1, Tile.Man3, Tile.Man5]; // 連続していない
-        TileList notShuntsu2 = [Tile.Man9, Tile.Pin1, Tile.Pin2]; // 異なる種類
-        TileList notShuntsu3 = [Tile.Man1, Tile.Man2]; // 2枚しかない
-        TileList notShuntsu4 = [Tile.Ton, Tile.Nan, Tile.Sha]; // 字牌
+        var notShuntsu1 = new TileList(man: "135"); // 連続していない
+        var notShuntsu2 = new TileList(man: "9", pin: "12"); // 異なる種類
+        var notShuntsu3 = new TileList(man: "12"); // 2枚しかない
+        var notShuntsu4 = new TileList(honor: "tns"); // 字牌
 
         // Act & Assert
         Assert.True(shuntsu1.IsShuntsu);
@@ -167,13 +167,13 @@ public class TileListTests
     public void IsKoutsu_刻子の場合_trueを返す()
     {
         // Arrange
-        TileList koutsu1 = [Tile.Man1, Tile.Man1, Tile.Man1];
-        TileList koutsu2 = [Tile.Pin5, Tile.Pin5, Tile.Pin5];
-        TileList koutsu3 = [Tile.Ton, Tile.Ton, Tile.Ton];
+        var koutsu1 = new TileList(man: "111");
+        var koutsu2 = new TileList(pin: "555");
+        var koutsu3 = new TileList(honor: "ttt"); // 東東東
 
-        TileList notKoutsu1 = [Tile.Man1, Tile.Man2, Tile.Man3]; // 順子
-        TileList notKoutsu2 = [Tile.Man1, Tile.Man1]; // 2枚しかない
-        TileList notKoutsu3 = [Tile.Man1, Tile.Man1, Tile.Man1, Tile.Man1]; // 4枚ある（槓子）
+        var notKoutsu1 = new TileList(man: "123"); // 順子
+        var notKoutsu2 = new TileList(man: "11"); // 2枚しかない
+        var notKoutsu3 = new TileList(man: "1111"); // 4枚ある（槓子）
 
         // Act & Assert
         Assert.True(koutsu1.IsKoutsu);
@@ -189,13 +189,13 @@ public class TileListTests
     public void IsKantsu_槓子の場合_trueを返す()
     {
         // Arrange
-        TileList kantsu1 = [Tile.Man1, Tile.Man1, Tile.Man1, Tile.Man1];
-        TileList kantsu2 = [Tile.Pin5, Tile.Pin5, Tile.Pin5, Tile.Pin5];
-        TileList kantsu3 = [Tile.Ton, Tile.Ton, Tile.Ton, Tile.Ton];
+        var kantsu1 = new TileList(man: "1111");
+        var kantsu2 = new TileList(pin: "5555");
+        var kantsu3 = new TileList(honor: "tttt"); // 東東東東
 
-        TileList notKantsu1 = [Tile.Man1, Tile.Man2, Tile.Man3, Tile.Man4]; // 連続牌
-        TileList notKantsu2 = [Tile.Man1, Tile.Man1, Tile.Man1]; // 3枚しかない（刻子）
-        TileList notKantsu3 = [Tile.Man1, Tile.Man1]; // 2枚しかない（対子）
+        var notKantsu1 = new TileList(man: "1234"); // 連続牌
+        var notKantsu2 = new TileList(man: "111"); // 3枚しかない（刻子）
+        var notKantsu3 = new TileList(man: "11"); // 2枚しかない（対子）
 
         // Act & Assert
         Assert.True(kantsu1.IsKantsu);
@@ -211,7 +211,7 @@ public class TileListTests
     public void Add_牌を追加_新しいリストが返される()
     {
         // Arrange
-        TileList tileList = [Tile.Man1, Tile.Man2];
+        var tileList = new TileList(man: "12");
 
         // Act
         var newTileList = tileList.Add(Tile.Man3);
@@ -226,7 +226,7 @@ public class TileListTests
     public void Sorted_ソートされた新しいリストが返される()
     {
         // Arrange
-        TileList unsorted = [Tile.Pin5, Tile.Man1, Tile.Sou9, Tile.Ton];
+        var unsorted = new TileList(pin: "5", man: "1", sou: "9", honor: "t"); // 東
 
         // Act
         var sorted = unsorted.Sorted();
@@ -243,10 +243,10 @@ public class TileListTests
     public void CompareTo_牌リストの比較_正しく比較できる()
     {
         // Arrange
-        TileList list1 = [Tile.Man1, Tile.Man2, Tile.Man3];
-        TileList list2 = [Tile.Pin1, Tile.Pin2, Tile.Pin3];
-        TileList list3 = [Tile.Man1, Tile.Man2];
-        TileList list4 = [Tile.Man1, Tile.Man2, Tile.Man3];
+        var list1 = new TileList(man: "123");
+        var list2 = new TileList(pin: "123");
+        var list3 = new TileList(man: "12");
+        var list4 = new TileList(man: "123");
 
         // Act & Assert
         Assert.True(list1.CompareTo(list2) < 0); // 萬子 < 筒子
@@ -260,8 +260,8 @@ public class TileListTests
     public void 演算子小なり_左辺が右辺より小さい場合_trueを返す()
     {
         // Arrange
-        TileList list1 = [Tile.Man1, Tile.Man2];
-        TileList list2 = [Tile.Man1, Tile.Man3];
+        var list1 = new TileList(man: "12");
+        var list2 = new TileList(man: "13");
 
         // Act & Assert
         Assert.True(list1 < list2);
@@ -274,9 +274,9 @@ public class TileListTests
     public void 演算子以下_左辺が右辺以下の場合_trueを返す()
     {
         // Arrange
-        TileList list1 = [Tile.Man1, Tile.Man2];
-        TileList list2 = [Tile.Man1, Tile.Man3];
-        TileList list3 = [Tile.Man1, Tile.Man2];
+        var list1 = new TileList(man: "12");
+        var list2 = new TileList(man: "13");
+        var list3 = new TileList(man: "12");
 
         // Act & Assert
         Assert.True(list1 <= list2);
@@ -290,8 +290,8 @@ public class TileListTests
     public void 演算子大なり_左辺が右辺より大きい場合_trueを返す()
     {
         // Arrange
-        TileList list1 = [Tile.Man1, Tile.Man2];
-        TileList list2 = [Tile.Man1, Tile.Man3];
+        var list1 = new TileList(man: "12");
+        var list2 = new TileList(man: "13");
 
         // Act & Assert
         Assert.False(list1 > list2);
@@ -304,9 +304,9 @@ public class TileListTests
     public void 演算子以上_左辺が右辺以上の場合_trueを返す()
     {
         // Arrange
-        TileList list1 = [Tile.Man1, Tile.Man2];
-        TileList list2 = [Tile.Man1, Tile.Man3];
-        TileList list3 = [Tile.Man1, Tile.Man2];
+        var list1 = new TileList(man: "12");
+        var list2 = new TileList(man: "13");
+        var list3 = new TileList(man: "12");
 
         // Act & Assert
         Assert.False(list1 >= list2);
@@ -320,7 +320,7 @@ public class TileListTests
     public void GetEnumerator_非ジェネリック版_ジェネリック版と同じ結果を返す()
     {
         // Arrange
-        TileList tileList = [Tile.Man1, Tile.Pin2, Tile.Sou3, Tile.Ton];
+        var tileList = new TileList(man: "1", pin: "2", sou: "3", honor: "t"); // 東
         var expected = new List<Tile>();
         foreach (var tile in tileList)
         {
@@ -347,10 +347,10 @@ public class TileListTests
     public void ToString_牌リストの文字列表現_正しく変換される()
     {
         // Arrange
-        TileList tileList1 = [Tile.Man1, Tile.Man2, Tile.Man3];
-        TileList tileList2 = [Tile.Pin4, Tile.Pin5, Tile.Pin6];
-        TileList tileList3 = [Tile.Ton, Tile.Nan, Tile.Sha, Tile.Pei];
-        TileList tileList4 = [Tile.Man1, Tile.Pin2, Tile.Sou3, Tile.Ton];
+        var tileList1 = new TileList(man: "123");
+        var tileList2 = new TileList(pin: "456");
+        var tileList3 = new TileList(honor: "tnsp"); // 東南西北
+        var tileList4 = new TileList(man: "1", pin: "2", sou: "3", honor: "t"); // 東
 
         // Act
         var actual1 = tileList1.ToString();
