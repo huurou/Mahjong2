@@ -3,7 +3,7 @@
 /// <summary>
 /// 字牌
 /// </summary>
-public abstract record HonorTile : Tile
+public abstract record HonorTile : Tile, IComparable<HonorTile>
 {
     /// <summary>
     /// 字牌を比較します
@@ -38,7 +38,7 @@ public abstract record HonorTile : Tile
 /// <summary>
 /// 風牌
 /// </summary>
-public abstract record WindTile : HonorTile
+public abstract record WindTile : HonorTile, IComparable<WindTile>
 {
     /// <summary>
     /// 風牌を比較します
@@ -69,7 +69,7 @@ public abstract record WindTile : HonorTile
 /// <summary>
 /// 三元牌
 /// </summary>
-public abstract record DragonTile : HonorTile
+public abstract record DragonTile : HonorTile, IComparable<DragonTile>
 {
     /// <summary>
     /// 三元牌を比較します
