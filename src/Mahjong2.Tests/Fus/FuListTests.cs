@@ -11,20 +11,16 @@ public class FuListTests
     [Fact]
     public void 空のFuListを作成した場合_符数が0であること_符の合計も0であること()
     {
-        // Arrange
+        // Arrange & Act
         var fuList = new FuList([]);
 
-        // Act
-        var count = fuList.Count;
-        var total = fuList.Total;
-
         // Assert
-        Assert.Equal(0, count);
-        Assert.Equal(0, total);
+        Assert.Equal(0, fuList.Count);
+        Assert.Equal(0, fuList.Total);
     }
 
     [Fact]
-    public void 七対子を含むFuListの場合_合計符数が25固定であること()
+    public void Total_七対子を含むFuListの場合_合計符数が25固定であること()
     {
         // Arrange
         var fuList = new FuList([Fu.Chiitoitsu, Fu.MenzenFu]);
@@ -37,7 +33,7 @@ public class FuListTests
     }
 
     [Fact]
-    public void 符の合計値が10の単位に切り上げられること()
+    public void Total_符の合計値が10の単位に切り上げられること()
     {
         // Arrange
         var testCases = new[]
@@ -58,7 +54,7 @@ public class FuListTests
     }
 
     [Fact]
-    public void FuListの文字列表現が正しく生成されること()
+    public void ToString_FuListの文字列表現が正しく生成されること()
     {
         // Arrange
         var fuList = new FuList([Fu.Futei, Fu.TsumoFu]);
@@ -72,7 +68,7 @@ public class FuListTests
     }
 
     [Fact]
-    public void FuListが正しくIEnumerable機能を提供すること()
+    public void GetEnumerator_FuListが正しくIEnumerable機能を提供すること()
     {
         // Arrange
         List<Fu> fus = [Fu.Futei, Fu.TsumoFu, Fu.WaitKanchan];
@@ -93,7 +89,7 @@ public class FuListTests
     }
 
     [Fact]
-    public void FuListの非ジェネリックIEnumerableGetEnumeratorが正しく動作すること()
+    public void GetEnumerator_FuListの非ジェネリックGetEnumeratorが正しく動作すること()
     {
         // Arrange
         List<Fu> fus = [Fu.Futei, Fu.TsumoFu, Fu.WaitKanchan];
@@ -110,5 +106,42 @@ public class FuListTests
 
         // Assert
         Assert.Equal(fus.Count, count);
+    }
+
+    [Fact]
+    public void Add_符を追加すると_新しいFuListが返されること()
+    {
+        // Arrange
+        var fuList = new FuList();
+        var fu = Fu.TsumoFu;
+
+        // Act
+        var newFuList = fuList.Add(fu);
+
+        // Assert
+        Assert.NotSame(fuList, newFuList);
+        Assert.Equal(0, fuList.Count);
+        Assert.Equal(1, newFuList.Count);
+        Assert.Contains(fu, newFuList);
+    }
+
+    [Fact]
+    public void Add_複数の符を追加すると_すべての符が含まれる新しいFuListが返されること()
+    {
+        // Arrange
+        var fuList = new FuList();
+
+        // Act
+        var newFuList = fuList
+            .Add(Fu.Futei)
+            .Add(Fu.TsumoFu)
+            .Add(Fu.WaitKanchan);
+
+        // Assert
+        Assert.Equal(3, newFuList.Count);
+        Assert.Contains(Fu.Futei, newFuList);
+        Assert.Contains(Fu.TsumoFu, newFuList);
+        Assert.Contains(Fu.WaitKanchan, newFuList);
+        Assert.Equal(30, newFuList.Total); // 20 + 2 + 2 = 24 → 30に切り上げ
     }
 }
