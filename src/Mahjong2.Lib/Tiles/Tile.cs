@@ -195,7 +195,7 @@ public abstract record Tile : IComparable<Tile>
     /// <summary>
     /// 中張牌のリスト
     /// </summary>
-    public static ImmutableList<NumberTile> Chuchans { get; } = [.. Numbers.Where(t => t.IsChucahn)];
+    public static ImmutableList<NumberTile> Chuchans { get; } = [.. Numbers.Where(t => t.IsChuchan)];
     /// <summary>
     /// 么九牌のリスト
     /// </summary>
@@ -236,11 +236,11 @@ public abstract record Tile : IComparable<Tile>
     /// <summary>
     /// 中張牌かどうか
     /// </summary>
-    public bool IsChucahn => this is NumberTile numberTile && numberTile.Number is >= 2 and <= 8;
+    public bool IsChuchan => this is NumberTile numberTile && numberTile.Number is >= 2 and <= 8;
     /// <summary>
     /// 么九牌かどうか
     /// </summary>
-    public bool IsYaochu => !IsChucahn;
+    public bool IsYaochu => !IsChuchan;
     /// <summary>
     /// 老頭牌かどうか
     /// </summary>

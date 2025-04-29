@@ -23,7 +23,7 @@ public record WinSituation
     /// <summary>
     /// 嶺上開花かどうか
     /// </summary>
-    public bool IsRinchan { get; init; } = false;
+    public bool IsRinshan { get; init; } = false;
 
     /// <summary>
     /// 槍槓かどうか
@@ -48,7 +48,7 @@ public record WinSituation
     /// <summary>
     /// 流し満貫かどうか
     /// </summary>
-    public bool IsNagashiMangan { get; init; } = false;
+    public bool IsNagashimangan { get; init; } = false;
 
     /// <summary>
     /// 天和かどうか

@@ -72,7 +72,7 @@ public class TileStaticListTests
 
         // Assert
         Assert.Equal(expected, Tile.Chuchans.Count);
-        Assert.All(Tile.Chuchans, tile => Assert.True(tile.IsChucahn));
+        Assert.All(Tile.Chuchans, tile => Assert.True(tile.IsChuchan));
     }
 
     [Fact]

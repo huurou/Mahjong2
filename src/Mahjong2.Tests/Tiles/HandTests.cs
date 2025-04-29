@@ -33,7 +33,7 @@ public class HandTests
     }
 
     [Fact]
-    public void ConcatFuuro_副露と結合_正しく結合された牌リストリストが返される()
+    public void CombineFuuro_副露と結合_正しく結合された牌リストリストが返される()
     {
         // Arrange
         var tileList1 = new TileList(man: "123");
@@ -47,7 +47,7 @@ public class HandTests
         var fuuroList = new FuuroList([chi, pon]);
 
         // Act
-        var result = hand.ConcatFuuro(fuuroList);
+        var result = hand.CombineFuuro(fuuroList);
 
         // Assert
         Assert.Equal(4, result.Count);
@@ -58,7 +58,7 @@ public class HandTests
     }
 
     [Fact]
-    public void ConcatFuuro_空の副露と結合_元の手牌と同じ内容の牌リストリストが返される()
+    public void CombineFuuro_空の副露と結合_元の手牌と同じ内容の牌リストリストが返される()
     {
         // Arrange
         var tileList1 = new TileList(man: "123");
@@ -68,7 +68,7 @@ public class HandTests
         var emptyFuuroList = new FuuroList();
 
         // Act
-        var result = hand.ConcatFuuro(emptyFuuroList);
+        var result = hand.CombineFuuro(emptyFuuroList);
 
         // Assert
         Assert.Equal(2, result.Count);

@@ -41,7 +41,7 @@ public static class ScoreCalculator
             };
         }
         // 点数計算
-        var basePoint = CalculateBasePoint(fu, han, gameRules.Kiriage);
+        var basePoint = CalculateBasePoint(fu, han, gameRules.KiriageEnabled);
         // 親/子、ツモ/ロンに応じて最終的な点数を計算
         return CalculateFinalScore(basePoint, winSituation);
     }

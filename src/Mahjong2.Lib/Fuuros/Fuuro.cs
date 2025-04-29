@@ -54,7 +54,7 @@ public record Chi : Fuuro
 {
     public Chi(TileList tileList) : base(tileList)
     {
-        if (!tileList.IsShuntsu) { throw new ArgumentException("チーの構成牌は順子でなければなりません。", nameof(tileList)); }
+        if (!tileList.IsShuntsu) { throw new ArgumentException($"チーの構成牌は順子でなければなりません。tileList:{tileList}", nameof(tileList)); }
     }
 
     public override bool IsChi => true;
@@ -81,7 +81,7 @@ public record Pon : Fuuro
 {
     public Pon(TileList tileList) : base(tileList)
     {
-        if (!tileList.IsKoutsu) { throw new ArgumentException("ポンの構成牌は刻子でなければなりません。", nameof(tileList)); }
+        if (!tileList.IsKoutsu) { throw new ArgumentException($"ポンの構成牌は刻子でなければなりません。tileList:{tileList}", nameof(tileList)); }
     }
 
     public override bool IsChi => false;
@@ -108,7 +108,7 @@ public abstract record Kan : Fuuro
 {
     public Kan(TileList tileList) : base(tileList)
     {
-        if (!tileList.IsKantsu) { throw new ArgumentException("槓の構成牌は槓子でなければなりません。", nameof(tileList)); }
+        if (!tileList.IsKantsu) { throw new ArgumentException($"槓の構成牌は槓子でなければなりません。tileList:{tileList}", nameof(tileList)); }
     }
     public override bool IsChi => false;
     public override bool IsPon => false;

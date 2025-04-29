@@ -69,7 +69,7 @@ public class TileListTests
     public void IsAllMan_全て萬子の場合_trueを返す()
     {
         // Arrange
-        var tileList = new TileList(man: "123");
+        var tileList = new TileList(man: "123456789");
 
         // Act & Assert
         Assert.True(tileList.IsAllMan);
@@ -82,7 +82,7 @@ public class TileListTests
     public void IsAllPin_全て筒子の場合_trueを返す()
     {
         // Arrange
-        var tileList = new TileList(pin: "456");
+        var tileList = new TileList(pin: "444555666");
 
         // Act & Assert
         Assert.False(tileList.IsAllMan);
@@ -95,7 +95,7 @@ public class TileListTests
     public void IsAllSou_全て索子の場合_trueを返す()
     {
         // Arrange
-        var tileList = new TileList(sou: "789");
+        var tileList = new TileList(sou: "22334455667788");
 
         // Act & Assert
         Assert.False(tileList.IsAllMan);

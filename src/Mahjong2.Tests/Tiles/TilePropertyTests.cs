@@ -53,54 +53,54 @@ public class TilePropertyTests
     }
 
     [Fact]
-    public void IsChucahn_中張牌の判定_正しい判定ができる()
+    public void IsChuchan_中張牌の判定_正しい判定ができる()
     {
         // Arrange & Act & Assert
         // 中張牌である牌のチェック (2-8)
         // 萬子
-        Assert.True(Tile.Man2.IsChucahn);
-        Assert.True(Tile.Man3.IsChucahn);
-        Assert.True(Tile.Man4.IsChucahn);
-        Assert.True(Tile.Man5.IsChucahn);
-        Assert.True(Tile.Man6.IsChucahn);
-        Assert.True(Tile.Man7.IsChucahn);
-        Assert.True(Tile.Man8.IsChucahn);
+        Assert.True(Tile.Man2.IsChuchan);
+        Assert.True(Tile.Man3.IsChuchan);
+        Assert.True(Tile.Man4.IsChuchan);
+        Assert.True(Tile.Man5.IsChuchan);
+        Assert.True(Tile.Man6.IsChuchan);
+        Assert.True(Tile.Man7.IsChuchan);
+        Assert.True(Tile.Man8.IsChuchan);
 
         // 筒子
-        Assert.True(Tile.Pin2.IsChucahn);
-        Assert.True(Tile.Pin3.IsChucahn);
-        Assert.True(Tile.Pin4.IsChucahn);
-        Assert.True(Tile.Pin5.IsChucahn);
-        Assert.True(Tile.Pin6.IsChucahn);
-        Assert.True(Tile.Pin7.IsChucahn);
-        Assert.True(Tile.Pin8.IsChucahn);
+        Assert.True(Tile.Pin2.IsChuchan);
+        Assert.True(Tile.Pin3.IsChuchan);
+        Assert.True(Tile.Pin4.IsChuchan);
+        Assert.True(Tile.Pin5.IsChuchan);
+        Assert.True(Tile.Pin6.IsChuchan);
+        Assert.True(Tile.Pin7.IsChuchan);
+        Assert.True(Tile.Pin8.IsChuchan);
 
         // 索子
-        Assert.True(Tile.Sou2.IsChucahn);
-        Assert.True(Tile.Sou3.IsChucahn);
-        Assert.True(Tile.Sou4.IsChucahn);
-        Assert.True(Tile.Sou5.IsChucahn);
-        Assert.True(Tile.Sou6.IsChucahn);
-        Assert.True(Tile.Sou7.IsChucahn);
-        Assert.True(Tile.Sou8.IsChucahn);
+        Assert.True(Tile.Sou2.IsChuchan);
+        Assert.True(Tile.Sou3.IsChuchan);
+        Assert.True(Tile.Sou4.IsChuchan);
+        Assert.True(Tile.Sou5.IsChuchan);
+        Assert.True(Tile.Sou6.IsChuchan);
+        Assert.True(Tile.Sou7.IsChuchan);
+        Assert.True(Tile.Sou8.IsChuchan);
 
         // 中張牌でない牌のチェック
         // 数牌の1と9
-        Assert.False(Tile.Man1.IsChucahn);
-        Assert.False(Tile.Man9.IsChucahn);
-        Assert.False(Tile.Pin1.IsChucahn);
-        Assert.False(Tile.Pin9.IsChucahn);
-        Assert.False(Tile.Sou1.IsChucahn);
-        Assert.False(Tile.Sou9.IsChucahn);
+        Assert.False(Tile.Man1.IsChuchan);
+        Assert.False(Tile.Man9.IsChuchan);
+        Assert.False(Tile.Pin1.IsChuchan);
+        Assert.False(Tile.Pin9.IsChuchan);
+        Assert.False(Tile.Sou1.IsChuchan);
+        Assert.False(Tile.Sou9.IsChuchan);
 
         // 字牌
-        Assert.False(Tile.Ton.IsChucahn);
-        Assert.False(Tile.Nan.IsChucahn);
-        Assert.False(Tile.Sha.IsChucahn);
-        Assert.False(Tile.Pei.IsChucahn);
-        Assert.False(Tile.Haku.IsChucahn);
-        Assert.False(Tile.Hatsu.IsChucahn);
-        Assert.False(Tile.Chun.IsChucahn);
+        Assert.False(Tile.Ton.IsChuchan);
+        Assert.False(Tile.Nan.IsChuchan);
+        Assert.False(Tile.Sha.IsChuchan);
+        Assert.False(Tile.Pei.IsChuchan);
+        Assert.False(Tile.Haku.IsChuchan);
+        Assert.False(Tile.Hatsu.IsChuchan);
+        Assert.False(Tile.Chun.IsChuchan);
     }
 
     [Fact]

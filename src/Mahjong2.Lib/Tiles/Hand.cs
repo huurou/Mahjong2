@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 namespace Mahjong2.Lib.Tiles;
 
 /// <summary>
-/// 晒していない手牌
+/// 晒していない手牌 <see cref="TileListList"/>のラッパー
 /// </summary>
 [CollectionBuilder(typeof(HandBuilder), "Create")]
 public record Hand : TileListList
@@ -25,11 +25,11 @@ public record Hand : TileListList
     }
 
     /// <summary>
-    /// 手牌と副露を結合した牌リストリストを作成します
+    /// 手牌と副露を結合した<see cref="TileListList"/>を作成します
     /// </summary>
     /// <param name="fuuroList">結合する副露リスト</param>
-    /// <returns>手牌と副露を結合した牌リストリスト</returns>
-    public TileListList ConcatFuuro(FuuroList fuuroList)
+    /// <returns>手牌と副露を結合した<see cref="TileListList"/></returns>
+    public TileListList CombineFuuro(FuuroList fuuroList)
     {
         return new([.. this, .. fuuroList.TileLists]);
     }

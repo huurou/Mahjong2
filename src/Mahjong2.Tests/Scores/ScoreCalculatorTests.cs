@@ -63,7 +63,7 @@ public class ScoreCalculatorTests
             IsTsumo = true,
             PlayerWind = Wind.South,
         };
-        var gameRules = new GameRules { Kiriage = true };
+        var gameRules = new GameRules { KiriageEnabled = true };
 
         // Act
         var actual = ScoreCalculator.Calc(fu, han, winSituation, gameRules);
@@ -254,7 +254,7 @@ public class ScoreCalculatorTests
             IsTsumo = false,
             PlayerWind = Wind.South,
         };
-        var gameRules = new GameRules { Kiriage = true };
+        var gameRules = new GameRules { KiriageEnabled = true };
 
         // Act
         var actual = ScoreCalculator.Calc(fu, han, winSituation, gameRules);
@@ -446,7 +446,7 @@ public class ScoreCalculatorTests
             IsTsumo = true,
             PlayerWind = Wind.East,
         };
-        var gameRules = new GameRules { Kiriage = true };
+        var gameRules = new GameRules { KiriageEnabled = true };
 
         // Act
         var actual = ScoreCalculator.Calc(fu, han, winSituation, gameRules);
@@ -637,7 +637,7 @@ public class ScoreCalculatorTests
             IsTsumo = false,
             PlayerWind = Wind.East,
         };
-        var gameRules = new GameRules { Kiriage = true };
+        var gameRules = new GameRules { KiriageEnabled = true };
 
         // Act
         var actual = ScoreCalculator.Calc(fu, han, winSituation, gameRules);
