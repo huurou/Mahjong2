@@ -3,7 +3,7 @@ using Mahjong2.Lib.Scores;
 using Mahjong2.Lib.Tiles;
 using Mahjong2.Lib.Yakus.Impl;
 
-namespace Mahjong2.Tests.Yakus;
+namespace Mahjong2.Tests.Yakus.Impl;
 
 public class TanyaoTests
 {
