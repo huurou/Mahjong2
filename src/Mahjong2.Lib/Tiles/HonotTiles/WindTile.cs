@@ -63,7 +63,7 @@ public abstract record WindTile : HonorTile, IComparable<WindTile>
             HonotTiles.Nan => "南",
             HonotTiles.Sha => "西",
             HonotTiles.Pei => "北",
-            _ => throw new InvalidOperationException($"不明な字牌です:{this}"),
+            _ => throw new InvalidOperationException($"不明な風牌です。"),
         };
     }
 }

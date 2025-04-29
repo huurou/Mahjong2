@@ -1,5 +1,6 @@
 using Mahjong2.Lib.Fuuros;
 using Mahjong2.Lib.Tiles;
+using System.Collections;
 
 namespace Mahjong2.Tests.Fuuros;
 
@@ -113,5 +114,30 @@ public class FuuroListTests
         Assert.Equal(2, fuuroList.Count);
         Assert.Contains(chi, fuuroList);
         Assert.Contains(pon, fuuroList);
+    }
+
+    [Fact]
+    public void GetEnumerator明示的実装_正しく要素を列挙できる()
+    {
+        // Arrange
+        var chi = new Chi(new(man: "123"));
+        var pon = new Pon(new(pin: "777"));
+        FuuroList fuuroList = [chi, pon];
+        List<Fuuro> expectedFuuros = [chi, pon];
+
+        // Act
+        var actualFuuros = new List<Fuuro>();
+        IEnumerable enumerable = fuuroList;
+        foreach (Fuuro fuuro in enumerable)
+        {
+            actualFuuros.Add(fuuro);
+        }
+
+        // Assert
+        Assert.Equal(expectedFuuros.Count, actualFuuros.Count);
+        for (var i = 0; i < expectedFuuros.Count; i++)
+        {
+            Assert.Same(expectedFuuros[i], actualFuuros[i]);
+        }
     }
 }

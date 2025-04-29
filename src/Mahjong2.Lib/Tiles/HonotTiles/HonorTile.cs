@@ -45,7 +45,7 @@ public abstract record HonorTile : Tile, IComparable<HonorTile>
         if (typeComparison != 0) { return typeComparison; }
         if (this is WindTile thisWindTile && other is WindTile otherWindTile) { return thisWindTile.CompareTo(otherWindTile); }
         if (this is DragonTile thisDragonTile && other is DragonTile otherDraginTile) { return thisDragonTile.CompareTo(otherDraginTile); }
-        throw new InvalidOperationException($"不明な字牌の比較です。 {this} vs {other}");
+        throw new InvalidOperationException($"不明な字牌の比較です。");
 
         static int GetHonorTileTypeValue(HonorTile honorTile)
         {

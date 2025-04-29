@@ -1,5 +1,6 @@
 using Mahjong2.Lib.Tiles;
 using Mahjong2.Lib.Tiles.NumberTiles;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Mahjong2.Tests.Tiles;
 
@@ -381,5 +382,31 @@ public class NumberTileTests
         Assert.Null(souTile);
         Assert.False(SouTile.TryFromChar('A', out souTile)); // ASCII 'A' は数字の範囲外
         Assert.Null(souTile);
+    }
+
+    [Fact]
+    public void CompareTo_不明な数牌_ArgumentExceptionをスロー()
+    {
+        // Arrange
+        var man1 = Tile.Man1;
+        var mockNumberTile = new MockNumberTile();
+
+        // Act & Assert
+        var exception = Assert.Throws<ArgumentException>(() => man1.CompareTo(mockNumberTile));
+        Assert.Equal("不明な数牌です (Parameter 'numberTile')", exception.Message);
+    }
+}
+
+/// <summary>
+/// テスト用の未知の数牌クラス
+/// </summary>
+internal record MockNumberTile : NumberTile
+{
+    public override int Number => 1;
+
+    public override bool TryGetAtDistance(int distance, [NotNullWhen(true)] out NumberTile? tile)
+    {
+        tile = null;
+        return false;
     }
 }

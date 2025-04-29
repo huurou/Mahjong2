@@ -65,7 +65,7 @@ public class HonorTileTests
     }
 
     [Fact]
-    public void HonorTile_TryFromChar_無効な文字の場合_変換に失敗する()
+    public void TryFromChar_無効な文字の場合_変換に失敗する()
     {
         // Arrange & Act & Assert
         Assert.False(HonorTile.TryFromChar('a', out var honorTile));
@@ -86,4 +86,76 @@ public class HonorTileTests
         Assert.False(HonorTile.TryFromChar('あ', out honorTile));
         Assert.Null(honorTile);
     }
+
+    [Fact]
+    public void CompareTo_不明な字牌タイプが渡された場合_例外が発生する()
+    {
+        // Arrange
+        var mockHonorTile = new MockHonorTile();
+
+        // Act & Assert
+        var exception = Assert.Throws<ArgumentException>(() => mockHonorTile.CompareTo(mockHonorTile));
+        Assert.Contains("不明な字牌です", exception.Message);
+    }
+
+    [Fact]
+    public void WindTile_CompareTo_不明な風牌が指定された場合_例外が発生する()
+    {
+        // Arrange
+        var validTile = Tile.Ton;
+        var mockWindTile = new MockWindTile();
+
+        // Act & Assert
+        var exception = Assert.Throws<ArgumentException>(() => validTile.CompareTo(mockWindTile));
+        Assert.Contains("不明な風牌です", exception.Message);
+    }
+
+    [Fact]
+    public void DragonTile_CompareTo_不明な三元牌が指定された場合_例外が発生する()
+    {
+        // Arrange
+        var validTile = Tile.Haku;
+        var mockDragonTile = new MockDragonTile();
+
+        // Act & Assert
+        var exception = Assert.Throws<ArgumentException>(() => validTile.CompareTo(mockDragonTile));
+        Assert.Contains("不明な三元牌です", exception.Message);
+    }
+
+    [Fact]
+    public void WindTile_ToString_不明な風牌の場合_例外が発生する()
+    {
+        // Arrange
+        var mockWindTile = new MockWindTile();
+
+        // Act & Assert
+        var exception = Assert.Throws<InvalidOperationException>(() => mockWindTile.ToString());
+        Assert.Contains("不明な風牌です", exception.Message);
+    }
+
+    [Fact]
+    public void DragonTile_ToString_不明な三元牌の場合_例外が発生する()
+    {
+        // Arrange
+        var mockDragonTile = new MockDragonTile();
+
+        // Act & Assert
+        var exception = Assert.Throws<InvalidOperationException>(() => mockDragonTile.ToString());
+        Assert.Contains("不明な字牌です", exception.Message);
+    }
+
+    /// <summary>
+    /// テスト用の字牌モッククラス
+    /// </summary>
+    private record MockHonorTile : HonorTile;
+
+    /// <summary>
+    /// テスト用の風牌モッククラス
+    /// </summary>
+    private record MockWindTile : WindTile;
+
+    /// <summary>
+    /// テスト用の三元牌モッククラス
+    /// </summary>
+    private record MockDragonTile : DragonTile;
 }

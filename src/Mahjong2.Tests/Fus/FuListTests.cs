@@ -119,4 +119,48 @@ public class FuListTests
         // Assert
         Assert.Equal(fus.Count, count);
     }
+
+    [Fact]
+    public void FuListBuilder_Create_スパンからFuListを正しく作成できること()
+    {
+        // Arrange
+        Span<Fu> fuSpan = [Fu.Futei, Fu.TsumoFu, Fu.WaitKanchan];
+
+        // Act
+        var fuList = FuList.FuListBuilder.Create(fuSpan);
+
+        // Assert
+        Assert.Equal(3, fuList.Count);
+        Assert.Contains(Fu.Futei, fuList);
+        Assert.Contains(Fu.TsumoFu, fuList);
+        Assert.Contains(Fu.WaitKanchan, fuList);
+    }
+
+    [Fact]
+    public void FuListBuilder_Create_空のスパンから空のFuListを作成できること()
+    {
+        // Arrange
+        Span<Fu> emptySpan = [];
+
+        // Act
+        var fuList = FuList.FuListBuilder.Create(emptySpan);
+
+        // Assert
+        Assert.Empty(fuList);
+        Assert.Equal(0, fuList.Count);
+        Assert.Equal(0, fuList.Total);
+    }
+
+    [Fact]
+    public void FuListBuilder_Create_コレクション初期化構文で使用できること()
+    {
+        // Arrange & Act
+        FuList fuList = [Fu.Futei, Fu.TsumoFu];
+
+        // Assert
+        Assert.Equal(2, fuList.Count);
+        Assert.Contains(Fu.Futei, fuList);
+        Assert.Contains(Fu.TsumoFu, fuList);
+        Assert.Equal(30, fuList.Total); // 20 + 2 = 22 → 30に切り上げ
+    }
 }

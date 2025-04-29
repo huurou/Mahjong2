@@ -60,7 +60,7 @@ public abstract record DragonTile : HonorTile, IComparable<DragonTile>
             HonotTiles.Haku => "白",
             HonotTiles.Hatsu => "發",
             HonotTiles.Chun => "中",
-            _ => throw new InvalidOperationException($"不明な字牌です:{this}"),
+            _ => throw new InvalidOperationException($"不明な字牌です。"),
         };
     }
 }
