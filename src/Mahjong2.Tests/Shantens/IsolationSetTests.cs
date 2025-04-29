@@ -89,7 +89,7 @@ public class IsolationSetTests
     public void IsolationSetBuilder_CreateメソッドでSpanから作成した場合_正しいセットが作成される()
     {
         // Arrange
-        Tile[] tiles = { Tile.Man1, Tile.Man2, Tile.Pin3 };
+        var tiles = new Tile[] { Tile.Man1, Tile.Man2, Tile.Pin3 };
 
         // Act
         IsolationSet isolationSet = [.. tiles];

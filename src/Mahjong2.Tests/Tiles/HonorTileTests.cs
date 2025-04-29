@@ -129,7 +129,7 @@ public class HonorTileTests
         var mockWindTile = new MockWindTile();
 
         // Act & Assert
-        var exception = Assert.Throws<InvalidOperationException>(() => mockWindTile.ToString());
+        var exception = Assert.Throws<InvalidOperationException>(mockWindTile.ToString);
         Assert.Contains("不明な風牌です", exception.Message);
     }
 
@@ -140,7 +140,7 @@ public class HonorTileTests
         var mockDragonTile = new MockDragonTile();
 
         // Act & Assert
-        var exception = Assert.Throws<InvalidOperationException>(() => mockDragonTile.ToString());
+        var exception = Assert.Throws<InvalidOperationException>(mockDragonTile.ToString);
         Assert.Contains("不明な字牌です", exception.Message);
     }
 

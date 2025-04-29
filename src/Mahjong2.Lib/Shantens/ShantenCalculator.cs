@@ -24,8 +24,8 @@ public record ShantenCalculator
     public static int Calc(TileList tileList, bool useRegular = true, bool useChiitoitsu = true, bool useKokushi = true)
     {
         if (tileList.Count > 14) { throw new ArgumentException($"手牌の数が14個より多いです。tileList:{tileList}", nameof(tileList)); }
-        if(!useRegular && !useChiitoitsu && !useKokushi) { throw new ArgumentException("最低でも1つの形を指定してください。"); }
-        
+        if (!useRegular && !useChiitoitsu && !useKokushi) { throw new ArgumentException("最低でも1つの形を指定してください。"); }
+
         List<int> shantens = [];
         if (useRegular)
         {

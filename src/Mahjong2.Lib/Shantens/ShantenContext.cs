@@ -326,7 +326,7 @@ public record ShantenContext(TileList TileList)
     }
 
     /// <summary>
-    /// 嵌張を除去した新しいコンテキストを返す 
+    /// 嵌張を除去した新しいコンテキストを返す
     /// </summary>
     /// <returns>更新されたシャンテンコンテキスト</returns>
     private ShantenContext RemoveKanchan()
