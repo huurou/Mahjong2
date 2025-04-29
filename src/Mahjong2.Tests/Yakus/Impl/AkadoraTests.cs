@@ -1,10 +1,61 @@
 using Mahjong2.Lib.Scores;
+using Mahjong2.Lib.Yakus;
 using Mahjong2.Lib.Yakus.Impl;
 
 namespace Mahjong2.Tests.Yakus.Impl;
 
 public class AkadoraTests
 {
+    [Fact]
+    public void Name_赤ドラが返る()
+    {
+        // Arrange
+        var akadora = Yaku.Akadora;
+
+        // Act
+        var actual = akadora.Name;
+
+        // Assert
+        Assert.Equal("赤ドラ", actual);
+    }
+
+    [Fact]
+    public void HanOpen_1が返る()
+    {
+        // Arrange
+        var akadora = Yaku.Akadora;
+
+        // Act
+        var actual = akadora.HanOpen;
+
+        // Assert
+        Assert.Equal(1, actual);
+    }
+
+    [Fact]
+    public void HanClosed_1が返る()
+    {
+        // Arrange
+        var akadora = Yaku.Akadora;
+        // Act
+        var actual = akadora.HanClosed;
+        // Assert
+        Assert.Equal(1, actual);
+    }
+
+    [Fact]
+    public void IsYakuman_Falseが返る()
+    {
+        // Arrange
+        var akadora = Yaku.Akadora;
+
+        // Act
+        var actual = akadora.IsYakuman;
+
+        // Assert
+        Assert.False(actual);
+    }
+
     [Fact]
     public void Valid_赤ドラが1つ_成立する()
     {

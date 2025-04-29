@@ -11,6 +11,7 @@ public record Chiitoitsu : Yaku
     public override int HanOpen => 0;
     public override int HanClosed => 2;
     public override bool IsYakuman => false;
+
     public static bool Valid(Hand hand)
     {
         return hand.Count == 7 && hand.All(x => x.IsToitsu);
