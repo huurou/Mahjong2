@@ -12,8 +12,8 @@ public record Renhou : Yaku
     public override int HanClosed => 5;
     public override bool IsYakuman => false;
 
-    public static bool Valid(WinSituation situation, GameRules gameRules)
+    public static bool Valid(WinSituation winSituation, GameRules gameRules)
     {
-        return situation.IsRenhou && !gameRules.RenhouAsYakumanEnabled;
+        return winSituation.IsRenhou && !gameRules.RenhouAsYakumanEnabled;
     }
 }

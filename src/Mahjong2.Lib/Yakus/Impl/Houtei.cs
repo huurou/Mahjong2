@@ -12,8 +12,8 @@ public record Houtei : Yaku
     public override int HanClosed => 1;
     public override bool IsYakuman => false;
 
-    public static bool Valid(WinSituation situation)
+    public static bool Valid(WinSituation winSituation)
     {
-        return situation.IsHoutei;
+        return winSituation.IsHoutei;
     }
 }

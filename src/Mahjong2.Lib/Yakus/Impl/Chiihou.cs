@@ -11,8 +11,8 @@ public record Chiihou : Yaku
     public override int HanOpen => 0;
     public override int HanClosed => 13;
     public override bool IsYakuman => true;
-    public static bool Valid(WinSituation situation)
+    public static bool Valid(WinSituation winSituation)
     {
-        return situation.IsChiihou;
+        return winSituation.IsChiihou;
     }
 }

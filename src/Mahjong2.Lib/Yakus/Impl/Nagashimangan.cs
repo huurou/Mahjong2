@@ -12,8 +12,8 @@ public record Nagashimangan : Yaku
     public override int HanClosed => 5;
     public override bool IsYakuman => false;
 
-    public static bool Valid(WinSituation situation)
+    public static bool Valid(WinSituation winSituation)
     {
-        return situation.IsNagashimangan;
+        return winSituation.IsNagashimangan;
     }
 }

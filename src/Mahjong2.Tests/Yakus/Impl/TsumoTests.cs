@@ -12,10 +12,10 @@ public class TsumoTests
     {
         // Arrange
         var fuuroList = new FuuroList();
-        var situation = new WinSituation { IsTsumo = true };
+        var winSituation = new WinSituation { IsTsumo = true };
 
         // Act
-        var actual = Tsumo.Valid(fuuroList, situation);
+        var actual = Tsumo.Valid(fuuroList, winSituation);
 
         // Assert
         Assert.True(actual);
@@ -26,10 +26,10 @@ public class TsumoTests
     {
         // Arrange
         var fuuroList = new FuuroList();
-        var situation = new WinSituation { IsTsumo = false };
+        var winSituation = new WinSituation { IsTsumo = false };
 
         // Act
-        var actual = Tsumo.Valid(fuuroList, situation);
+        var actual = Tsumo.Valid(fuuroList, winSituation);
 
         // Assert
         Assert.False(actual);
@@ -41,10 +41,10 @@ public class TsumoTests
         // Arrange
         var hand = new Hand([new(man: "234"), new(man: "567"), new(pin: "88")]);
         var fuuroList = new FuuroList([new Chi(new(sou: "345"))]);
-        var situation = new WinSituation { IsTsumo = true };
+        var winSituation = new WinSituation { IsTsumo = true };
 
         // Act
-        var actual = Tsumo.Valid(fuuroList, situation);
+        var actual = Tsumo.Valid(fuuroList, winSituation);
 
         // Assert
         Assert.False(actual);

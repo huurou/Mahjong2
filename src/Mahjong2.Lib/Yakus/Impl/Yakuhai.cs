@@ -14,11 +14,11 @@ public record Yakuhai : Yaku
     public override int HanClosed => 1;
     public override bool IsYakuman => false;
 
-    public static bool Valid(Hand hand, FuuroList fuuroList, WinSituation situation)
+    public static bool Valid(Hand hand, FuuroList fuuroList, WinSituation winSituation)
     {
         var combined = hand.CombineFuuro(fuuroList);
-        return PlayerWind.Valid(hand, fuuroList, situation) ||
-            RoundWind.Valid(hand, fuuroList, situation) ||
+        return PlayerWind.Valid(hand, fuuroList, winSituation) ||
+            RoundWind.Valid(hand, fuuroList, winSituation) ||
             Haku.Valid(hand, fuuroList) ||
             Hatsu.Valid(hand, fuuroList) ||
             Chun.Valid(hand, fuuroList);

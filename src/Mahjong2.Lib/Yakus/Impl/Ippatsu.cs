@@ -13,8 +13,8 @@ public record Ippatsu : Yaku
     public override int HanClosed => 1;
     public override bool IsYakuman => false;
 
-    public static bool Valid(WinSituation situation, FuuroList fuuroList)
+    public static bool Valid(WinSituation winSituation, FuuroList fuuroList)
     {
-        return situation.IsIppatsu && !fuuroList.HasOpen;
+        return winSituation.IsIppatsu && !fuuroList.HasOpen;
     }
 }

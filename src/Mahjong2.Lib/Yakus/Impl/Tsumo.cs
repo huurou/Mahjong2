@@ -13,8 +13,8 @@ public record Tsumo : Yaku
     public override int HanClosed => 1;
     public override bool IsYakuman => false;
 
-    public static bool Valid(FuuroList fuuroList, WinSituation situation)
+    public static bool Valid(FuuroList fuuroList, WinSituation winSituation)
     {
-        return !fuuroList.HasOpen && situation.IsTsumo;
+        return !fuuroList.HasOpen && winSituation.IsTsumo;
     }
 }

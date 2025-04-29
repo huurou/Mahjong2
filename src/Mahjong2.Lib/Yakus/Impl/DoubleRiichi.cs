@@ -13,8 +13,8 @@ public record DoubleRiichi : Yaku
     public override int HanClosed => 2;
     public override bool IsYakuman => false;
 
-    public static bool Valid(WinSituation situation, FuuroList fuuroList)
+    public static bool Valid(WinSituation winSituation, FuuroList fuuroList)
     {
-        return situation.IsDoubleRiichi && !fuuroList.HasOpen;
+        return winSituation.IsDoubleRiichi && !fuuroList.HasOpen;
     }
 }
