@@ -208,25 +208,10 @@ public class TileListTests
     }
 
     [Fact]
-    public void Add_牌を追加_新しいリストが返される()
-    {
-        // Arrange
-        var tileList = new TileList(man: "12");
-
-        // Act
-        var newTileList = tileList.Add(Tile.Man3);
-
-        // Assert
-        Assert.Equal(2, tileList.Count); // 元のリストは変化しない
-        Assert.Equal(3, newTileList.Count); // 新しいリストが返される
-        Assert.Equal(Tile.Man3, newTileList[2]); // 追加された牌が末尾にある
-    }
-
-    [Fact]
     public void Sorted_ソートされた新しいリストが返される()
     {
         // Arrange
-        var unsorted = new TileList(pin: "5", man: "1", sou: "9", honor: "t"); // 東
+        TileList unsorted = [Tile.Sou9, Tile.Man1, Tile.Ton, Tile.Pin5];
 
         // Act
         var sorted = unsorted.Sorted();

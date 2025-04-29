@@ -9,13 +9,25 @@ namespace Mahjong2.Tests.Fus;
 public class FuListTests
 {
     [Fact]
+    public void 空のコンストラクタ_空のリストを作成できる()
+    {
+        // Arrange & Act
+        var fuList = new FuList();
+
+        // Assert
+        Assert.Empty(fuList);
+        Assert.Equal(0, fuList.Count);
+        Assert.Equal(0, fuList.Total);
+    }
+
+    [Fact]
     public void 空のFuListを作成した場合_符数が0であること_符の合計も0であること()
     {
         // Arrange & Act
         var fuList = new FuList([]);
 
         // Assert
-        Assert.Equal(0, fuList.Count);
+        Assert.Empty(fuList);
         Assert.Equal(0, fuList.Total);
     }
 
@@ -106,42 +118,5 @@ public class FuListTests
 
         // Assert
         Assert.Equal(fus.Count, count);
-    }
-
-    [Fact]
-    public void Add_符を追加すると_新しいFuListが返されること()
-    {
-        // Arrange
-        var fuList = new FuList();
-        var fu = Fu.TsumoFu;
-
-        // Act
-        var newFuList = fuList.Add(fu);
-
-        // Assert
-        Assert.NotSame(fuList, newFuList);
-        Assert.Equal(0, fuList.Count);
-        Assert.Equal(1, newFuList.Count);
-        Assert.Contains(fu, newFuList);
-    }
-
-    [Fact]
-    public void Add_複数の符を追加すると_すべての符が含まれる新しいFuListが返されること()
-    {
-        // Arrange
-        var fuList = new FuList();
-
-        // Act
-        var newFuList = fuList
-            .Add(Fu.Futei)
-            .Add(Fu.TsumoFu)
-            .Add(Fu.WaitKanchan);
-
-        // Assert
-        Assert.Equal(3, newFuList.Count);
-        Assert.Contains(Fu.Futei, newFuList);
-        Assert.Contains(Fu.TsumoFu, newFuList);
-        Assert.Contains(Fu.WaitKanchan, newFuList);
-        Assert.Equal(30, newFuList.Total); // 20 + 2 + 2 = 24 → 30に切り上げ
     }
 }

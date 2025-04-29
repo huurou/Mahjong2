@@ -200,7 +200,7 @@ public class FuuroTests
         var result = chi.ToString();
 
         // Assert
-        Assert.Equal($"チー {tiles}", result);
+        Assert.Equal($"チー-{tiles}", result);
     }
 
     [Fact]
@@ -214,7 +214,7 @@ public class FuuroTests
         var result = pon.ToString();
 
         // Assert
-        Assert.Equal($"ポン {tiles}", result);
+        Assert.Equal($"ポン-{tiles}", result);
     }
 
     [Fact]
@@ -228,7 +228,7 @@ public class FuuroTests
         var result = ankan.ToString();
 
         // Assert
-        Assert.Equal($"暗槓 {tiles}", result);
+        Assert.Equal($"暗槓-{tiles}", result);
     }
 
     [Fact]
@@ -242,7 +242,7 @@ public class FuuroTests
         var result = daiminkan.ToString();
 
         // Assert
-        Assert.Equal($"大明槓 {tiles}", result);
+        Assert.Equal($"大明槓-{tiles}", result);
     }
 
     [Fact]
@@ -256,7 +256,7 @@ public class FuuroTests
         var result = shouminkan.ToString();
 
         // Assert
-        Assert.Equal($"小明槓 {tiles}", result);
+        Assert.Equal($"小明槓-{tiles}", result);
     }
 
     [Fact]
@@ -270,6 +270,6 @@ public class FuuroTests
         var result = nuki.ToString();
 
         // Assert
-        Assert.Equal($"抜き {tiles}", result);
+        Assert.Equal($"抜き-{tiles}", result);
     }
 }

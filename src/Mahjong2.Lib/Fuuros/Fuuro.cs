@@ -69,7 +69,7 @@ public record Chi : Fuuro
 
     public sealed override string ToString()
     {
-        return $"チー {TileList}";
+        return $"チー-{TileList}";
     }
 }
 
@@ -96,7 +96,7 @@ public record Pon : Fuuro
 
     public sealed override string ToString()
     {
-        return $"ポン {TileList}";
+        return $"ポン-{TileList}";
     }
 }
 
@@ -130,7 +130,7 @@ public record Ankan(TileList TileList) : Kan(TileList)
 
     public sealed override string ToString()
     {
-        return $"暗槓 {TileList}";
+        return $"暗槓-{TileList}";
     }
 }
 
@@ -156,7 +156,7 @@ public record Daiminkan(TileList TileList) : Minkan(TileList)
 
     public sealed override string ToString()
     {
-        return $"大明槓 {TileList}";
+        return $"大明槓-{TileList}";
     }
 }
 
@@ -171,7 +171,7 @@ public record Shouminkan(TileList TileList) : Minkan(TileList)
 
     public sealed override string ToString()
     {
-        return $"小明槓 {TileList}";
+        return $"小明槓-{TileList}";
     }
 }
 
@@ -193,6 +193,6 @@ public record Nuki(TileList TileList) : Fuuro(TileList)
 
     public sealed override string ToString()
     {
-        return $"抜き {TileList}";
+        return $"抜き-{TileList}";
     }
 }

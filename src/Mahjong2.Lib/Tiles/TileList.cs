@@ -133,16 +133,6 @@ public record TileList : IEnumerable<Tile>, IComparable<TileList>, IEquatable<Ti
     }
 
     /// <summary>
-    /// 指定の牌を追加した新しい牌リストを返します
-    /// </summary>
-    /// <param name="tile">追加する牌</param>
-    /// <returns>新しい牌リスト</returns>
-    public TileList Add(Tile tile)
-    {
-        return [.. tiles_.Add(tile)];
-    }
-
-    /// <summary>
     /// 牌リストの内容をソートした新しい牌リストを返します
     /// </summary>
     /// <returns>ソート済みの新しい牌リスト</returns>
@@ -268,10 +258,8 @@ public record TileList : IEnumerable<Tile>, IComparable<TileList>, IEquatable<Ti
         public static TileList Create(ReadOnlySpan<Tile> values)
         {
             // [.. ]を使用すると無限ループが発生する
-#pragma warning disable IDE0028 // コレクションの初期化を簡略化します
 #pragma warning disable IDE0306 // コレクションの初期化を簡略化します
             return new(values.ToArray());
-#pragma warning restore IDE0028 // コレクションの初期化を簡略化します
 #pragma warning restore IDE0306 // コレクションの初期化を簡略化します
         }
     }
