@@ -1,4 +1,6 @@
-﻿namespace Mahjong2.Lib.Yakus.Impl;
+﻿using Mahjong2.Lib.Scores;
+
+namespace Mahjong2.Lib.Yakus.Impl;
 
 /// <summary>
 /// 赤ドラ
@@ -9,4 +11,9 @@ public record Akadora : Yaku
     public override int HanOpen => 1;
     public override int HanClosed => 1;
     public override bool IsYakuman => false;
+
+    public static bool Valid(WinSituation winSituation)
+    {
+        return winSituation.AkadoraCount > 0;
+    }
 }

@@ -79,4 +79,9 @@ public record WinSituation
     /// プレイヤーが親かどうか
     /// </summary>
     public bool IsDealer => PlayerWind == Wind.East;
+
+    /// <summary>
+    /// 赤ドラの枚数 どの牌が赤ドラで何枚あるかはゲーム側で管理してもらう
+    /// </summary>
+    public int AkadoraCount { get; init; }
 }
