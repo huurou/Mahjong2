@@ -1,0 +1,55 @@
+﻿using Mahjong2.Lib.Fuuros;
+using System.Runtime.CompilerServices;
+
+namespace Mahjong2.Lib.Tiles;
+
+/// <summary>
+/// 晒していない手牌
+/// </summary>
+[CollectionBuilder(typeof(HandBuilder), "Create")]
+public record Hand : TileListList
+{
+    /// <summary>
+    /// 空の手牌を作成します
+    /// </summary>
+    public Hand() : base()
+    {
+    }
+
+    /// <summary>
+    /// 指定した<see cref="TileList"/>のコレクションから手牌を作成します
+    /// </summary>
+    /// <param name="tileLists"><see cref="TileList"/>のコレクション</param>
+    public Hand(IEnumerable<TileList> tileLists) : base(tileLists)
+    {
+    }
+
+    /// <summary>
+    /// 手牌と副露を結合した牌リストリストを作成します
+    /// </summary>
+    /// <param name="fuuroList">結合する副露リスト</param>
+    /// <returns>手牌と副露を結合した牌リストリスト</returns>
+    public TileListList ConcatFuuro(FuuroList fuuroList)
+    {
+        return new([.. this, .. fuuroList.TileLists]);
+    }
+
+    /// <summary>
+    /// <see cref="HandBuilder"/>のコレクションビルダーを提供するクラスです
+    /// </summary>
+    public static class HandBuilder
+    {
+        /// <summary>
+        /// 指定した<see cref="TileList"/>の配列から新しい<see cref="HandBuilder"/>を作成します
+        /// </summary>
+        /// <param name="values">牌リストの配列</param>
+        /// <returns>新しい<see cref="HandBuilder"/>オブジェクト</returns>
+        public static TileListList Create(ReadOnlySpan<TileList> values)
+        {
+            // [.. ]を使用すると無限ループが発生する
+#pragma warning disable IDE0306 // コレクションの初期化を簡略化します
+            return new(values.ToArray());
+#pragma warning restore IDE0306 // コレクションの初期化を簡略化します
+        }
+    }
+}
