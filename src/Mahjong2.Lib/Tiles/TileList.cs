@@ -10,7 +10,7 @@ namespace Mahjong2.Lib.Tiles;
 /// 牌の集合を表現するクラス
 /// </summary>
 [CollectionBuilder(typeof(TileListBuilder), "Create")]
-public record TileList : IEnumerable<Tile>, IComparable<TileList>, IEquatable<TileList>
+public record TileList() : IEnumerable<Tile>, IComparable<TileList>, IEquatable<TileList>
 {
     /// <summary>
     /// 全ての牌が萬子かどうか
@@ -68,21 +68,13 @@ public record TileList : IEnumerable<Tile>, IComparable<TileList>, IEquatable<Ti
     /// </summary>
     public int Count => tiles_.Count;
 
-    private readonly ImmutableList<Tile> tiles_;
-
-    /// <summary>
-    /// 空の新しい牌リストを初期化します
-    /// </summary>
-    public TileList()
-    {
-        tiles_ = [];
-    }
+    private readonly ImmutableList<Tile> tiles_ = [];
 
     /// <summary>
     /// 指定の牌のコレクションから新しい牌リストを初期化します
     /// </summary>
     /// <param name="tiles">初期化に使用する牌のコレクション</param>
-    public TileList(IEnumerable<Tile> tiles)
+    public TileList(IEnumerable<Tile> tiles) : this()
     {
         tiles_ = [.. tiles];
     }
@@ -94,7 +86,7 @@ public record TileList : IEnumerable<Tile>, IComparable<TileList>, IEquatable<Ti
     /// <param name="pin">筒子を表す文字列（例："456"）</param>
     /// <param name="sou">索子を表す文字列（例："789"）</param>
     /// <param name="honor">字牌を表す文字列（例："tnsp"→"東南西北"）</param>
-    public TileList(string man = "", string pin = "", string sou = "", string honor = "")
+    public TileList(string man = "", string pin = "", string sou = "", string honor = "") : this()
     {
         var tiles = new List<Tile>();
         // 萬子の変換
@@ -139,6 +131,50 @@ public record TileList : IEnumerable<Tile>, IComparable<TileList>, IEquatable<Ti
     public TileList Sorted()
     {
         return [.. tiles_.OrderBy(x => x)];
+    }
+
+    /// <summary>
+    /// 指定された牌がこのリスト内に何個存在するかを数えます
+    /// </summary>
+    /// <param name="tile">数える対象の牌</param>
+    /// <returns>指定された牌の数</returns>
+    public int CountOf(Tile tile)
+    {
+        return tiles_.Count(x => x == tile);
+    }
+
+    /// <summary>
+    /// 指定された牌をリストから指定された個数だけ削除した新しい牌リストを返します
+    /// </summary>
+    /// <param name="tile">削除する牌</param>
+    /// <param name="count">削除する個数（デフォルトは1）</param>
+    /// <returns>牌を削除した新しい牌リスト</returns>
+    /// <exception cref="ArgumentException">指定された牌が存在しないか、指定された個数だけ存在しない場合</exception>
+    public TileList Remove(Tile tile, int count = 1)
+    {
+        var tiles = tiles_;
+        for (var i = 0; i < count; i++)
+        {
+            if (!tiles.Contains(tile)) { throw new ArgumentException($"指定牌がありません。 tile:{tile} count:{count}", nameof(tile)); }
+            tiles = tiles.Remove(tile);
+        }
+        return [.. tiles];
+    }
+
+    /// <summary>
+    /// 指定された牌のコレクションをリストから削除した新しい牌リストを返します
+    /// </summary>
+    /// <param name="tiles">削除する牌のコレクション</param>
+    /// <returns>牌を削除した新しい牌リスト</returns>
+    /// <exception cref="ArgumentException">指定された牌が存在しない場合</exception>
+    public TileList Remove(IEnumerable<Tile> tiles)
+    {
+        var tileList = this;
+        foreach (var tile in tiles)
+        {
+            tileList = tileList.Remove(tile);
+        }
+        return tileList;
     }
 
     /// <summary>

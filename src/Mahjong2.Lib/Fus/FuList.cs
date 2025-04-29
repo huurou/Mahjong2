@@ -8,7 +8,7 @@ namespace Mahjong2.Lib.Fus;
 /// 符の集合を表現するクラス
 /// </summary>
 [CollectionBuilder(typeof(FuListBuilder), "Create")]
-public record FuList : IEnumerable<Fu>
+public record FuList() : IEnumerable<Fu>
 {
     /// <summary>
     /// 符の数を取得します
@@ -24,18 +24,13 @@ public record FuList : IEnumerable<Fu>
         : this.Contains(Fu.Chiitoitsu) ? 25
         : (this.Sum(x => x.Value) + 9) / 10 * 10; // 10の単位に切り上げる
 
-    private readonly ImmutableList<Fu> fus_;
-
-    public FuList()
-    {
-        fus_ = [];
-    }
+    private readonly ImmutableList<Fu> fus_ = [];
 
     /// <summary>
     /// 指定された符のコレクションから新しい符リストを初期化します
     /// </summary>
     /// <param name="fus">符のコレクション</param>
-    public FuList(IEnumerable<Fu> fus)
+    public FuList(IEnumerable<Fu> fus) : this()
     {
         fus_ = [.. fus];
     }

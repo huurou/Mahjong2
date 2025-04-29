@@ -349,4 +349,156 @@ public class TileListTests
         Assert.Equal("東南西北", actual3);
         Assert.Equal("一(2)3東", actual4);
     }
+
+    [Fact]
+    public void CountOf_存在する牌の数を数える_正確な個数を返す()
+    {
+        // Arrange
+        var tileList = new TileList(man: "112233");
+
+        // Act
+        var countOfMan1 = tileList.CountOf(Tile.Man1);
+        var countOfMan2 = tileList.CountOf(Tile.Man2);
+        var countOfMan3 = tileList.CountOf(Tile.Man3);
+        var countOfPin1 = tileList.CountOf(Tile.Pin1);
+
+        // Assert
+        Assert.Equal(2, countOfMan1);
+        Assert.Equal(2, countOfMan2);
+        Assert.Equal(2, countOfMan3);
+        Assert.Equal(0, countOfPin1);
+    }
+
+    [Fact]
+    public void CountOf_存在しない牌の数を数える_0を返す()
+    {
+        // Arrange
+        var tileList = new TileList(man: "123", pin: "456");
+
+        // Act
+        var countOfSou1 = tileList.CountOf(Tile.Sou1);
+        var countOfTon = tileList.CountOf(Tile.Ton);
+
+        // Assert
+        Assert.Equal(0, countOfSou1);
+        Assert.Equal(0, countOfTon);
+    }
+
+    [Fact]
+    public void CountOf_空の牌リストで牌の数を数える_0を返す()
+    {
+        // Arrange
+        var emptyTileList = new TileList();
+
+        // Act
+        var count = emptyTileList.CountOf(Tile.Man1);
+
+        // Assert
+        Assert.Equal(0, count);
+    }
+
+    [Fact]
+    public void Remove_存在する牌を1つ削除_その牌が削除された新しい牌リストを返す()
+    {
+        // Arrange
+        var tileList = new TileList(man: "123");
+
+        // Act
+        var result = tileList.Remove(Tile.Man1);
+
+        // Assert
+        Assert.Equal(2, result.Count);
+        Assert.Equal(Tile.Man2, result[0]);
+        Assert.Equal(Tile.Man3, result[1]);
+        Assert.Equal(0, result.CountOf(Tile.Man1));
+    }
+
+    [Fact]
+    public void Remove_存在する牌を複数削除_指定した個数の牌が削除された新しい牌リストを返す()
+    {
+        // Arrange
+        var tileList = new TileList(man: "111222");
+
+        // Act
+        var result = tileList.Remove(Tile.Man1, 2);
+
+        // Assert
+        Assert.Equal(4, result.Count);
+        Assert.Equal(1, result.CountOf(Tile.Man1));
+        Assert.Equal(3, result.CountOf(Tile.Man2));
+    }
+
+    [Fact]
+    public void Remove_牌のコレクションを削除_全ての牌が削除された新しい牌リストを返す()
+    {
+        // Arrange
+        var tileList = new TileList(man: "123", pin: "456");
+        var tilesToRemove = new List<Tile> { Tile.Man1, Tile.Pin4, Tile.Pin6 };
+
+        // Act
+        var result = tileList.Remove(tilesToRemove);
+
+        // Assert
+        Assert.Equal(3, result.Count);
+        Assert.Equal(0, result.CountOf(Tile.Man1));
+        Assert.Equal(1, result.CountOf(Tile.Man2));
+        Assert.Equal(1, result.CountOf(Tile.Man3));
+        Assert.Equal(0, result.CountOf(Tile.Pin4));
+        Assert.Equal(1, result.CountOf(Tile.Pin5));
+        Assert.Equal(0, result.CountOf(Tile.Pin6));
+    }
+
+    [Fact]
+    public void Remove_空のコレクションを削除_元の牌リストと同じ内容の新しい牌リストを返す()
+    {
+        // Arrange
+        var tileList = new TileList(man: "123");
+        var emptyCollection = new List<Tile>();
+
+        // Act
+        var result = tileList.Remove(emptyCollection);
+
+        // Assert
+        Assert.Equal(3, result.Count);
+        Assert.Equal(1, result.CountOf(Tile.Man1));
+        Assert.Equal(1, result.CountOf(Tile.Man2));
+        Assert.Equal(1, result.CountOf(Tile.Man3));
+    }
+
+    [Fact]
+    public void Remove_存在しない牌のコレクションを削除_ArgumentExceptionをスローする()
+    {
+        // Arrange
+        var tileList = new TileList(man: "123");
+        var nonExistingTiles = new List<Tile> { Tile.Pin1 };
+
+        // Act & Assert
+        var exception = Assert.Throws<ArgumentException>(() => tileList.Remove(nonExistingTiles));
+        Assert.Equal("tile", exception.ParamName);
+        Assert.Contains("指定牌がありません", exception.Message);
+    }
+
+    [Fact]
+    public void Remove_存在しない牌を削除_ArgumentExceptionをスローする()
+    {
+        // Arrange
+        var tileList = new TileList(man: "123");
+
+        // Act & Assert
+        var exception = Assert.Throws<ArgumentException>(() => tileList.Remove(Tile.Pin1));
+        Assert.Equal("tile", exception.ParamName);
+        Assert.Contains("指定牌がありません", exception.Message);
+    }
+
+    [Fact]
+    public void Remove_存在する数より多くの牌を削除_ArgumentExceptionをスローする()
+    {
+        // Arrange
+        var tileList = new TileList(man: "112");
+
+        // Act & Assert
+        var exception = Assert.Throws<ArgumentException>(() => tileList.Remove(Tile.Man1, 3));
+        Assert.Equal("tile", exception.ParamName);
+        Assert.Contains("指定牌がありません", exception.Message);
+    }
 }
