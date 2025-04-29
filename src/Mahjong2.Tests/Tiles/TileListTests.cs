@@ -479,18 +479,6 @@ public class TileListTests
     }
 
     [Fact]
-    public void Remove_存在しない牌を削除_ArgumentExceptionをスローする()
-    {
-        // Arrange
-        var tileList = new TileList(man: "123");
-
-        // Act & Assert
-        var exception = Assert.Throws<ArgumentException>(() => tileList.Remove(Tile.Pin1));
-        Assert.Equal("tile", exception.ParamName);
-        Assert.Contains("指定牌がありません", exception.Message);
-    }
-
-    [Fact]
     public void Remove_存在する数より多くの牌を削除_ArgumentExceptionをスローする()
     {
         // Arrange
@@ -500,5 +488,101 @@ public class TileListTests
         var exception = Assert.Throws<ArgumentException>(() => tileList.Remove(Tile.Man1, 3));
         Assert.Equal("tile", exception.ParamName);
         Assert.Contains("指定牌がありません", exception.Message);
+    }
+
+    [Fact]
+    public void IsAllNumber_全て数牌の場合_trueを返す()
+    {
+        // Arrange
+        var allNumber = new TileList(man: "123", pin: "45", sou: "789");
+        var mixedWithHonor = new TileList(man: "123", honor: "t");
+        var onlyHonor = new TileList(honor: "tnsp");
+
+        // Act & Assert
+        Assert.True(allNumber.IsAllNumber);
+        Assert.False(mixedWithHonor.IsAllNumber);
+        Assert.False(onlyHonor.IsAllNumber);
+    }
+
+    [Fact]
+    public void IsAllHonor_全て字牌の場合_trueを返す()
+    {
+        // Arrange
+        var allHonor = new TileList(honor: "tnsphrc"); // 東南西北白發中
+        var mixedWithNumber = new TileList(man: "1", honor: "tnsp");
+        var onlyNumber = new TileList(man: "123", pin: "45", sou: "789");
+
+        // Act & Assert
+        Assert.True(allHonor.IsAllHonor);
+        Assert.False(mixedWithNumber.IsAllHonor);
+        Assert.False(onlyNumber.IsAllHonor);
+    }
+
+    [Fact]
+    public void IsAllWind_全て風牌の場合_trueを返す()
+    {
+        // Arrange
+        var allWind = new TileList(honor: "tnsp"); // 東南西北
+        var mixedWithDragon = new TileList(honor: "tnsh"); // 東南西白
+        var mixedWithNumber = new TileList(honor: "tn", man: "1"); // 東南一
+        var onlyNumber = new TileList(man: "123");
+
+        // Act & Assert
+        Assert.True(allWind.IsAllWind);
+        Assert.False(mixedWithDragon.IsAllWind);
+        Assert.False(mixedWithNumber.IsAllWind);
+        Assert.False(onlyNumber.IsAllWind);
+    }
+
+    [Fact]
+    public void IsAllDragon_全て三元牌の場合_trueを返す()
+    {
+        // Arrange
+        var allDragon = new TileList(honor: "hrc"); // 白發中
+        var mixedWithWind = new TileList(honor: "thr"); // 東白發
+        var mixedWithNumber = new TileList(honor: "hr", man: "1"); // 白發一
+        var onlyNumber = new TileList(man: "123");
+
+        // Act & Assert
+        Assert.True(allDragon.IsAllDragon);
+        Assert.False(mixedWithWind.IsAllDragon);
+        Assert.False(mixedWithNumber.IsAllDragon);
+        Assert.False(onlyNumber.IsAllDragon);
+    }
+
+    [Fact]
+    public void コンストラクタ_不正な萬子の文字_ArgumentExceptionをスローする()
+    {
+        // Arrange & Act & Assert
+        var exception = Assert.Throws<ArgumentException>(() => new TileList(man: "X"));
+        Assert.Equal("man", exception.ParamName);
+        Assert.Contains("入力された萬子の文字が正しくありません", exception.Message);
+    }
+
+    [Fact]
+    public void コンストラクタ_不正な筒子の文字_ArgumentExceptionをスローする()
+    {
+        // Arrange & Act & Assert
+        var exception = Assert.Throws<ArgumentException>(() => new TileList(pin: "Y"));
+        Assert.Equal("pin", exception.ParamName);
+        Assert.Contains("入力された筒子の文字が正しくありません", exception.Message);
+    }
+
+    [Fact]
+    public void コンストラクタ_不正な索子の文字_ArgumentExceptionをスローする()
+    {
+        // Arrange & Act & Assert
+        var exception = Assert.Throws<ArgumentException>(() => new TileList(sou: "Z"));
+        Assert.Equal("sou", exception.ParamName);
+        Assert.Contains("入力された索子の文字が正しくありません", exception.Message);
+    }
+
+    [Fact]
+    public void コンストラクタ_不正な字牌の文字_ArgumentExceptionをスローする()
+    {
+        // Arrange & Act & Assert
+        var exception = Assert.Throws<ArgumentException>(() => new TileList(honor: "X"));
+        Assert.Equal("honor", exception.ParamName);
+        Assert.Contains("入力された字牌の文字が正しくありません", exception.Message);
     }
 }

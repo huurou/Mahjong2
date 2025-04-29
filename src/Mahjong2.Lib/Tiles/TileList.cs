@@ -28,6 +28,22 @@ public record TileList() : IEnumerable<Tile>, IComparable<TileList>, IEquatable<
     /// 全ての牌が数牌でかつ同じ種類(萬子/筒子/索子)かどうか
     /// </summary>
     public bool IsAllSameSuit => IsAllMan || IsAllPin || IsAllSou;
+    /// <summary>
+    /// 全ての牌が数牌かどうか
+    /// </summary>
+    public bool IsAllNumber => tiles_.All(x => x.IsNumber);
+    /// <summary>
+    /// 全ての牌が字牌かどうか
+    /// </summary>
+    public bool IsAllHonor => tiles_.All(x => x.IsHonor);
+    /// <summary>
+    /// 全ての牌が風牌かどうか
+    /// </summary>
+    public bool IsAllWind => tiles_.All(x => x.IsWind);
+    /// <summary>
+    /// 全ての牌が三元牌かどうか
+    /// </summary>
+    public bool IsAllDragon => tiles_.All(x => x.IsDragon);
 
     /// <summary>
     /// 対子かどうか
@@ -82,10 +98,10 @@ public record TileList() : IEnumerable<Tile>, IComparable<TileList>, IEquatable<
     /// <summary>
     /// 文字列から牌リストを初期化します
     /// </summary>
-    /// <param name="man">萬子を表す文字列（例："123"）</param>
-    /// <param name="pin">筒子を表す文字列（例："456"）</param>
-    /// <param name="sou">索子を表す文字列（例："789"）</param>
-    /// <param name="honor">字牌を表す文字列（例："tnsp"→"東南西北"）</param>
+    /// <param name="man">萬子の数字を並べた文字列</param>
+    /// <param name="pin">筒子の数字を並べた文字列</param>
+    /// <param name="sou">索子の数字を並べた文字列</param>
+    /// <param name="honor">字牌を表す文字列 "tnsphrc" or "東南西北白發中"</param>
     public TileList(string man = "", string pin = "", string sou = "", string honor = "") : this()
     {
         var tiles = new List<Tile>();
@@ -96,6 +112,7 @@ public record TileList() : IEnumerable<Tile>, IComparable<TileList>, IEquatable<
             {
                 tiles.Add(manTile);
             }
+            else { throw new ArgumentException($"入力された萬子の文字が正しくありません。 c:{c}", nameof(man)); }
         }
         // 筒子の変換
         foreach (var c in pin)
@@ -104,6 +121,7 @@ public record TileList() : IEnumerable<Tile>, IComparable<TileList>, IEquatable<
             {
                 tiles.Add(pinTile);
             }
+            else { throw new ArgumentException($"入力された筒子の文字が正しくありません。 c:{c}", nameof(pin)); }
         }
         // 索子の変換
         foreach (var c in sou)
@@ -112,6 +130,7 @@ public record TileList() : IEnumerable<Tile>, IComparable<TileList>, IEquatable<
             {
                 tiles.Add(souTile);
             }
+            else { throw new ArgumentException($"入力された索子の文字が正しくありません。 c:{c}", nameof(sou)); }
         }
         // 字牌の変換
         foreach (var c in honor)
@@ -120,6 +139,7 @@ public record TileList() : IEnumerable<Tile>, IComparable<TileList>, IEquatable<
             {
                 tiles.Add(honorTile);
             }
+            else { throw new ArgumentException($"入力された字牌の文字が正しくありません。 c:{c}", nameof(honor)); }
         }
         tiles_ = [.. tiles];
     }
@@ -127,6 +147,10 @@ public record TileList() : IEnumerable<Tile>, IComparable<TileList>, IEquatable<
     /// <summary>
     /// 牌リストの内容をソートした新しい牌リストを返します
     /// </summary>
+    /// <remarks>
+    /// ソートの順序：萬子→筒子→索子→風牌（東南西北）→三元牌（白發中）の順
+    /// 同じ種類の牌は数字順（1,2,3...）、字牌は定義された順序に従います
+    /// </remarks>
     /// <returns>ソート済みの新しい牌リスト</returns>
     public TileList Sorted()
     {
@@ -291,6 +315,11 @@ public record TileList() : IEnumerable<Tile>, IComparable<TileList>, IEquatable<
 
     public static class TileListBuilder
     {
+        /// <summary>
+        /// 指定された牌の配列から新しいTileListを作成します
+        /// </summary>
+        /// <param name="values">TileListに含める牌の配列</param>
+        /// <returns>指定された牌を含む新しいTileList</returns>
         public static TileList Create(ReadOnlySpan<Tile> values)
         {
             // [.. ]を使用すると無限ループが発生する
