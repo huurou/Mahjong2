@@ -7,6 +7,58 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class DaisangenTests
 {
     [Fact]
+    public void Name_大三元が返る()
+    {
+        // Arrange
+        var daisangen = new Daisangen();
+
+        // Act
+        var actual = daisangen.Name;
+
+        // Assert
+        Assert.Equal("大三元", actual);
+    }
+
+    [Fact]
+    public void HanOpen_13が返る()
+    {
+        // Arrange
+        var daisangen = new Daisangen();
+
+        // Act
+        var actual = daisangen.HanOpen;
+
+        // Assert
+        Assert.Equal(13, actual);
+    }
+
+    [Fact]
+    public void HanClosed_13が返る()
+    {
+        // Arrange
+        var daisangen = new Daisangen();
+        
+        // Act
+        var actual = daisangen.HanClosed;
+        
+        // Assert
+        Assert.Equal(13, actual);
+    }
+
+    [Fact]
+    public void IsYakuman_Trueが返る()
+    {
+        // Arrange
+        var daisangen = new Daisangen();
+
+        // Act
+        var actual = daisangen.IsYakuman;
+
+        // Assert
+        Assert.True(actual);
+    }
+
+    [Fact]
     public void Valid_白發中の刻子あり_成立する()
     {
         // Arrange

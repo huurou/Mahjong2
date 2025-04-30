@@ -1,4 +1,5 @@
 using Mahjong2.Lib.Fuuros;
+using Mahjong2.Lib.Scores;
 using Mahjong2.Lib.Tiles;
 
 namespace Mahjong2.Lib.Yakus.Impl;
@@ -12,8 +13,8 @@ public record DaisuushiiDouble : Yaku
     public override int HanOpen => 26;
     public override int HanClosed => 26;
     public override bool IsYakuman => true;
-    public static bool Valid(Hand hand, FuuroList fuuroList)
+    public static bool Valid(Hand hand, FuuroList fuuroList, GameRules gameRules)
     {
-        return Daisuushii.Valid(hand, fuuroList);
+        return gameRules.DoubleYakumanEnabled && Daisuushii.Valid(hand, fuuroList);
     }
 }

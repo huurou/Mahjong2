@@ -11,7 +11,7 @@ public abstract record Yaku
 
     // 状況による役
     public static Riichi Riichi { get; } = new();
-    public static DoubleRiichi DaburuRiichi { get; } = new();
+    public static DoubleRiichi DoubleRiichi { get; } = new();
     public static Tsumo Tsumo { get; } = new();
     public static Ippatsu Ippatsu { get; } = new();
     public static Chankan Chankan { get; } = new();
