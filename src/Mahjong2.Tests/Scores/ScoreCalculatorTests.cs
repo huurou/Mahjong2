@@ -814,9 +814,12 @@ public class ScoreCalculatorTests
         var gameRules = new GameRules { KazoeLimit = (KazoeLimit)3 };
         var fu = 30; // 満貫以上は符に関係なく点数が固定されるので適当な値を使用
 
-        // Act && Assert
-        var exception = Assert.Throws<ArgumentException>(() => ScoreCalculator.Calc(fu, 13, winSituation, gameRules, isYakuman: false));
-        Assert.Equal("数え役満のルールが不正です。", exception.Message);
+        // Act
+        var exception = Record.Exception(() => ScoreCalculator.Calc(fu, 13, winSituation, gameRules, isYakuman: false));
+
+        // Assert
+        Assert.IsType<ArgumentException>(exception);
+        Assert.Equal("数え役満のルールが不正です。 (Parameter 'gameRules')", exception.Message);
     }
 
 }
