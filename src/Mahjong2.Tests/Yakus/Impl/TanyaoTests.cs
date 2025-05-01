@@ -8,6 +8,58 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class TanyaoTests
 {
     [Fact]
+    public void Name_断么九が返る()
+    {
+        // Arrange
+        var tanyao = new Tanyao();
+
+        // Act
+        var actual = tanyao.Name;
+
+        // Assert
+        Assert.Equal("断么九", actual);
+    }
+
+    [Fact]
+    public void HanOpen_1が返る()
+    {
+        // Arrange
+        var tanyao = new Tanyao();
+
+        // Act
+        var actual = tanyao.HanOpen;
+
+        // Assert
+        Assert.Equal(1, actual);
+    }
+
+    [Fact]
+    public void HanClosed_1が返る()
+    {
+        // Arrange
+        var tanyao = new Tanyao();
+
+        // Act
+        var actual = tanyao.HanClosed;
+
+        // Assert
+        Assert.Equal(1, actual);
+    }
+
+    [Fact]
+    public void IsYakuman_Falseが返る()
+    {
+        // Arrange
+        var tanyao = new Tanyao();
+
+        // Act
+        var actual = tanyao.IsYakuman;
+
+        // Assert
+        Assert.False(actual);
+    }
+
+    [Fact]
     public void Valid_正常形_副露なし_成立する()
     {
         // Arrange

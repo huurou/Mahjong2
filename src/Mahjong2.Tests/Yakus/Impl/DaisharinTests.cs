@@ -37,10 +37,10 @@ public class DaisharinTests
     {
         // Arrange
         var daisharin = new Daisharin();
-        
+
         // Act
         var actual = daisharin.HanClosed;
-        
+
         // Assert
         Assert.Equal(13, actual);
     }

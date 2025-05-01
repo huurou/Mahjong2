@@ -13,7 +13,8 @@ public record Kokushimusou13menmachi : Yaku
     public override bool IsYakuman => true;
     public static bool Valid(Hand hand, Tile winTile)
     {
-        return hand.SelectMany(x => x).Count(x => x == winTile) == 2 &&
-            Kokushimusou.Valid(hand);
+        return Kokushimusou.Valid(hand) &&
+            hand.SelectMany(x => x).Count(x => x == winTile) == 2;
+
     }
 }

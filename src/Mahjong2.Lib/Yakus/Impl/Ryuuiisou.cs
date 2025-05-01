@@ -15,6 +15,6 @@ public record Ryuuiisou : Yaku
     public static bool Valid(Hand hand, FuuroList fuuroList)
     {
         var greens = new TileList(sou: "23468", honor: "r");
-        return hand.SelectMany(x => x).All(x => greens.Contains(x));
+        return hand.CombineFuuro(fuuroList).SelectMany(x => x).All(x => greens.Contains(x));
     }
 }

@@ -1,4 +1,3 @@
-// filepath: d:\source\repos\Mahjong2\src\Mahjong2.Tests\Yakus\Impl\IipeikouTests.cs
 using Mahjong2.Lib.Fuuros;
 using Mahjong2.Lib.Tiles;
 using Mahjong2.Lib.Yakus;
@@ -111,7 +110,7 @@ public class IipeikouTests
             new(honor: "tt"),
         ]);
         // 鳴きあり
-        var fuuroList = new FuuroList([new Pon(new (sou: "999"))]);
+        var fuuroList = new FuuroList([new Pon(new(sou: "999"))]);
 
         // Act
         var actual = Iipeikou.Valid(hand, fuuroList);

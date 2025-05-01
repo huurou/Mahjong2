@@ -37,10 +37,10 @@ public class DaisangenTests
     {
         // Arrange
         var daisangen = new Daisangen();
-        
+
         // Act
         var actual = daisangen.HanClosed;
-        
+
         // Assert
         Assert.Equal(13, actual);
     }

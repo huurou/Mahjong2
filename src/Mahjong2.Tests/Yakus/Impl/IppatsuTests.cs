@@ -65,8 +65,8 @@ public class IppatsuTests
     public void Valid_一発とリーチがあり面前の場合_成立する()
     {
         // Arrange
-        var winSituation = new WinSituation 
-        { 
+        var winSituation = new WinSituation
+        {
             IsIppatsu = true,
             IsRiichi = true,
         };

@@ -1,6 +1,5 @@
 using Mahjong2.Lib.Scores;
 using Mahjong2.Lib.Tiles;
-using Mahjong2.Lib.Tiles.NumberTiles;
 using Mahjong2.Lib.Yakus;
 using Mahjong2.Lib.Yakus.Impl;
 

@@ -7,6 +7,58 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class PinfuTests
 {
     [Fact]
+    public void Name_平和を返す()
+    {
+        // Arrange
+        var pinfu = new Pinfu();
+
+        // Act
+        var result = pinfu.Name;
+
+        // Assert
+        Assert.Equal("平和", result);
+    }
+
+    [Fact]
+    public void HanOpen_0を返す()
+    {
+        // Arrange
+        var pinfu = new Pinfu();
+
+        // Act
+        var result = pinfu.HanOpen;
+
+        // Assert
+        Assert.Equal(0, result);
+    }
+
+    [Fact]
+    public void HanClosed_1を返す()
+    {
+        // Arrange
+        var pinfu = new Pinfu();
+
+        // Act
+        var result = pinfu.HanClosed;
+
+        // Assert
+        Assert.Equal(1, result);
+    }
+
+    [Fact]
+    public void IsYakuman_Falseを返す()
+    {
+        // Arrange
+        var pinfu = new Pinfu();
+
+        // Act
+        var result = pinfu.IsYakuman;
+
+        // Assert
+        Assert.False(result);
+    }
+
+    [Fact]
     public void Valid_ツモアガリでピンヅモあり_成立()
     {
         // Arrange

@@ -35,10 +35,10 @@ public class DoraTests
     {
         // Arrange
         var dora = Yaku.Dora;
-        
+
         // Act
         var actual = dora.HanClosed;
-        
+
         // Assert
         Assert.Equal(1, actual);
     }

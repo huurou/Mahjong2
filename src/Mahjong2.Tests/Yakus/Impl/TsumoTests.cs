@@ -8,6 +8,58 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class TsumoTests
 {
     [Fact]
+    public void Name_門前清自摸和を返す()
+    {
+        // Arrange
+        var tsumo = new Tsumo();
+
+        // Act
+        var actual = tsumo.Name;
+
+        // Assert
+        Assert.Equal("門前清自摸和", actual);
+    }
+
+    [Fact]
+    public void HanOpen_0を返す()
+    {
+        // Arrange
+        var tsumo = new Tsumo();
+
+        // Act
+        var actual = tsumo.HanOpen;
+
+        // Assert
+        Assert.Equal(0, actual);
+    }
+
+    [Fact]
+    public void HanClosed_1を返す()
+    {
+        // Arrange
+        var tsumo = new Tsumo();
+
+        // Act
+        var actual = tsumo.HanClosed;
+
+        // Assert
+        Assert.Equal(1, actual);
+    }
+
+    [Fact]
+    public void IsYakuman_Falseを返す()
+    {
+        // Arrange
+        var tsumo = new Tsumo();
+
+        // Act
+        var actual = tsumo.IsYakuman;
+
+        // Assert
+        Assert.False(actual);
+    }
+
+    [Fact]
     public void Valid_門前_ツモ和了_成立する()
     {
         // Arrange
