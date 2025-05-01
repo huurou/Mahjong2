@@ -801,4 +801,22 @@ public class ScoreCalculatorTests
         // Assert
         Assert.IsType<ArgumentException>(exception);
     }
+
+    [Fact]
+    public void Calc_数え役満_数え役満のルールが不正_例外がでる()
+    {
+        // Arrange
+        var winSituation = new WinSituation
+        {
+            IsTsumo = true,
+            PlayerWind = Wind.South,
+        };
+        var gameRules = new GameRules { KazoeLimit = (KazoeLimit)3 };
+        var fu = 30; // 満貫以上は符に関係なく点数が固定されるので適当な値を使用
+
+        // Act && Assert
+        var exception = Assert.Throws<ArgumentException>(() => ScoreCalculator.Calc(fu, 13, winSituation, gameRules, isYakuman: false));
+        Assert.Equal("数え役満のルールが不正です。", exception.Message);
+    }
+
 }

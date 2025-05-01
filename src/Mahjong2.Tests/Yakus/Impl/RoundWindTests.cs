@@ -164,4 +164,17 @@ public class RoundWindTests
         // Assert
         Assert.True(actual);
     }
+
+    [Fact]
+    public void Valid_不明な風あり_例外がでる()
+    {
+        // Arrange
+        var hand = new Hand([new(pin: "11"), new(man: "234"), new(pin: "234"), new(sou: "234"), new(honor: "ttt")]);
+        var fuuroList = new FuuroList();
+        var winSituation = new WinSituation { RoundWind = (Wind)4 };
+
+        // Act & Assert
+        var exception = Assert.Throws<InvalidOperationException>(() => RoundWind.Valid(hand, fuuroList, winSituation));
+        Assert.Contains($"不明な風です。RoundWind:{winSituation.RoundWind}", exception.Message);
+    }
 }

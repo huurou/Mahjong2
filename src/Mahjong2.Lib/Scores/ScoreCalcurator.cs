@@ -37,7 +37,7 @@ public static class ScoreCalculator
                 KazoeLimit.Limited => 13,
                 KazoeLimit.Sanbaiman => 12,
                 KazoeLimit.Nolimit => han,
-                _ => throw new ArgumentOutOfRangeException(nameof(gameRules), "数え役満のルールが不正です。"),
+                _ => throw new ArgumentException("数え役満のルールが不正です。", nameof(gameRules)),
             };
         }
         // 点数計算
@@ -78,7 +78,7 @@ public static class ScoreCalculator
             >= 52 and < 65 => 32000,        // 四倍役満
             >= 65 and < 78 => 40000,        // 五倍役満
             >= 78 => 48000,                 // 六倍役満
-            _ => throw new ArgumentException("翻に0以下を指定することはできません。", nameof(han)),
+            _ => throw new ArgumentException("翻に4以下を指定することはできません。", nameof(han)),
         };
     }
 

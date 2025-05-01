@@ -149,4 +149,17 @@ public class PlayerWindTests
         // Assert
         Assert.True(actual);
     }
+
+    [Fact]
+    public void Valid_不明な風_例外がでる()
+    {
+        // Arrange
+        var hand = new Hand([new(pin: "11"), new(man: "234"), new(pin: "234"), new(sou: "234"), new(honor: "ttt")]);
+        var fuuroList = new FuuroList();
+        var winSituation = new WinSituation { PlayerWind = (Wind)4 };
+
+        // Act & Assert
+        var exception = Assert.Throws<InvalidOperationException>(() => PlayerWind.Valid(hand, fuuroList, winSituation));
+        Assert.Contains($"不明な風です。PlayerWind:{winSituation.PlayerWind}", exception.Message);
+    }
 }
