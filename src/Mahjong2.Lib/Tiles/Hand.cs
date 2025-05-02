@@ -44,7 +44,7 @@ public record Hand : TileListList
         /// </summary>
         /// <param name="values">牌リストの配列</param>
         /// <returns>新しい<see cref="HandBuilder"/>オブジェクト</returns>
-        public static TileListList Create(ReadOnlySpan<TileList> values)
+        public static Hand Create(ReadOnlySpan<TileList> values)
         {
             // [.. ]を使用すると無限ループが発生する
 #pragma warning disable IDE0306 // コレクションの初期化を簡略化します

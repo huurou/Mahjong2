@@ -8,7 +8,7 @@ namespace Mahjong2.Lib.Tiles;
 /// 牌の集合の集合を表現するクラス
 /// </summary>
 [CollectionBuilder(typeof(TileListListBuilder), "Create")]
-public record TileListList() : IEnumerable<TileList>, IEquatable<TileListList>
+public record TileListList() : IEnumerable<TileList>, IEquatable<TileListList>, IComparable<TileListList>
 {
     /// <summary>
     /// 要素数を取得します
@@ -41,6 +41,11 @@ public record TileListList() : IEnumerable<TileList>, IEquatable<TileListList>
     public bool IncludesKoutsu(Tile tile)
     {
         return this.Any(x => (x.IsKoutsu || x.IsKantsu) && x[0] == tile);
+    }
+
+    public TileListList Remove(TileList combs)
+    {
+        return [.. tileLists_.Remove(combs)];
     }
 
     /// <summary>
@@ -87,6 +92,18 @@ public record TileListList() : IEnumerable<TileList>, IEquatable<TileListList>
     public override int GetHashCode()
     {
         return tileLists_.Aggregate(0, (hash, tileList) => hash * 31 + tileList.GetHashCode());
+    }
+
+    public int CompareTo(TileListList? other)
+    {
+        if (other is null) { return 1; }
+        var min = Math.Min(this.Count, other.Count);
+        for (var i = 0; i < min; i++)
+        {
+            if (this[i] > other[i]) { return 1; }
+            if (this[i] < other[i]) { return -1; }
+        }
+        return Count.CompareTo(other.Count);
     }
 
     /// <summary>

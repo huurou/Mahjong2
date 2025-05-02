@@ -293,4 +293,100 @@ public class TileListListTests
         Assert.Equal(tileList1, tileListList[0]);
         Assert.Equal(tileList2, tileListList[1]);
     }
+
+    [Fact]
+    public void CompareTo_引数がnullの場合_正の数を返す()
+    {
+        // Arrange
+        var tileList1 = new TileList(man: "123");
+        var tileList2 = new TileList(pin: "456");
+        var tileListList = new TileListList([tileList1, tileList2]);
+        TileListList? other = null;
+
+        // Act
+        var result = tileListList.CompareTo(other);
+
+        // Assert
+        Assert.True(result > 0);
+    }
+
+    [Fact]
+    public void CompareTo_自分の方が要素数が少ない場合_負の数を返す()
+    {
+        // Arrange
+        var tileList1 = new TileList(man: "123");
+        var tileListList1 = new TileListList([tileList1]);
+        var tileList2 = new TileList(pin: "456");
+        var tileListList2 = new TileListList([tileList1, tileList2]);
+
+        // Act
+        var result = tileListList1.CompareTo(tileListList2);
+
+        // Assert
+        Assert.True(result < 0);
+    }
+
+    [Fact]
+    public void CompareTo_自分の方が要素数が多い場合_正の数を返す()
+    {
+        // Arrange
+        var tileList1 = new TileList(man: "123");
+        var tileList2 = new TileList(pin: "456");
+        var tileListList1 = new TileListList([tileList1, tileList2]);
+        var tileListList2 = new TileListList([tileList1]);
+
+        // Act
+        var result = tileListList1.CompareTo(tileListList2);
+
+        // Assert
+        Assert.True(result > 0);
+    }
+
+    [Fact]
+    public void CompareTo_要素数が同じで自分の方が小さい場合_負の数を返す()
+    {
+        // Arrange
+        var tileList1 = new TileList(man: "123");
+        var tileList2 = new TileList(pin: "456");
+        var tileListList1 = new TileListList([tileList1, tileList2]);
+        var tileListList2 = new TileListList([tileList2, tileList2]);
+
+        // Act
+        var result = tileListList1.CompareTo(tileListList2);
+
+        // Assert
+        Assert.True(result < 0);
+    }
+
+    [Fact]
+    public void CompareTo_要素数が同じで自分の方が大きい場合_正の数を返す()
+    {
+        // Arrange
+        var tileList1 = new TileList(man: "123");
+        var tileList2 = new TileList(pin: "456");
+        var tileListList1 = new TileListList([tileList2, tileList2]);
+        var tileListList2 = new TileListList([tileList1, tileList2]);
+
+        // Act
+        var result = tileListList1.CompareTo(tileListList2);
+
+        // Assert
+        Assert.True(result > 0);
+    }
+
+    [Fact]
+    public void CompareTo_全ての要素が等しい場合_0を返す()
+    {
+        // Arrange
+        var tileList1 = new TileList(man: "123");
+        var tileList2 = new TileList(pin: "456");
+        var tileListList1 = new TileListList([tileList1, tileList2]);
+        var tileListList2 = new TileListList([tileList1, tileList2]);
+
+        // Act
+        var result = tileListList1.CompareTo(tileListList2);
+
+        // Assert
+        Assert.Equal(0, result);
+    }
 }
