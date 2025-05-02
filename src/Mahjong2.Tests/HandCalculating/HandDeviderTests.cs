@@ -1,4 +1,4 @@
-using Mahjong2.Lib.HandCalculating;
+ï»¿using Mahjong2.Lib.HandCalculating;
 using Mahjong2.Lib.Tiles;
 
 namespace Mahjong2.Tests.HandCalculating
@@ -6,7 +6,7 @@ namespace Mahjong2.Tests.HandCalculating
     public class HandDeviderTests
     {
         [Fact]
-        public void Devide_ƒVƒ“ƒvƒ‹‚Èè”v_³‚µ‚­•ª‰ğ‚³‚ê‚é()
+        public void Devide_ã‚·ãƒ³ãƒ—ãƒ«ãªæ‰‹ç‰Œ_æ­£ã—ãåˆ†è§£ã•ã‚Œã‚‹()
         {
             // Arrange
             var tileList = new TileList(man: "234567", sou: "23455", honor: "ccc");
@@ -21,7 +21,7 @@ namespace Mahjong2.Tests.HandCalculating
         }
 
         [Fact]
-        public void Devide_ƒVƒ“ƒvƒ‹‚Èè”v2_³‚µ‚­•ª‰ğ‚³‚ê‚é()
+        public void Devide_ã‚·ãƒ³ãƒ—ãƒ«ãªæ‰‹ç‰Œ2_æ­£ã—ãåˆ†è§£ã•ã‚Œã‚‹()
         {
             // Arrange
             var tileList = new TileList(man: "123", pin: "123", sou: "123", honor: "ttnnn");
@@ -36,7 +36,7 @@ namespace Mahjong2.Tests.HandCalculating
         }
 
         [Fact]
-        public void Devide_‡q‚Ì’†‚É‘Îq‚ğŠÜ‚Şè”v_³‚µ‚­•ª‰ğ‚³‚ê‚é()
+        public void Devide_é †å­ã®ä¸­ã«å¯¾å­ã‚’å«ã‚€æ‰‹ç‰Œ_æ­£ã—ãåˆ†è§£ã•ã‚Œã‚‹()
         {
             // Arrange
             var tileList = new TileList(man: "23444", pin: "344556", sou: "333");
@@ -51,7 +51,7 @@ namespace Mahjong2.Tests.HandCalculating
         }
 
         [Fact]
-        public void Device_‡q3‚Â‚Æ‚àq3‚Â‚Æ‚àæ‚ê‚éè”v_³‚µ‚­•ª‰ğ‚³‚ê‚é()
+        public void Device_é †å­3ã¤ã¨ã‚‚åˆ»å­3ã¤ã¨ã‚‚å–ã‚Œã‚‹æ‰‹ç‰Œ_æ­£ã—ãåˆ†è§£ã•ã‚Œã‚‹()
         {
             // Arrange
             var tileList = new TileList(man: "11333444555888");
@@ -68,7 +68,7 @@ namespace Mahjong2.Tests.HandCalculating
         }
 
         [Fact]
-        public void Device_‡q3‚Â‚ğ2’Ê‚è‚Æ‚àq3‚Â‚Æ‚àæ‚ê‚éè”v_³‚µ‚­•ª‰ğ‚³‚ê‚é()
+        public void Device_é †å­3ã¤ã‚’2é€šã‚Šã¨ã‚‚åˆ»å­3ã¤ã¨ã‚‚å–ã‚Œã‚‹æ‰‹ç‰Œ_æ­£ã—ãåˆ†è§£ã•ã‚Œã‚‹()
         {
             // Arrange
             var tileList = new TileList(man: "11222333444888");
@@ -87,7 +87,7 @@ namespace Mahjong2.Tests.HandCalculating
         }
 
         [Fact]
-        public void Devide_è”v‚ª14–‡–¢–_•›˜I‚ğ‘z’è_³‚µ‚­•ª‰ğ‚³‚ê‚é()
+        public void Devide_æ‰‹ç‰ŒãŒ14æšæœªæº€_å‰¯éœ²ã‚’æƒ³å®š_æ­£ã—ãåˆ†è§£ã•ã‚Œã‚‹()
         {
             // Arrange
             var tileList = new TileList(pin: "778899", honor: "nn");
@@ -102,7 +102,7 @@ namespace Mahjong2.Tests.HandCalculating
         }
 
         [Fact]
-        public void Device_“ñ”uŒû‚ÌŒ`_³‚µ‚­•ª‰ğ‚³‚ê‚é()
+        public void Device_äºŒç›ƒå£ã®å½¢_æ­£ã—ãåˆ†è§£ã•ã‚Œã‚‹()
         {
             // Arrange
             var tileList = new TileList(man: "112233", pin: "99", sou: "445566");
