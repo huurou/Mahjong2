@@ -21,7 +21,7 @@ public record FuList() : IEnumerable<Fu>, IEquatable<FuList>
     /// </summary>
     public int Total =>
         Count == 0 ? 0
-        : this.Contains(Fu.Chiitoitsu) ? 25
+        : this.Contains(Fu.ChiitoitsuFu) ? 25
         : (this.Sum(x => x.Value) + 9) / 10 * 10; // 10の単位に切り上げる
 
     private readonly ImmutableList<Fu> fus_ = [];

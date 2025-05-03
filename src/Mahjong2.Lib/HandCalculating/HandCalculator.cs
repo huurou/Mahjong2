@@ -1,4 +1,5 @@
-﻿using Mahjong2.Lib.Fuuros;
+﻿using Mahjong2.Lib.Fus;
+using Mahjong2.Lib.Fuuros;
 using Mahjong2.Lib.HandCalculating.Games;
 using Mahjong2.Lib.HandCalculating.HandDeviding;
 using Mahjong2.Lib.Shantens;
@@ -50,11 +51,29 @@ public static class HandCalculator
             var winGroups = hand.GetWinGroups(winTile);
             foreach (var winGroup in winGroups)
             {
-                YakuList yakuList = [];
-                //var fuList = FuCalculator
+                var fuList = FuCalculator.Calc(hand, winTile, winGroup, fuuroList, winSituation, gameRules);
+                var yakuList = EvalYaku(hand, winTile, winGroup, fuuroList, fuList, winSituation, gameRules);
+                if (yakuList.Any(x => x.IsYakuman))
+                {
+                    // 役満が含まれていた場合は役満だけにする
+                    yakuList = [.. yakuList.Where(x => x.IsYakuman)];
+                }
+                else if (yakuList.Count != 0)
+                {
+                    AddDora(hand, doraIndicators, uradoraIndicators, winSituation);
+                }
+                if (yakuList.Count != 0)
+                {
+                    handResults.Add(HandResult.Create(yakuList, fuList, fuuroList, winSituation, gameRules));
+                }
+                else
+                {
+                    handResults.Add(HandResult.Error("役がありません。"));
+                }
             }
         }
-
+        // 高点法に基づき最も高い点数が最初になるように並び替える
+        handResults.Sort((x, y) => x.Han < y.Han ? 1 : x.Han > y.Han ? -1 : x.Fu < y.Fu ? 1 : x.Fu > y.Fu ? -1 : 0);
         return handResults[0];
     }
 
@@ -117,7 +136,7 @@ public static class HandCalculator
         {
             handResult = HandResult.Error("天和とロンアガリは両立できません。");
         }
-        if (winSituation.IsTenhou && fuuroList.Any())
+        if (winSituation.IsTenhou && fuuroList.Count != 0)
         {
             handResult = HandResult.Error("副露を伴う天和は無効です。");
         }
@@ -234,6 +253,257 @@ public static class HandCalculator
         {
             yakuList = [.. yakuList, Yaku.Daisharin];
         }
+        return yakuList;
+    }
+
+    private static YakuList EvalYaku(Hand hand, Tile winTile, TileList winGroup, FuuroList fuuroList, FuList fuList, WinSituation winSituation, GameRules gameRules)
+    {
+        YakuList yakuList = [];
+        yakuList = [.. yakuList, .. EvalFormless(hand, fuuroList, winSituation, gameRules)];
+        if (hand.Count == 7)
+        {
+            yakuList = [.. yakuList, .. EvalChiitoitsu(hand, gameRules)];
+        }
+        if (hand.CombineFuuro(fuuroList).Any(x => x.IsShuntsu))
+        {
+            yakuList = [.. yakuList, .. EvalShuntsu(hand, fuuroList, fuList, winSituation, gameRules)];
+        }
+        if (hand.CombineFuuro(fuuroList).Any(x => x.IsKoutsu || x.IsKantsu))
+        {
+            yakuList = [.. yakuList, .. EvalKoutsu(hand, winTile, winGroup, fuuroList, winSituation, gameRules)];
+        }
+        return yakuList;
+    }
+
+    // 形が関係ない役の判定を行う
+    private static YakuList EvalFormless(Hand hand, FuuroList fuuroList, WinSituation winSituation, GameRules gameRules)
+    {
+        YakuList yakuList = [];
+        if (Tsumo.Valid(fuuroList, winSituation))
+        {
+            yakuList = [.. yakuList, Yaku.Tsumo];
+        }
+        if (Riichi.Valid(winSituation, fuuroList))
+        {
+            yakuList = [.. yakuList, Yaku.Riichi];
+        }
+        if (DoubleRiichi.Valid(winSituation, fuuroList))
+        {
+            yakuList = [.. yakuList, Yaku.DoubleRiichi];
+        }
+        if (Tanyao.Valid(hand, fuuroList, gameRules))
+        {
+            yakuList = [.. yakuList, Yaku.Tanyao];
+        }
+        if (Ippatsu.Valid(winSituation, fuuroList))
+        {
+            yakuList = [.. yakuList, Yaku.Ippatsu];
+        }
+        if (Rinshan.Valid(winSituation))
+        {
+            yakuList = [.. yakuList, Yaku.Rinshan];
+        }
+        if (Chankan.Valid(winSituation))
+        {
+            yakuList = [.. yakuList, Yaku.Chankan];
+        }
+        if (Haitei.Valid(winSituation))
+        {
+            yakuList = [.. yakuList, Yaku.Haitei];
+        }
+        if (Houtei.Valid(winSituation))
+        {
+            yakuList = [.. yakuList, Yaku.Houtei];
+        }
+        if (Renhou.Valid(winSituation, gameRules))
+        {
+            yakuList = [.. yakuList, Yaku.Renhou];
+        }
+        if (Honitsu.Valid(hand, fuuroList))
+        {
+            yakuList = [.. yakuList, Yaku.Honitsu];
+        }
+        if (Chinitsu.Valid(hand, fuuroList))
+        {
+            yakuList = [.. yakuList, Yaku.Chinitsu];
+        }
+        if (Tsuuiisou.Valid(hand, fuuroList))
+        {
+            yakuList = [.. yakuList, Yaku.Tsuuiisou];
+        }
+        if (Honroutou.Valid(hand, fuuroList))
+        {
+            yakuList = [.. yakuList, Yaku.Honroutou];
+        }
+        if (Ryuuiisou.Valid(hand, fuuroList))
+        {
+            yakuList = [.. yakuList, Yaku.Ryuuiisou];
+        }
+        if (Chiihou.Valid(winSituation))
+        {
+            yakuList = [.. yakuList, Yaku.Chiihou];
+        }
+        if (RenhouYakuman.Valid(winSituation, gameRules))
+        {
+            yakuList = [.. yakuList, Yaku.RenhouYakuman];
+        }
+        return yakuList;
+    }
+
+    // 七対子形の役の判定を行う
+    private static YakuList EvalChiitoitsu(Hand hand, GameRules gameRules)
+    {
+        YakuList yakuList = [];
+        if (Chiitoitsu.Valid(hand))
+        {
+            yakuList = [.. yakuList, Yaku.Chiitoitsu];
+        }
+        if (Daisharin.Valid(hand, gameRules))
+        {
+            yakuList = [.. yakuList, Yaku.Daisharin];
+        }
+        return yakuList;
+    }
+
+    // 順子が必要な役の判定を行う
+    private static YakuList EvalShuntsu(Hand hand, FuuroList fuuroList, FuList fuList, WinSituation winSituation, GameRules gameRules)
+    {
+        YakuList yakuList = [];
+        if (Pinfu.Valid(fuList, winSituation, gameRules))
+        {
+            yakuList = [.. yakuList, Yaku.Pinfu];
+        }
+        if (Chanta.Valid(hand, fuuroList))
+        {
+            yakuList = [.. yakuList, Yaku.Chanta];
+        }
+        if (Junchan.Valid(hand, fuuroList))
+        {
+            yakuList = [.. yakuList, Yaku.Junchan];
+        }
+        if (Ittsuu.Valid(hand, fuuroList))
+        {
+            yakuList = [.. yakuList, Yaku.Ittsuu];
+        }
+        // 一盃口と二盃口は両立しない
+        if (Ryanpeikou.Valid(hand, fuuroList))
+        {
+            yakuList = [.. yakuList, Yaku.Ryanpeikou];
+        }
+        else if (Iipeikou.Valid(hand, fuuroList))
+        {
+            yakuList = [.. yakuList, Yaku.Iipeikou];
+        }
+        if (Sanshoku.Valid(hand, fuuroList))
+        {
+            yakuList = [.. yakuList, Yaku.Sanshoku];
+        }
+        return yakuList;
+    }
+
+    // 刻子が必要な役の判定を行う
+    private static YakuList EvalKoutsu(Hand hand, Tile winTile, TileList winGroup, FuuroList fuuroList, WinSituation winSituation, GameRules gameRules)
+    {
+        YakuList yakuList = [];
+        if (Toitoihou.Valid(hand, fuuroList))
+        {
+            yakuList = [.. yakuList, Yaku.Toitoihou];
+        }
+        if (Sanankou.Valid(hand, winGroup, fuuroList, winSituation))
+        {
+            yakuList = [.. yakuList, Yaku.Sanankou];
+        }
+        if (Sanshokudoukou.Valid(hand, fuuroList))
+        {
+            yakuList = [.. yakuList, Yaku.Sanshokudoukou];
+        }
+        if (Shousangen.Valid(hand, fuuroList))
+        {
+            yakuList = [.. yakuList, Yaku.Shousangen];
+        }
+        if (Haku.Valid(hand, fuuroList))
+        {
+            yakuList = [.. yakuList, Yaku.Haku];
+        }
+        if (Hatsu.Valid(hand, fuuroList))
+        {
+            yakuList = [.. yakuList, Yaku.Hatsu];
+        }
+        if (Chun.Valid(hand, fuuroList))
+        {
+            yakuList = [.. yakuList, Yaku.Chun];
+        }
+        if (PlayerWind.Valid(hand, fuuroList, winSituation))
+        {
+            yakuList = [.. yakuList, Yaku.PlayerWind];
+        }
+        if (RoundWind.Valid(hand, fuuroList, winSituation))
+        {
+            yakuList = [.. yakuList, Yaku.RoundWind];
+        }
+        if (Daisangen.Valid(hand, fuuroList))
+        {
+            yakuList = [.. yakuList, Yaku.Daisangen];
+        }
+        if (Shousuushii.Valid(hand, fuuroList))
+        {
+            yakuList = [.. yakuList, Yaku.Shousuushii];
+        }
+        if (Daisuushii.Valid(hand, fuuroList))
+        {
+            if (gameRules.DoubleYakumanEnabled)
+            {
+                yakuList = [.. yakuList, Yaku.DaisuushiiDouble];
+            }
+            else
+            {
+                yakuList = [.. yakuList, Yaku.Daisuushii];
+            }
+        }
+        if (Chuurenpoutou.Valid(hand))
+        {
+            if (JunseiChuurenpoutou.Valid(hand, winTile, gameRules))
+            {
+                yakuList = [.. yakuList, Yaku.JunseiChuurenpoutou];
+            }
+            else
+            {
+                yakuList = [.. yakuList, Yaku.Chuurenpoutou];
+            }
+        }
+        if (Suuankou.Valid(hand, winGroup, fuuroList, winSituation))
+        {
+            if (SuuankouTanki.Valid(hand, winGroup, winTile, fuuroList, winSituation, gameRules))
+            {
+                yakuList = [.. yakuList, Yaku.SuuankouTanki];
+            }
+            else
+            {
+                yakuList = [.. yakuList, Yaku.Suuankou];
+            }
+        }
+        if (Chinroutou.Valid(hand, fuuroList))
+        {
+            yakuList = [.. yakuList, Yaku.Chinroutou];
+        }
+        if (Sankantsu.Valid(hand, fuuroList))
+        {
+            yakuList = [.. yakuList, Yaku.Sankantsu];
+        }
+        if (Suukantsu.Valid(hand, fuuroList))
+        {
+            yakuList = [.. yakuList, Yaku.Suukantsu];
+        }
+        return yakuList;
+    }
+
+    private static YakuList AddDora(Hand hand, TileList doraIndicators, TileList uradoraIndicators, WinSituation winSituation)
+    {
+        YakuList yakuList = [];
+        var tiles = hand.SelectMany(x => x);
+        yakuList = [.. yakuList, .. Enumerable.Repeat(Yaku.Dora, doraIndicators.Select(Tile.GetActualDora).Sum(x => tiles.Count(y => x == y)))];
+        yakuList = [.. yakuList, .. Enumerable.Repeat(Yaku.Uradora, uradoraIndicators.Select(Tile.GetActualDora).Sum(x => tiles.Count(y => x == y)))];
+        yakuList = [.. yakuList, .. Enumerable.Repeat(Yaku.Akadora, winSituation.AkadoraCount)];
         return yakuList;
     }
 }

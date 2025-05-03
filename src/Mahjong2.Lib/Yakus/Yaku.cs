@@ -35,7 +35,7 @@ public abstract record Yaku : IComparable<Yaku>
     public static Sanshoku Sanshoku { get; } = new();
     public static Ittsuu Ittsuu { get; } = new();
     public static Chanta Chanta { get; } = new();
-    public static Honroutou Honrotou { get; } = new();
+    public static Honroutou Honroutou { get; } = new();
     public static Toitoihou Toitoihou { get; } = new();
     public static Sanankou Sanankou { get; } = new();
     public static Sankantsu Sankantsu { get; } = new();

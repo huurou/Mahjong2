@@ -246,6 +246,49 @@ public abstract record Tile : IComparable<Tile>
     /// </summary>
     public bool IsRoutou => this is NumberTile numberTile && numberTile.Number is 1 or 9;
 
+    // ドラ表示牌から実際のドラを取得する
+    public static Tile GetActualDora(Tile doraIndicator)
+    {
+        return doraIndicator switch
+        {
+            NumberTiles.Man1 => Man2,
+            NumberTiles.Man2 => Man3,
+            NumberTiles.Man3 => Man4,
+            NumberTiles.Man4 => Man5,
+            NumberTiles.Man5 => Man6,
+            NumberTiles.Man6 => Man7,
+            NumberTiles.Man7 => Man8,
+            NumberTiles.Man8 => Man9,
+            NumberTiles.Man9 => Man1,
+            NumberTiles.Pin1 => Pin2,
+            NumberTiles.Pin2 => Pin3,
+            NumberTiles.Pin3 => Pin4,
+            NumberTiles.Pin4 => Pin5,
+            NumberTiles.Pin5 => Pin6,
+            NumberTiles.Pin6 => Pin7,
+            NumberTiles.Pin7 => Pin8,
+            NumberTiles.Pin8 => Pin9,
+            NumberTiles.Pin9 => Pin1,
+            NumberTiles.Sou1 => Sou2,
+            NumberTiles.Sou2 => Sou3,
+            NumberTiles.Sou3 => Sou4,
+            NumberTiles.Sou4 => Sou5,
+            NumberTiles.Sou5 => Sou6,
+            NumberTiles.Sou6 => Sou7,
+            NumberTiles.Sou7 => Sou8,
+            NumberTiles.Sou8 => Sou9,
+            NumberTiles.Sou9 => Sou1,
+            HonotTiles.Ton => Nan,
+            HonotTiles.Nan => Sha,
+            HonotTiles.Sha => Pei,
+            HonotTiles.Pei => Ton,
+            HonotTiles.Haku => Hatsu,
+            HonotTiles.Hatsu => Chun,
+            HonotTiles.Chun => Haku,
+            _ => throw new ArgumentException("不明なドラ表示牌です", nameof(doraIndicator)),
+        };
+    }
+
     /// <summary>
     /// 牌を比較します
     /// </summary>

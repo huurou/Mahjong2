@@ -27,7 +27,7 @@ public class YakuListTests
         var yakuList = new YakuList(yakus);
 
         // Assert
-        Assert.Equal(2, yakuList.Count());
+        Assert.Equal(2, yakuList.Count);
         Assert.Contains(Yaku.Tanyao, yakuList);
         Assert.Contains(Yaku.Pinfu, yakuList);
     }
@@ -117,7 +117,7 @@ public class YakuListTests
         var yakuList = YakuList.YakuListBuilder.Create(yakus);
 
         // Assert
-        Assert.Equal(2, yakuList.Count());
+        Assert.Equal(2, yakuList.Count);
         Assert.Contains(Yaku.Tanyao, yakuList);
         Assert.Contains(Yaku.Pinfu, yakuList);
     }

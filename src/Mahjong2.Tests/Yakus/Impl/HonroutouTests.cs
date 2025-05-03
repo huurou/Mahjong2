@@ -11,7 +11,7 @@ public class HonroutouTests
     public void Number_22を返す()
     {
         // Arrange
-        var honroutou = Yaku.Honrotou;
+        var honroutou = Yaku.Honroutou;
         // Act
         var actual = honroutou.Number;
         // Assert
@@ -22,7 +22,7 @@ public class HonroutouTests
     public void Name_混老頭を返す()
     {
         // Arrange
-        var honroutou = Yaku.Honrotou;
+        var honroutou = Yaku.Honroutou;
 
         // Act
         var actual = honroutou.Name;
@@ -35,7 +35,7 @@ public class HonroutouTests
     public void HanOpen_2を返す()
     {
         // Arrange
-        var honroutou = Yaku.Honrotou;
+        var honroutou = Yaku.Honroutou;
 
         // Act
         var actual = honroutou.HanOpen;
@@ -48,7 +48,7 @@ public class HonroutouTests
     public void HanClosed_2を返す()
     {
         // Arrange
-        var honroutou = Yaku.Honrotou;
+        var honroutou = Yaku.Honroutou;
 
         // Act
         var actual = honroutou.HanClosed;
@@ -61,7 +61,7 @@ public class HonroutouTests
     public void IsYakuman_Falseを返す()
     {
         // Arrange
-        var honroutou = Yaku.Honrotou;
+        var honroutou = Yaku.Honroutou;
 
         // Act
         var actual = honroutou.IsYakuman;

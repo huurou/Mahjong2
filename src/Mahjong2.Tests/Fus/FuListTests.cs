@@ -35,7 +35,7 @@ public class FuListTests
     public void Total_七対子を含むFuListの場合_合計符数が25固定であること()
     {
         // Arrange
-        var fuList = new FuList([Fu.Chiitoitsu, Fu.MenzenFu]);
+        var fuList = new FuList([Fu.ChiitoitsuFu, Fu.MenzenFu]);
 
         // Act
         var total = fuList.Total;

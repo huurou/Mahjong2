@@ -21,7 +21,7 @@ public static class FuCalculator
         winSituation ??= new();
         gameRules ??= new();
 
-        if (hand.Count == 7) { return [Fu.Chiitoitsu]; }
+        if (hand.Count == 7) { return [Fu.ChiitoitsuFu]; }
         FuList fuList = [
             .. CalcJantou(hand, winSituation),
             .. CalcMentsu(hand, winGroup, fuuroList, winSituation),

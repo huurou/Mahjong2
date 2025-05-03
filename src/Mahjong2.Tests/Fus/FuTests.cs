@@ -10,7 +10,7 @@ namespace Mahjong2.Tests.Fus
         [Theory]
         [InlineData(nameof(Fu.Futei), 1)]
         [InlineData(nameof(Fu.MenzenFu), 2)]
-        [InlineData(nameof(Fu.Chiitoitsu), 3)]
+        [InlineData(nameof(Fu.ChiitoitsuFu), 3)]
         [InlineData(nameof(Fu.FuteiOpenPinfu), 4)]
         [InlineData(nameof(Fu.TsumoFu), 5)]
         [InlineData(nameof(Fu.WaitKanchan), 6)]
@@ -58,7 +58,7 @@ namespace Mahjong2.Tests.Fus
         [InlineData(nameof(Fu.MenzenFu), 10)]
         [InlineData(nameof(Fu.TsumoFu), 2)]
         [InlineData(nameof(Fu.FuteiOpenPinfu), 30)]
-        [InlineData(nameof(Fu.Chiitoitsu), 25)]
+        [InlineData(nameof(Fu.ChiitoitsuFu), 25)]
         public void Fuクラス_値取得_期待値を返す(string propertyName, int expectedValue)
         {
             // Arrange
@@ -77,7 +77,7 @@ namespace Mahjong2.Tests.Fus
             // Arrange
             var futei = Fu.Futei;
             var futeiOpenPinfu = Fu.FuteiOpenPinfu;
-            var chiitoitsu = Fu.Chiitoitsu;
+            var chiitoitsu = Fu.ChiitoitsuFu;
             var minkoChuchan = Fu.MinkoChuchan;
             var minkoYaochu = Fu.MinkoYaochu;
             var ankoChuchan = Fu.AnkoChuchan;

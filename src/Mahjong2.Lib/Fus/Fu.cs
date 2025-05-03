@@ -18,7 +18,7 @@ public abstract record Fu
     /// <summary>
     /// 七対子
     /// </summary>
-    public static Chiitoitsu Chiitoitsu { get; } = new();
+    public static ChiitoitsuFu ChiitoitsuFu { get; } = new();
     /// <summary>
     /// 副底(食い平和)
     /// </summary>
@@ -134,7 +134,7 @@ public record MenzenFu : Fu
 /// <summary>
 /// 七対子
 /// </summary>
-public record Chiitoitsu : Fu
+public record ChiitoitsuFu : Fu
 {
     public override int Number => 3;
     public override string Name { get; } = "七対子";

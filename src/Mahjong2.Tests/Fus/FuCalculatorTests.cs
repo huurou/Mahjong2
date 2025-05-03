@@ -22,7 +22,7 @@ public class FuCalculatorTests
         var actual = FuCalculator.Calc(hand, winTile, winGroup);
 
         // Assert
-        var expected = new FuList([Fu.Chiitoitsu]);
+        var expected = new FuList([Fu.ChiitoitsuFu]);
         Assert.Equal(expected, actual);
         Assert.Equal(25, actual.Total);
     }

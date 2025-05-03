@@ -11,6 +11,11 @@ namespace Mahjong2.Lib.Yakus;
 public record YakuList() : IEnumerable<Yaku>
 {
     /// <summary>
+    /// 役リストの要素数を取得します
+    /// </summary>
+    public int Count => yakus_.Count;
+
+    /// <summary>
     /// 副露時の合計翻数
     /// </summary>
     public int HanOpen => yakus_.Sum(x => x.HanOpen);
