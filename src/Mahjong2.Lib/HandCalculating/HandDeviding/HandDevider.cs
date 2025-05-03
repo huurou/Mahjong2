@@ -7,7 +7,7 @@ namespace Mahjong2.Lib.HandCalculating.HandDeviding;
 /// <summary>
 /// 手牌を分解するクラス
 /// </summary>
-public partial record HandDevider
+public static class HandDevider
 {
     /// <summary>
     /// 牌リストを実現可能な組み合わせに分解し、組み合わせのリストを返します
