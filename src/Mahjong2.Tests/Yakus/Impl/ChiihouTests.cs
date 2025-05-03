@@ -7,7 +7,18 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class ChiihouTests
 {
     [Fact]
-    public void Name_地和が返る()
+    public void Number_49を返す()
+    {
+        // Arrange
+        var chiihou = Yaku.Chiihou;
+        // Act
+        var actual = chiihou.Number;
+        // Assert
+        Assert.Equal(49, actual);
+    }
+
+    [Fact]
+    public void Name_地和を返す()
     {
         // Arrange
         var chiihou = Yaku.Chiihou;
@@ -20,7 +31,7 @@ public class ChiihouTests
     }
 
     [Fact]
-    public void HanOpen_0が返る()
+    public void HanOpen_0を返す()
     {
         // Arrange
         var chiihou = Yaku.Chiihou;
@@ -33,7 +44,7 @@ public class ChiihouTests
     }
 
     [Fact]
-    public void HanClosed_13が返る()
+    public void HanClosed_13を返す()
     {
         // Arrange
         var chiihou = Yaku.Chiihou;
@@ -46,7 +57,7 @@ public class ChiihouTests
     }
 
     [Fact]
-    public void IsYakuman_Trueが返る()
+    public void IsYakuman_Trueを返す()
     {
         // Arrange
         var chiihou = Yaku.Chiihou;

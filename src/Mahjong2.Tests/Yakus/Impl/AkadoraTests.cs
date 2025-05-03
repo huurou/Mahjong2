@@ -7,7 +7,18 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class AkadoraTests
 {
     [Fact]
-    public void Name_赤ドラが返る()
+    public void Number_53を返す()
+    {
+        // Arrange
+        var akadora = Yaku.Akadora;
+        // Act
+        var actual = akadora.Number;
+        // Assert
+        Assert.Equal(53, actual);
+    }
+
+    [Fact]
+    public void Name_赤ドラを返す()
     {
         // Arrange
         var akadora = Yaku.Akadora;
@@ -20,7 +31,7 @@ public class AkadoraTests
     }
 
     [Fact]
-    public void HanOpen_1が返る()
+    public void HanOpen_1を返す()
     {
         // Arrange
         var akadora = Yaku.Akadora;
@@ -33,7 +44,7 @@ public class AkadoraTests
     }
 
     [Fact]
-    public void HanClosed_1が返る()
+    public void HanClosed_1を返す()
     {
         // Arrange
         var akadora = Yaku.Akadora;
@@ -44,7 +55,7 @@ public class AkadoraTests
     }
 
     [Fact]
-    public void IsYakuman_Falseが返る()
+    public void IsYakuman_Falseを返す()
     {
         // Arrange
         var akadora = Yaku.Akadora;

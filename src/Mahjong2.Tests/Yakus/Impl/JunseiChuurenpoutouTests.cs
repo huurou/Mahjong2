@@ -8,7 +8,18 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class JunseiChuurenpoutouTests
 {
     [Fact]
-    public void Name_純正九蓮宝燈が返る()
+    public void Number_47を返す()
+    {
+        // Arrange
+        var junseiChuurenpoutou = Yaku.JunseiChuurenpoutou;
+        // Act
+        var actual = junseiChuurenpoutou.Number;
+        // Assert
+        Assert.Equal(47, actual);
+    }
+
+    [Fact]
+    public void Name_純正九蓮宝燈を返す()
     {
         // Arrange
         var junseiChuurenpoutou = Yaku.JunseiChuurenpoutou;
@@ -21,7 +32,7 @@ public class JunseiChuurenpoutouTests
     }
 
     [Fact]
-    public void HanOpen_0が返る()
+    public void HanOpen_0を返す()
     {
         // Arrange
         var junseiChuurenpoutou = Yaku.JunseiChuurenpoutou;
@@ -34,7 +45,7 @@ public class JunseiChuurenpoutouTests
     }
 
     [Fact]
-    public void HanClosed_26が返る()
+    public void HanClosed_26を返す()
     {
         // Arrange
         var junseiChuurenpoutou = Yaku.JunseiChuurenpoutou;
@@ -47,7 +58,7 @@ public class JunseiChuurenpoutouTests
     }
 
     [Fact]
-    public void IsYakuman_Trueが返る()
+    public void IsYakuman_Trueを返す()
     {
         // Arrange
         var junseiChuurenpoutou = Yaku.JunseiChuurenpoutou;

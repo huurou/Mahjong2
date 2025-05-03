@@ -8,7 +8,18 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class HakuTests
 {
     [Fact]
-    public void Name_白が返る()
+    public void Number_14を返す()
+    {
+        // Arrange
+        var haku = Yaku.Haku;
+        // Act
+        var actual = haku.Number;
+        // Assert
+        Assert.Equal(14, actual);
+    }
+
+    [Fact]
+    public void Name_白を返す()
     {
         // Arrange
         var haku = Yaku.Haku;
@@ -21,7 +32,7 @@ public class HakuTests
     }
 
     [Fact]
-    public void HanOpen_1が返る()
+    public void HanOpen_1を返す()
     {
         // Arrange
         var haku = Yaku.Haku;
@@ -34,7 +45,7 @@ public class HakuTests
     }
 
     [Fact]
-    public void HanClosed_1が返る()
+    public void HanClosed_1を返す()
     {
         // Arrange
         var haku = Yaku.Haku;
@@ -47,7 +58,7 @@ public class HakuTests
     }
 
     [Fact]
-    public void IsYakuman_Falseが返る()
+    public void IsYakuman_Falseを返す()
     {
         // Arrange
         var haku = Yaku.Haku;

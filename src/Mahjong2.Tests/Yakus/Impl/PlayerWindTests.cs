@@ -9,6 +9,19 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class PlayerWindTests
 {
     [Fact]
+    public void Number_17が返る()
+    {
+        // Arrange
+        var playerWind = Yaku.PlayerWind;
+
+        // Act
+        var actual = playerWind.Number;
+
+        // Assert
+        Assert.Equal(17, actual);
+    }
+
+    [Fact]
     public void Name_自風牌が返る()
     {
         // Arrange

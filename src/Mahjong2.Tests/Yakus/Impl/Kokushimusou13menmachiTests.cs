@@ -7,7 +7,18 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class Kokushimusou13menmachiTests
 {
     [Fact]
-    public void Name_国士無双十三面待ちが返る()
+    public void Number_45を返す()
+    {
+        // Arrange
+        var kokushimusou13menmachi = Yaku.Kokushimusou13menmachi;
+        // Act
+        var actual = kokushimusou13menmachi.Number;
+        // Assert
+        Assert.Equal(45, actual);
+    }
+
+    [Fact]
+    public void Name_国士無双十三面待ちを返す()
     {
         // Arrange
         var kokushimusou13menmachi = Yaku.Kokushimusou13menmachi;
@@ -20,7 +31,7 @@ public class Kokushimusou13menmachiTests
     }
 
     [Fact]
-    public void HanOpen_0が返る()
+    public void HanOpen_0を返す()
     {
         // Arrange
         var kokushimusou13menmachi = Yaku.Kokushimusou13menmachi;
@@ -33,7 +44,7 @@ public class Kokushimusou13menmachiTests
     }
 
     [Fact]
-    public void HanClosed_26が返る()
+    public void HanClosed_26を返す()
     {
         // Arrange
         var kokushimusou13menmachi = Yaku.Kokushimusou13menmachi;
@@ -46,7 +57,7 @@ public class Kokushimusou13menmachiTests
     }
 
     [Fact]
-    public void IsYakuman_Trueが返る()
+    public void IsYakuman_Trueを返す()
     {
         // Arrange
         var kokushimusou13menmachi = Yaku.Kokushimusou13menmachi;

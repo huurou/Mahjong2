@@ -8,6 +8,19 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class ToitoihouTests
 {
     [Fact]
+    public void Number_23を返す()
+    {
+        // Arrange
+        var toitoihou = Yaku.Toitoihou;
+
+        // Act
+        var actual = toitoihou.Number;
+
+        // Assert
+        Assert.Equal(23, actual);
+    }
+
+    [Fact]
     public void Name_対々和が返る()
     {
         // Arrange

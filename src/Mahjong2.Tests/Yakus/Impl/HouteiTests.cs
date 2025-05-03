@@ -7,7 +7,18 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class HouteiTests
 {
     [Fact]
-    public void Name_河底撈魚が返る()
+    public void Number_8を返す()
+    {
+        // Arrange
+        var houtei = Yaku.Houtei;
+        // Act
+        var actual = houtei.Number;
+        // Assert
+        Assert.Equal(8, actual);
+    }
+
+    [Fact]
+    public void Name_河底撈魚を返す()
     {
         // Arrange
         var houtei = Yaku.Houtei;
@@ -20,7 +31,7 @@ public class HouteiTests
     }
 
     [Fact]
-    public void HanOpen_1が返る()
+    public void HanOpen_1を返す()
     {
         // Arrange
         var houtei = Yaku.Houtei;
@@ -33,7 +44,7 @@ public class HouteiTests
     }
 
     [Fact]
-    public void HanClosed_1が返る()
+    public void HanClosed_1を返す()
     {
         // Arrange
         var houtei = Yaku.Houtei;
@@ -46,7 +57,7 @@ public class HouteiTests
     }
 
     [Fact]
-    public void IsYakuman_Falseが返る()
+    public void IsYakuman_Falseを返す()
     {
         // Arrange
         var houtei = Yaku.Houtei;

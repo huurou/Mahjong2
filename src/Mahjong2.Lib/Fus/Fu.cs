@@ -12,17 +12,45 @@ public abstract record Fu
     /// </summary>
     public static Futei Futei { get; } = new();
     /// <summary>
-    /// 副底(食い平和)
+    /// 門前加符
     /// </summary>
-    public static FuteiOpenPinfu FuteiOpenPinfu { get; } = new();
+    public static MenzenFu MenzenFu { get; } = new();
     /// <summary>
     /// 七対子
     /// </summary>
     public static Chiitoitsu Chiitoitsu { get; } = new();
     /// <summary>
-    /// 順子
+    /// 副底(食い平和)
     /// </summary>
-    public static Shuntsu Shuntsu { get; } = new();
+    public static FuteiOpenPinfu FuteiOpenPinfu { get; } = new();
+    /// <summary>
+    /// ツモ符
+    /// </summary>
+    public static TsumoFu TsumoFu { get; } = new();
+    /// <summary>
+    /// カンチャン待ち
+    /// </summary>
+    public static WaitKanchan WaitKanchan { get; } = new();
+    /// <summary>
+    /// ペンチャン待ち
+    /// </summary>
+    public static WaitPenchan WaitPenchan { get; } = new();
+    /// <summary>
+    /// 単騎待ち
+    /// </summary>
+    public static WaitTanki WaitTanki { get; } = new();
+    /// <summary>
+    /// 自風の雀頭
+    /// </summary>
+    public static JantouPlayerWind JantouPlayerWind { get; } = new();
+    /// <summary>
+    /// 場風の雀頭
+    /// </summary>
+    public static JantouRoundWind JantouRoundWind { get; } = new();
+    /// <summary>
+    /// 三元牌の雀頭
+    /// </summary>
+    public static JantouDragon JantouDragon { get; } = new();
     /// <summary>
     /// 中張牌の明刻
     /// </summary>
@@ -55,57 +83,14 @@ public abstract record Fu
     /// 么九牌の暗槓
     /// </summary>
     public static AnkanYaochu AnkanYaochu { get; } = new();
-    /// <summary>
-    /// 数牌の雀頭
-    /// </summary>
-    public static JantoNumber JantoNumber { get; } = new();
-    /// <summary>
-    /// 客風の雀頭
-    /// </summary>
-    public static JantoOtherWind JantoOtherWind { get; } = new();
-    /// <summary>
-    /// 自風の雀頭
-    /// </summary>
-    public static JantouPlayerWind JantouPlayerWind { get; } = new();
-    /// <summary>
-    /// 場風の雀頭
-    /// </summary>
-    public static JantouRoundWind JantouRoundWind { get; } = new();
-    /// <summary>
-    /// 三元牌の雀頭
-    /// </summary>
-    public static JantouDragon JantouDragon { get; } = new();
-    /// <summary>
-    /// 両面待ち
-    /// </summary>
-    public static WaitRyanmen WaitRyanmen { get; } = new();
-    /// <summary>
-    /// シャンポン待ち
-    /// </summary>
-    public static WaitShanpon WaitShanpon { get; } = new();
-    /// <summary>
-    /// カンチャン待ち
-    /// </summary>
-    public static WaitKanchan WaitKanchan { get; } = new();
-    /// <summary>
-    /// ペンチャン待ち
-    /// </summary>
-    public static WaitPenchan WaitPenchan { get; } = new();
-    /// <summary>
-    /// 単騎待ち
-    /// </summary>
-    public static WaitTanki WaitTanki { get; } = new();
-    /// <summary>
-    /// 門前加符
-    /// </summary>
-    public static MenzenFu MenzenFu { get; } = new();
-    /// <summary>
-    /// ツモ符
-    /// </summary>
-    public static TsumoFu TsumoFu { get; } = new();
 
     #endregion シングルトンプロパティ
 
+    /// <summary>
+    /// 番号
+    /// 並び替え用
+    /// </summary>
+    public abstract int Number { get; }
     /// <summary>
     /// 名前
     /// </summary>
@@ -131,17 +116,19 @@ public abstract record Fu
 /// </summary>
 public record Futei : Fu
 {
+    public override int Number => 1;
     public override string Name { get; } = "副底";
     public override int Value { get; } = 20;
 }
 
 /// <summary>
-/// 副底(食い平和)
+/// 門前加符
 /// </summary>
-public record FuteiOpenPinfu : Fu
+public record MenzenFu : Fu
 {
-    public override string Name { get; } = "副底(食い平和)";
-    public override int Value { get; } = 30;
+    public override int Number => 2;
+    public override string Name { get; } = "門前加符";
+    public override int Value { get; } = 10;
 }
 
 /// <summary>
@@ -149,23 +136,105 @@ public record FuteiOpenPinfu : Fu
 /// </summary>
 public record Chiitoitsu : Fu
 {
+    public override int Number => 3;
     public override string Name { get; } = "七対子";
     public override int Value { get; } = 25;
+}
+
+/// <summary>
+/// 副底(食い平和)
+/// </summary>
+public record FuteiOpenPinfu : Fu
+{
+    public override int Number => 4;
+    public override string Name { get; } = "副底(食い平和)";
+    public override int Value { get; } = 30;
+}
+
+/// <summary>
+/// ツモ符
+/// </summary>
+public record TsumoFu : Fu
+{
+    public override int Number => 5;
+    public override string Name { get; } = "ツモ符";
+    public override int Value { get; } = 2;
+}
+
+/// <summary>
+/// 待ち
+/// </summary>
+public abstract record Wait : Fu;
+
+/// <summary>
+/// カンチャン待ち
+/// </summary>
+public record WaitKanchan : Wait
+{
+    public override int Number => 6;
+    public override string Name { get; } = "カンチャン待ち";
+    public override int Value { get; } = 2;
+}
+
+/// <summary>
+/// ペンチャン待ち
+/// </summary>
+public record WaitPenchan : Wait
+{
+    public override int Number => 7;
+    public override string Name { get; } = "ペンチャン待ち";
+    public override int Value { get; } = 2;
+}
+
+/// <summary>
+/// 単騎待ち
+/// </summary>
+public record WaitTanki : Wait
+{
+    public override int Number => 8;
+    public override string Name { get; } = "単騎待ち";
+    public override int Value { get; } = 2;
+}
+
+/// <summary>
+/// 雀頭
+/// </summary>
+public abstract record Jantou : Fu;
+
+/// <summary>
+/// 自風の雀頭
+/// </summary>
+public record JantouPlayerWind : Jantou
+{
+    public override int Number => 9;
+    public override string Name { get; } = "自風の雀頭";
+    public override int Value { get; } = 2;
+}
+
+/// <summary>
+/// 場風の雀頭
+/// </summary>
+public record JantouRoundWind : Jantou
+{
+    public override int Number => 10;
+    public override string Name { get; } = "場風の雀頭";
+    public override int Value { get; } = 2;
+}
+
+/// <summary>
+/// 三元牌の雀頭
+/// </summary>
+public record JantouDragon : Jantou
+{
+    public override int Number => 11;
+    public override string Name { get; } = "三元牌の雀頭";
+    public override int Value { get; } = 2;
 }
 
 /// <summary>
 /// 面子
 /// </summary>
 public abstract record Mentsu : Fu;
-
-/// <summary>
-/// 順子
-/// </summary>
-public record Shuntsu : Mentsu
-{
-    public override string Name { get; } = "順子";
-    public override int Value { get; } = 0;
-}
 
 /// <summary>
 /// 刻子
@@ -182,6 +251,7 @@ public abstract record Minko : Koutsu;
 /// </summary>
 public record MinkoChuchan : Minko
 {
+    public override int Number => 12;
     public override string Name { get; } = "中張牌の明刻";
     public override int Value { get; } = 2;
 }
@@ -191,6 +261,7 @@ public record MinkoChuchan : Minko
 /// </summary>
 public record MinkoYaochu : Minko
 {
+    public override int Number => 13;
     public override string Name { get; } = "么九牌の明刻";
     public override int Value { get; } = 4;
 }
@@ -205,6 +276,7 @@ public abstract record Anko : Koutsu;
 /// </summary>
 public record AnkoChuchan : Anko
 {
+    public override int Number => 14;
     public override string Name { get; } = "中張牌の暗刻";
     public override int Value { get; } = 4;
 }
@@ -214,6 +286,7 @@ public record AnkoChuchan : Anko
 /// </summary>
 public record AnkoYaochu : Anko
 {
+    public override int Number => 15;
     public override string Name { get; } = "么九牌の暗刻";
     public override int Value { get; } = 8;
 }
@@ -228,6 +301,7 @@ public abstract record Minkan : Koutsu;
 /// </summary>
 public record MinkanChuchan : Minkan
 {
+    public override int Number => 16;
     public override string Name { get; } = "中張牌の明槓";
     public override int Value { get; } = 8;
 }
@@ -237,6 +311,7 @@ public record MinkanChuchan : Minkan
 /// </summary>
 public record MinkanYaochu : Minkan
 {
+    public override int Number => 17;
     public override string Name { get; } = "么九牌の明槓";
     public override int Value { get; } = 16;
 }
@@ -251,6 +326,7 @@ public abstract record Ankan : Koutsu;
 /// </summary>
 public record AnkanChuchan : Ankan
 {
+    public override int Number => 18;
     public override string Name { get; } = "中張牌の暗槓";
     public override int Value { get; } = 16;
 }
@@ -260,124 +336,7 @@ public record AnkanChuchan : Ankan
 /// </summary>
 public record AnkanYaochu : Ankan
 {
+    public override int Number => 19;
     public override string Name { get; } = "么九牌の暗槓";
     public override int Value { get; } = 32;
-}
-
-/// <summary>
-/// 雀頭
-/// </summary>
-public abstract record Jantou : Fu;
-
-/// <summary>
-/// 数牌の雀頭
-/// </summary>
-public record JantoNumber : Jantou
-{
-    public override string Name { get; } = "数牌の雀頭";
-    public override int Value { get; } = 0;
-}
-
-/// <summary>
-/// 客風の雀頭
-/// </summary>
-public record JantoOtherWind : Jantou
-{
-    public override string Name { get; } = "客風の雀頭";
-    public override int Value { get; } = 0;
-}
-
-/// <summary>
-/// 自風の雀頭
-/// </summary>
-public record JantouPlayerWind : Jantou
-{
-    public override string Name { get; } = "自風の雀頭";
-    public override int Value { get; } = 2;
-}
-
-/// <summary>
-/// 場風の雀頭
-/// </summary>
-public record JantouRoundWind : Jantou
-{
-    public override string Name { get; } = "場風の雀頭";
-    public override int Value { get; } = 2;
-}
-
-/// <summary>
-/// 三元牌の雀頭
-/// </summary>
-public record JantouDragon : Jantou
-{
-    public override string Name { get; } = "三元牌の雀頭";
-    public override int Value { get; } = 2;
-}
-
-/// <summary>
-/// 待ち
-/// </summary>
-public abstract record Wait : Fu;
-
-/// <summary>
-/// 両面待ち
-/// </summary>
-public record WaitRyanmen : Wait
-{
-    public override string Name { get; } = "両面待ち";
-    public override int Value { get; } = 0;
-}
-
-/// <summary>
-/// シャンポン待ち
-/// </summary>
-public record WaitShanpon : Wait
-{
-    public override string Name { get; } = "シャンポン待ち";
-    public override int Value { get; } = 0;
-}
-
-/// <summary>
-/// カンチャン待ち
-/// </summary>
-public record WaitKanchan : Wait
-{
-    public override string Name { get; } = "カンチャン待ち";
-    public override int Value { get; } = 2;
-}
-
-/// <summary>
-/// ペンチャン待ち
-/// </summary>
-public record WaitPenchan : Wait
-{
-    public override string Name { get; } = "ペンチャン待ち";
-    public override int Value { get; } = 2;
-}
-
-/// <summary>
-/// 単騎待ち
-/// </summary>
-public record WaitTanki : Wait
-{
-    public override string Name { get; } = "単騎待ち";
-    public override int Value { get; } = 2;
-}
-
-/// <summary>
-/// 門前加符
-/// </summary>
-public record MenzenFu : Fu
-{
-    public override string Name { get; } = "門前加符";
-    public override int Value { get; } = 10;
-}
-
-/// <summary>
-/// ツモ符
-/// </summary>
-public record TsumoFu : Fu
-{
-    public override string Name { get; } = "ツモ符";
-    public override int Value { get; } = 2;
 }

@@ -7,7 +7,18 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class ChankanTests
 {
     [Fact]
-    public void Name_槍槓が返る()
+    public void Number_5を返す()
+    {
+        // Arrange
+        var chankan = Yaku.Chankan;
+        // Act
+        var actual = chankan.Number;
+        // Assert
+        Assert.Equal(5, actual);
+    }
+
+    [Fact]
+    public void Name_槍槓を返す()
     {
         // Arrange
         var chankan = Yaku.Chankan;
@@ -20,7 +31,7 @@ public class ChankanTests
     }
 
     [Fact]
-    public void HanOpen_1が返る()
+    public void HanOpen_1を返す()
     {
         // Arrange
         var chankan = Yaku.Chankan;
@@ -33,7 +44,7 @@ public class ChankanTests
     }
 
     [Fact]
-    public void HanClosed_1が返る()
+    public void HanClosed_1を返す()
     {
         // Arrange
         var chankan = Yaku.Chankan;
@@ -44,7 +55,7 @@ public class ChankanTests
     }
 
     [Fact]
-    public void IsYakuman_Falseが返る()
+    public void IsYakuman_Falseを返す()
     {
         // Arrange
         var chankan = Yaku.Chankan;

@@ -6,6 +6,19 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class RenhouTests
 {
     [Fact]
+    public void IsYakuman_Falseを返す()
+    {
+        // Arrange
+        var renhou = new Renhou();
+
+        // Act
+        var actual = renhou.IsYakuman;
+
+        // Assert
+        Assert.False(actual);
+    }
+
+    [Fact]
     public void Name_人和を返す()
     {
         // Arrange
@@ -42,19 +55,6 @@ public class RenhouTests
 
         // Assert
         Assert.Equal(5, actual);
-    }
-
-    [Fact]
-    public void IsYakuman_Falseを返す()
-    {
-        // Arrange
-        var renhou = new Renhou();
-
-        // Act
-        var actual = renhou.IsYakuman;
-
-        // Assert
-        Assert.False(actual);
     }
 
     [Fact]
@@ -97,5 +97,16 @@ public class RenhouTests
 
         // Assert
         Assert.False(actual);
+    }
+
+    [Fact]
+    public void Number_10を返す()
+    {
+        // Arrange
+        var renhou = new Renhou();
+        // Act
+        var actual = renhou.Number;
+        // Assert
+        Assert.Equal(10, actual);
     }
 }

@@ -1,4 +1,3 @@
-using Mahjong2.Lib.Fuuros;
 using Mahjong2.Lib.HandCalculating.Games;
 using Mahjong2.Lib.Yakus;
 using Mahjong2.Lib.Yakus.Impl;
@@ -8,7 +7,7 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class NagashimanganTests
 {
     [Fact]
-    public void Number_9が返る()
+    public void Number_9を返す()
     {
         // Arrange
         var nagashimangan = Yaku.Nagashimangan;
@@ -21,7 +20,7 @@ public class NagashimanganTests
     }
 
     [Fact]
-    public void Name_流し満貫が返る()
+    public void Name_流し満貫を返す()
     {
         // Arrange
         var nagashimangan = Yaku.Nagashimangan;
@@ -34,7 +33,7 @@ public class NagashimanganTests
     }
 
     [Fact]
-    public void HanOpen_5が返る()
+    public void HanOpen_5を返す()
     {
         // Arrange
         var nagashimangan = Yaku.Nagashimangan;
@@ -47,7 +46,7 @@ public class NagashimanganTests
     }
 
     [Fact]
-    public void HanClosed_5が返る()
+    public void HanClosed_5を返す()
     {
         // Arrange
         var nagashimangan = Yaku.Nagashimangan;
@@ -60,7 +59,7 @@ public class NagashimanganTests
     }
 
     [Fact]
-    public void IsYakuman_Falseが返る()
+    public void IsYakuman_Falseを返す()
     {
         // Arrange
         var nagashimangan = Yaku.Nagashimangan;

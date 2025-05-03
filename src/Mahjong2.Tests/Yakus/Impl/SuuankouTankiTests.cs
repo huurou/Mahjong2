@@ -8,6 +8,19 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class SuuankouTankiTests
 {
     [Fact]
+    public void Number_46を返す()
+    {
+        // Arrange
+        var suuankouTanki = new SuuankouTanki();
+
+        // Act
+        var actual = suuankouTanki.Number;
+
+        // Assert
+        Assert.Equal(46, actual);
+    }
+
+    [Fact]
     public void Name_四暗刻単騎待ちを返す()
     {
         // Arrange

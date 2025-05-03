@@ -34,6 +34,11 @@ public record Hand : TileListList
         return new([.. this, .. fuuroList.TileLists]);
     }
 
+    public List<TileList> GetWinGroups(Tile winTile)
+    {
+        return [.. this.Where(x => x.Contains(winTile)).Distinct()];
+    }
+
     /// <summary>
     /// <see cref="HandBuilder"/>のコレクションビルダーを提供するクラスです
     /// </summary>

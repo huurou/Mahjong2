@@ -7,7 +7,18 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class DaisangenTests
 {
     [Fact]
-    public void Name_大三元が返る()
+    public void Number_36を返す()
+    {
+        // Arrange
+        var daisangen = new Daisangen();
+        // Act
+        var actual = daisangen.Number;
+        // Assert
+        Assert.Equal(36, actual);
+    }
+
+    [Fact]
+    public void Name_大三元を返す()
     {
         // Arrange
         var daisangen = new Daisangen();
@@ -20,7 +31,7 @@ public class DaisangenTests
     }
 
     [Fact]
-    public void HanOpen_13が返る()
+    public void HanOpen_13を返す()
     {
         // Arrange
         var daisangen = new Daisangen();
@@ -33,7 +44,7 @@ public class DaisangenTests
     }
 
     [Fact]
-    public void HanClosed_13が返る()
+    public void HanClosed_13を返す()
     {
         // Arrange
         var daisangen = new Daisangen();
@@ -46,7 +57,7 @@ public class DaisangenTests
     }
 
     [Fact]
-    public void IsYakuman_Trueが返る()
+    public void IsYakuman_Trueを返す()
     {
         // Arrange
         var daisangen = new Daisangen();

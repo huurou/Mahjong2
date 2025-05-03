@@ -8,6 +8,19 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class SuuankouTests
 {
     [Fact]
+    public void Number_35を返す()
+    {
+        // Arrange
+        var suuankou = new Suuankou();
+
+        // Act
+        var actual = suuankou.Number;
+
+        // Assert
+        Assert.Equal(35, actual);
+    }
+
+    [Fact]
     public void Name_四暗刻を返す()
     {
         // Arrange

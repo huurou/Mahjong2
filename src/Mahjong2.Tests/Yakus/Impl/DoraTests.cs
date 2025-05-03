@@ -5,7 +5,18 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class DoraTests
 {
     [Fact]
-    public void Name_ドラが返る()
+    public void Number_51を返す()
+    {
+        // Arrange
+        var dora = Yaku.Dora;
+        // Act
+        var actual = dora.Number;
+        // Assert
+        Assert.Equal(51, actual);
+    }
+
+    [Fact]
+    public void Name_ドラを返す()
     {
         // Arrange
         var dora = Yaku.Dora;
@@ -18,7 +29,7 @@ public class DoraTests
     }
 
     [Fact]
-    public void HanOpen_1が返る()
+    public void HanOpen_1を返す()
     {
         // Arrange
         var dora = Yaku.Dora;
@@ -31,7 +42,7 @@ public class DoraTests
     }
 
     [Fact]
-    public void HanClosed_1が返る()
+    public void HanClosed_1を返す()
     {
         // Arrange
         var dora = Yaku.Dora;
@@ -44,7 +55,7 @@ public class DoraTests
     }
 
     [Fact]
-    public void IsYakuman_Falseが返る()
+    public void IsYakuman_Falseを返す()
     {
         // Arrange
         var dora = Yaku.Dora;

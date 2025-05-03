@@ -8,7 +8,18 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class DoubleRiichiTests
 {
     [Fact]
-    public void Name_ダブル立直が返る()
+    public void Number_2を返す()
+    {
+        // Arrange
+        var doubleRiichi = Yaku.DoubleRiichi;
+        // Act
+        var actual = doubleRiichi.Number;
+        // Assert
+        Assert.Equal(2, actual);
+    }
+
+    [Fact]
+    public void Name_ダブル立直を返す()
     {
         // Arrange
         var doubleRiichi = Yaku.DoubleRiichi;
@@ -21,7 +32,7 @@ public class DoubleRiichiTests
     }
 
     [Fact]
-    public void HanOpen_0が返る()
+    public void HanOpen_0を返す()
     {
         // Arrange
         var doubleRiichi = Yaku.DoubleRiichi;
@@ -34,7 +45,7 @@ public class DoubleRiichiTests
     }
 
     [Fact]
-    public void HanClosed_2が返る()
+    public void HanClosed_2を返す()
     {
         // Arrange
         var doubleRiichi = Yaku.DoubleRiichi;
@@ -47,7 +58,7 @@ public class DoubleRiichiTests
     }
 
     [Fact]
-    public void IsYakuman_Falseが返る()
+    public void IsYakuman_Falseを返す()
     {
         // Arrange
         var doubleRiichi = Yaku.DoubleRiichi;

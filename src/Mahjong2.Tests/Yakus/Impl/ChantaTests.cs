@@ -8,7 +8,18 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class ChantaTests
 {
     [Fact]
-    public void Name_混全帯么九が返る()
+    public void Number_21を返す()
+    {
+        // Arrange
+        var chanta = Yaku.Chanta;
+        // Act
+        var actual = chanta.Number;
+        // Assert
+        Assert.Equal(21, actual);
+    }
+
+    [Fact]
+    public void Name_混全帯么九を返す()
     {
         // Arrange
         var chanta = Yaku.Chanta;
@@ -21,7 +32,7 @@ public class ChantaTests
     }
 
     [Fact]
-    public void HanOpen_1が返る()
+    public void HanOpen_1を返す()
     {
         // Arrange
         var chanta = Yaku.Chanta;
@@ -34,7 +45,7 @@ public class ChantaTests
     }
 
     [Fact]
-    public void HanClosed_2が返る()
+    public void HanClosed_2を返す()
     {
         // Arrange
         var chanta = Yaku.Chanta;
@@ -47,7 +58,7 @@ public class ChantaTests
     }
 
     [Fact]
-    public void IsYakuman_Falseが返る()
+    public void IsYakuman_Falseを返す()
     {
         // Arrange
         var chanta = Yaku.Chanta;

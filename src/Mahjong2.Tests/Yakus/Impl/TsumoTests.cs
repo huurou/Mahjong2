@@ -8,6 +8,19 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class TsumoTests
 {
     [Fact]
+    public void Number_3を返す()
+    {
+        // Arrange
+        var tsumo = new Tsumo();
+
+        // Act
+        var actual = tsumo.Number;
+
+        // Assert
+        Assert.Equal(3, actual);
+    }
+
+    [Fact]
     public void Name_門前清自摸和を返す()
     {
         // Arrange

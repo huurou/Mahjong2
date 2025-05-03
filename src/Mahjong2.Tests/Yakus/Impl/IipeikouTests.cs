@@ -8,7 +8,18 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class IipeikouTests
 {
     [Fact]
-    public void Name_一盃口が返る()
+    public void Number_13を返す()
+    {
+        // Arrange
+        var iipeikou = Yaku.Iipeikou;
+        // Act
+        var actual = iipeikou.Number;
+        // Assert
+        Assert.Equal(13, actual);
+    }
+
+    [Fact]
+    public void Name_一盃口を返す()
     {
         // Arrange
         var iipeikou = Yaku.Iipeikou;
@@ -21,7 +32,7 @@ public class IipeikouTests
     }
 
     [Fact]
-    public void HanOpen_0が返る()
+    public void HanOpen_0を返す()
     {
         // Arrange
         var iipeikou = Yaku.Iipeikou;
@@ -34,7 +45,7 @@ public class IipeikouTests
     }
 
     [Fact]
-    public void HanClosed_1が返る()
+    public void HanClosed_1を返す()
     {
         // Arrange
         var iipeikou = Yaku.Iipeikou;
@@ -47,7 +58,7 @@ public class IipeikouTests
     }
 
     [Fact]
-    public void IsYakuman_Falseが返る()
+    public void IsYakuman_Falseを返す()
     {
         // Arrange
         var iipeikou = Yaku.Iipeikou;

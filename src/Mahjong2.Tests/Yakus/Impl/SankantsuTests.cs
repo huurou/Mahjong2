@@ -8,6 +8,19 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class SankantsuTests
 {
     [Fact]
+    public void Number_25を返す()
+    {
+        // Arrange
+        var sankantsu = Yaku.Sankantsu;
+
+        // Act
+        var actual = sankantsu.Number;
+
+        // Assert
+        Assert.Equal(25, actual);
+    }
+
+    [Fact]
     public void Name_三槓子が返る()
     {
         // Arrange

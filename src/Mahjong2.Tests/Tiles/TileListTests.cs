@@ -495,12 +495,25 @@ public class TileListTests
     {
         // Arrange
         var allNumber = new TileList(man: "123", pin: "45", sou: "789");
-        var mixedWithHonor = new TileList(man: "123", honor: "t");
-        var onlyHonor = new TileList(honor: "tnsp");
-
         // Act & Assert
         Assert.True(allNumber.IsAllNumber);
+    }
+
+    [Fact]
+    public void IsAllNumber_字牌を含む場合_falseを返す()
+    {
+        // Arrange
+        var mixedWithHonor = new TileList(man: "123", honor: "t");
+        // Act & Assert
         Assert.False(mixedWithHonor.IsAllNumber);
+    }
+
+    [Fact]
+    public void IsAllNumber_字牌のみの場合_falseを返す()
+    {
+        // Arrange
+        var onlyHonor = new TileList(honor: "tnsp");
+        // Act & Assert
         Assert.False(onlyHonor.IsAllNumber);
     }
 
@@ -509,12 +522,25 @@ public class TileListTests
     {
         // Arrange
         var allHonor = new TileList(honor: "tnsphrc"); // 東南西北白發中
-        var mixedWithNumber = new TileList(man: "1", honor: "tnsp");
-        var onlyNumber = new TileList(man: "123", pin: "45", sou: "789");
-
         // Act & Assert
         Assert.True(allHonor.IsAllHonor);
+    }
+
+    [Fact]
+    public void IsAllHonor_数牌を含む場合_falseを返す()
+    {
+        // Arrange
+        var mixedWithNumber = new TileList(man: "1", honor: "tnsp");
+        // Act & Assert
         Assert.False(mixedWithNumber.IsAllHonor);
+    }
+
+    [Fact]
+    public void IsAllHonor_数牌のみの場合_falseを返す()
+    {
+        // Arrange
+        var onlyNumber = new TileList(man: "123", pin: "45", sou: "789");
+        // Act & Assert
         Assert.False(onlyNumber.IsAllHonor);
     }
 
@@ -523,14 +549,34 @@ public class TileListTests
     {
         // Arrange
         var allWind = new TileList(honor: "tnsp"); // 東南西北
-        var mixedWithDragon = new TileList(honor: "tnsh"); // 東南西白
-        var mixedWithNumber = new TileList(honor: "tn", man: "1"); // 東南一
-        var onlyNumber = new TileList(man: "123");
-
         // Act & Assert
         Assert.True(allWind.IsAllWind);
+    }
+
+    [Fact]
+    public void IsAllWind_三元牌を含む場合_falseを返す()
+    {
+        // Arrange
+        var mixedWithDragon = new TileList(honor: "tnsh"); // 東南西白
+        // Act & Assert
         Assert.False(mixedWithDragon.IsAllWind);
+    }
+
+    [Fact]
+    public void IsAllWind_数牌を含む場合_falseを返す()
+    {
+        // Arrange
+        var mixedWithNumber = new TileList(honor: "tn", man: "1"); // 東南一
+        // Act & Assert
         Assert.False(mixedWithNumber.IsAllWind);
+    }
+
+    [Fact]
+    public void IsAllWind_数牌のみの場合_falseを返す()
+    {
+        // Arrange
+        var onlyNumber = new TileList(man: "123");
+        // Act & Assert
         Assert.False(onlyNumber.IsAllWind);
     }
 
@@ -539,14 +585,34 @@ public class TileListTests
     {
         // Arrange
         var allDragon = new TileList(honor: "hrc"); // 白發中
-        var mixedWithWind = new TileList(honor: "thr"); // 東白發
-        var mixedWithNumber = new TileList(honor: "hr", man: "1"); // 白發一
-        var onlyNumber = new TileList(man: "123");
-
         // Act & Assert
         Assert.True(allDragon.IsAllDragon);
+    }
+
+    [Fact]
+    public void IsAllDragon_風牌を含む場合_falseを返す()
+    {
+        // Arrange
+        var mixedWithWind = new TileList(honor: "thr"); // 東白發
+        // Act & Assert
         Assert.False(mixedWithWind.IsAllDragon);
+    }
+
+    [Fact]
+    public void IsAllDragon_数牌を含む場合_falseを返す()
+    {
+        // Arrange
+        var mixedWithNumber = new TileList(honor: "hr", man: "1"); // 白發一
+        // Act & Assert
         Assert.False(mixedWithNumber.IsAllDragon);
+    }
+
+    [Fact]
+    public void IsAllDragon_数牌のみの場合_falseを返す()
+    {
+        // Arrange
+        var onlyNumber = new TileList(man: "123");
+        // Act & Assert
         Assert.False(onlyNumber.IsAllDragon);
     }
 

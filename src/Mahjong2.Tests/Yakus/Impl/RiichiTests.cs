@@ -8,6 +8,19 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class RiichiTests
 {
     [Fact]
+    public void Number_1を返す()
+    {
+        // Arrange
+        var riichi = Yaku.Riichi;
+
+        // Act
+        var actual = riichi.Number;
+
+        // Assert
+        Assert.Equal(1, actual);
+    }
+
+    [Fact]
     public void Name_立直が返る()
     {
         // Arrange

@@ -8,7 +8,18 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class JunchanTests
 {
     [Fact]
-    public void Name_純全帯么九が返る()
+    public void Number_30を返す()
+    {
+        // Arrange
+        var junchan = Yaku.Junchan;
+        // Act
+        var actual = junchan.Number;
+        // Assert
+        Assert.Equal(30, actual);
+    }
+
+    [Fact]
+    public void Name_純全帯么九を返す()
     {
         // Arrange
         var junchan = Yaku.Junchan;
@@ -21,7 +32,7 @@ public class JunchanTests
     }
 
     [Fact]
-    public void HanOpen_2が返る()
+    public void HanOpen_2を返す()
     {
         // Arrange
         var junchan = Yaku.Junchan;
@@ -34,7 +45,7 @@ public class JunchanTests
     }
 
     [Fact]
-    public void HanClosed_3が返る()
+    public void HanClosed_3を返す()
     {
         // Arrange
         var junchan = Yaku.Junchan;
@@ -47,7 +58,7 @@ public class JunchanTests
     }
 
     [Fact]
-    public void IsYakuman_Falseが返る()
+    public void IsYakuman_Falseを返す()
     {
         // Arrange
         var junchan = Yaku.Junchan;

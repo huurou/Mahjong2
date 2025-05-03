@@ -7,6 +7,17 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class PinfuTests
 {
     [Fact]
+    public void Number_11を返す()
+    {
+        // Arrange
+        var pinfu = new Pinfu();
+        // Act
+        var result = pinfu.Number;
+        // Assert
+        Assert.Equal(11, result);
+    }
+
+    [Fact]
     public void Name_平和を返す()
     {
         // Arrange

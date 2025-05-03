@@ -8,7 +8,18 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class DaisuushiiDoubleTests
 {
     [Fact]
-    public void Name_大四喜が返る()
+    public void Number_44を返す()
+    {
+        // Arrange
+        var daisuushiiDouble = new DaisuushiiDouble();
+        // Act
+        var actual = daisuushiiDouble.Number;
+        // Assert
+        Assert.Equal(44, actual);
+    }
+
+    [Fact]
+    public void Name_大四喜を返す()
     {
         // Arrange
         var daisuushiiDouble = new DaisuushiiDouble();
@@ -21,7 +32,7 @@ public class DaisuushiiDoubleTests
     }
 
     [Fact]
-    public void HanOpen_26が返る()
+    public void HanOpen_26を返す()
     {
         // Arrange
         var daisuushiiDouble = new DaisuushiiDouble();
@@ -34,7 +45,7 @@ public class DaisuushiiDoubleTests
     }
 
     [Fact]
-    public void HanClosed_26が返る()
+    public void HanClosed_26を返す()
     {
         // Arrange
         var daisuushiiDouble = new DaisuushiiDouble();
@@ -47,7 +58,7 @@ public class DaisuushiiDoubleTests
     }
 
     [Fact]
-    public void IsYakuman_Trueが返る()
+    public void IsYakuman_Trueを返す()
     {
         // Arrange
         var daisuushiiDouble = new DaisuushiiDouble();

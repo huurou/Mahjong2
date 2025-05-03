@@ -8,7 +8,18 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class ChunTests
 {
     [Fact]
-    public void Name_中が返る()
+    public void Number_16を返す()
+    {
+        // Arrange
+        var chun = Yaku.Chun;
+        // Act
+        var actual = chun.Number;
+        // Assert
+        Assert.Equal(16, actual);
+    }
+
+    [Fact]
+    public void Name_中を返す()
     {
         // Arrange
         var chun = Yaku.Chun;
@@ -21,7 +32,7 @@ public class ChunTests
     }
 
     [Fact]
-    public void HanOpen_1が返る()
+    public void HanOpen_1を返す()
     {
         // Arrange
         var chun = Yaku.Chun;
@@ -34,7 +45,7 @@ public class ChunTests
     }
 
     [Fact]
-    public void HanClosed_1が返る()
+    public void HanClosed_1を返す()
     {
         // Arrange
         var chun = Yaku.Chun;
@@ -47,7 +58,7 @@ public class ChunTests
     }
 
     [Fact]
-    public void IsYakuman_Falseが返る()
+    public void IsYakuman_Falseを返す()
     {
         // Arrange
         var chun = Yaku.Chun;

@@ -8,6 +8,19 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class TsuuiisouTests
 {
     [Fact]
+    public void Number_41を返す()
+    {
+        // Arrange
+        var tsuuiisou = Yaku.Tsuuiisou;
+
+        // Act
+        var actual = tsuuiisou.Number;
+
+        // Assert
+        Assert.Equal(41, actual);
+    }
+
+    [Fact]
     public void Name_字一色が返る()
     {
         // Arrange

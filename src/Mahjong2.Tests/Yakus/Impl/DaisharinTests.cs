@@ -7,7 +7,18 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class DaisharinTests
 {
     [Fact]
-    public void Name_大車輪が返る()
+    public void Number_43を返す()
+    {
+        // Arrange
+        var daisharin = new Daisharin();
+        // Act
+        var actual = daisharin.Number;
+        // Assert
+        Assert.Equal(43, actual);
+    }
+
+    [Fact]
+    public void Name_大車輪を返す()
     {
         // Arrange
         var daisharin = new Daisharin();
@@ -20,7 +31,7 @@ public class DaisharinTests
     }
 
     [Fact]
-    public void HanOpen_0が返る()
+    public void HanOpen_0を返す()
     {
         // Arrange
         var daisharin = new Daisharin();
@@ -33,7 +44,7 @@ public class DaisharinTests
     }
 
     [Fact]
-    public void HanClosed_13が返る()
+    public void HanClosed_13を返す()
     {
         // Arrange
         var daisharin = new Daisharin();
@@ -46,7 +57,7 @@ public class DaisharinTests
     }
 
     [Fact]
-    public void IsYakuman_Trueが返る()
+    public void IsYakuman_Trueを返す()
     {
         // Arrange
         var daisharin = new Daisharin();

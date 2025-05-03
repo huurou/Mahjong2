@@ -8,6 +8,19 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class ShousangenTests
 {
     [Fact]
+    public void Number_28を返す()
+    {
+        // Arrange
+        var shousangen = Yaku.Shousangen;
+
+        // Act
+        var actual = shousangen.Number;
+
+        // Assert
+        Assert.Equal(28, actual);
+    }
+
+    [Fact]
     public void Name_小三元が返る()
     {
         // Arrange

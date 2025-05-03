@@ -7,7 +7,18 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class ChinroutouTests
 {
     [Fact]
-    public void Name_清老頭が返る()
+    public void Number_42を返す()
+    {
+        // Arrange
+        var chinroutou = new Chinroutou();
+        // Act
+        var actual = chinroutou.Number;
+        // Assert
+        Assert.Equal(42, actual);
+    }
+
+    [Fact]
+    public void Name_清老頭を返す()
     {
         // Arrange
         var chinroutou = new Chinroutou();
@@ -20,7 +31,7 @@ public class ChinroutouTests
     }
 
     [Fact]
-    public void HanOpen_13が返る()
+    public void HanOpen_13を返す()
     {
         // Arrange
         var chinroutou = new Chinroutou();
@@ -33,7 +44,7 @@ public class ChinroutouTests
     }
 
     [Fact]
-    public void HanClosed_13が返る()
+    public void HanClosed_13を返す()
     {
         // Arrange
         var chinroutou = new Chinroutou();
@@ -46,7 +57,7 @@ public class ChinroutouTests
     }
 
     [Fact]
-    public void IsYakuman_Trueが返る()
+    public void IsYakuman_Trueを返す()
     {
         // Arrange
         var chinroutou = new Chinroutou();

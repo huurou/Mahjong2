@@ -9,7 +9,18 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class IppatsuTests
 {
     [Fact]
-    public void Name_一発が返る()
+    public void Number_4を返す()
+    {
+        // Arrange
+        var ippatsu = Yaku.Ippatsu;
+        // Act
+        var actual = ippatsu.Number;
+        // Assert
+        Assert.Equal(4, actual);
+    }
+
+    [Fact]
+    public void Name_一発を返す()
     {
         // Arrange
         var ippatsu = Yaku.Ippatsu;
@@ -22,7 +33,7 @@ public class IppatsuTests
     }
 
     [Fact]
-    public void HanOpen_0が返る()
+    public void HanOpen_0を返す()
     {
         // Arrange
         var ippatsu = Yaku.Ippatsu;
@@ -35,7 +46,7 @@ public class IppatsuTests
     }
 
     [Fact]
-    public void HanClosed_1が返る()
+    public void HanClosed_1を返す()
     {
         // Arrange
         var ippatsu = Yaku.Ippatsu;
@@ -48,7 +59,7 @@ public class IppatsuTests
     }
 
     [Fact]
-    public void IsYakuman_Falseが返る()
+    public void IsYakuman_Falseを返す()
     {
         // Arrange
         var ippatsu = Yaku.Ippatsu;

@@ -201,6 +201,11 @@ public record TileList() : IEnumerable<Tile>, IComparable<TileList>, IEquatable<
         return tileList;
     }
 
+    public int IndexOf(Tile tile)
+    {
+        return tiles_.IndexOf(tile);
+    }
+
     /// <summary>
     /// 牌リストを別の牌リストと比較します
     /// </summary>

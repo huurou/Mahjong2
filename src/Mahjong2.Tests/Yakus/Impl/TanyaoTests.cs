@@ -8,6 +8,19 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class TanyaoTests
 {
     [Fact]
+    public void Number_12を返す()
+    {
+        // Arrange
+        var tanyao = new Tanyao();
+
+        // Act
+        var actual = tanyao.Number;
+
+        // Assert
+        Assert.Equal(12, actual);
+    }
+
+    [Fact]
     public void Name_断么九が返る()
     {
         // Arrange

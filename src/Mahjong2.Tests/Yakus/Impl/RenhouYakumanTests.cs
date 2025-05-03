@@ -6,6 +6,17 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class RenhouYakumanTests
 {
     [Fact]
+    public void Number_50を返す()
+    {
+        // Arrange
+        var renhouYakuman = new RenhouYakuman();
+        // Act
+        var actual = renhouYakuman.Number;
+        // Assert
+        Assert.Equal(50, actual);
+    }
+
+    [Fact]
     public void Name_人和を返す()
     {
         // Arrange

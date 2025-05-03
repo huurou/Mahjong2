@@ -8,6 +8,19 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class SanshokuTests
 {
     [Fact]
+    public void Number_19を返す()
+    {
+        // Arrange
+        var sanshoku = Yaku.Sanshoku;
+
+        // Act
+        var actual = sanshoku.Number;
+
+        // Assert
+        Assert.Equal(19, actual);
+    }
+
+    [Fact]
     public void Name_三色同順が返る()
     {
         // Arrange

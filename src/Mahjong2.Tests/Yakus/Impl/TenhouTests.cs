@@ -7,6 +7,19 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class TenhouTests
 {
     [Fact]
+    public void Number_48を返す()
+    {
+        // Arrange
+        var tenhou = Yaku.Tenhou;
+
+        // Act
+        var actual = tenhou.Number;
+
+        // Assert
+        Assert.Equal(48, actual);
+    }
+
+    [Fact]
     public void Name_天和が返る()
     {
         // Arrange

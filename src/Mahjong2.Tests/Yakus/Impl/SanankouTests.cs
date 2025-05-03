@@ -8,6 +8,19 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class SanankouTests
 {
     [Fact]
+    public void Number_24を返す()
+    {
+        // Arrange
+        var sanankou = new Sanankou();
+
+        // Act
+        var actual = sanankou.Number;
+
+        // Assert
+        Assert.Equal(24, actual);
+    }
+
+    [Fact]
     public void Name_三暗刻を返す()
     {
         // Arrange

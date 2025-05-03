@@ -8,7 +8,18 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class IttsuuTests
 {
     [Fact]
-    public void Name_一気通貫が返る()
+    public void Number_20を返す()
+    {
+        // Arrange
+        var ittsuu = Yaku.Ittsuu;
+        // Act
+        var actual = ittsuu.Number;
+        // Assert
+        Assert.Equal(20, actual);
+    }
+
+    [Fact]
+    public void Name_一気通貫を返す()
     {
         // Arrange
         var ittsuu = Yaku.Ittsuu;
@@ -21,7 +32,7 @@ public class IttsuuTests
     }
 
     [Fact]
-    public void HanOpen_1が返る()
+    public void HanOpen_1を返す()
     {
         // Arrange
         var ittsuu = Yaku.Ittsuu;
@@ -34,7 +45,7 @@ public class IttsuuTests
     }
 
     [Fact]
-    public void HanClosed_2が返る()
+    public void HanClosed_2を返す()
     {
         // Arrange
         var ittsuu = Yaku.Ittsuu;
@@ -47,7 +58,7 @@ public class IttsuuTests
     }
 
     [Fact]
-    public void IsYakuman_Falseが返る()
+    public void IsYakuman_Falseを返す()
     {
         // Arrange
         var ittsuu = Yaku.Ittsuu;

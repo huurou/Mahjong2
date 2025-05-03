@@ -7,6 +7,19 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class RinshanTests
 {
     [Fact]
+    public void Number_6を返す()
+    {
+        // Arrange
+        var rinshan = Yaku.Rinshan;
+
+        // Act
+        var actual = rinshan.Number;
+
+        // Assert
+        Assert.Equal(6, actual);
+    }
+
+    [Fact]
     public void Name_嶺上開花が返る()
     {
         // Arrange

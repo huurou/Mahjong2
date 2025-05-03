@@ -8,6 +8,19 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class RyanpeikouTests
 {
     [Fact]
+    public void Number_31を返す()
+    {
+        // Arrange
+        var ryanpeikou = Yaku.Ryanpeikou;
+
+        // Act
+        var actual = ryanpeikou.Number;
+
+        // Assert
+        Assert.Equal(31, actual);
+    }
+
+    [Fact]
     public void Name_二盃口が返る()
     {
         // Arrange

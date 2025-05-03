@@ -7,7 +7,18 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class ChiitoitsuTests
 {
     [Fact]
-    public void Name_七対子が返る()
+    public void Number_27を返す()
+    {
+        // Arrange
+        var chiitoitsu = Yaku.Chiitoitsu;
+        // Act
+        var actual = chiitoitsu.Number;
+        // Assert
+        Assert.Equal(27, actual);
+    }
+
+    [Fact]
+    public void Name_七対子を返す()
     {
         // Arrange
         var chiitoitsu = Yaku.Chiitoitsu;
@@ -20,7 +31,7 @@ public class ChiitoitsuTests
     }
 
     [Fact]
-    public void HanOpen_0が返る()
+    public void HanOpen_0を返す()
     {
         // Arrange
         var chiitoitsu = Yaku.Chiitoitsu;
@@ -33,7 +44,7 @@ public class ChiitoitsuTests
     }
 
     [Fact]
-    public void HanClosed_2が返る()
+    public void HanClosed_2を返す()
     {
         // Arrange
         var chiitoitsu = Yaku.Chiitoitsu;
@@ -46,7 +57,7 @@ public class ChiitoitsuTests
     }
 
     [Fact]
-    public void IsYakuman_Falseが返る()
+    public void IsYakuman_Falseを返す()
     {
         // Arrange
         var chiitoitsu = Yaku.Chiitoitsu;

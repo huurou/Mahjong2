@@ -5,7 +5,7 @@ namespace Mahjong2.Tests.HandCalculating.HandDeviding
     public class CombinatoricsTests
     {
         [Fact]
-        public void Permutations_通常の順列生成_正しい順列が返る()
+        public void Permutations_通常の順列生成_正しい順列を返す()
         {
             // Arrange
             var source = new[] { 1, 2, 3 };
@@ -76,7 +76,7 @@ namespace Mahjong2.Tests.HandCalculating.HandDeviding
         }
 
         [Fact]
-        public void Combinations_通常の組み合わせ生成_正しい組み合わせが返る()
+        public void Combinations_通常の組み合わせ生成_正しい組み合わせを返す()
         {
             // Arrange
             var source = new[] { 1, 2, 3 };

@@ -7,6 +7,19 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class ShousuushiiTests
 {
     [Fact]
+    public void Number_37を返す()
+    {
+        // Arrange
+        var shousuushii = new Shousuushii();
+
+        // Act
+        var actual = shousuushii.Number;
+
+        // Assert
+        Assert.Equal(37, actual);
+    }
+
+    [Fact]
     public void Name_小四喜が返る()
     {
         // Arrange

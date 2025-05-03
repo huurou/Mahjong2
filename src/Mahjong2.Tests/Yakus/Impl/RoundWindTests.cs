@@ -9,6 +9,19 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class RoundWindTests
 {
     [Fact]
+    public void Number_18が返る()
+    {
+        // Arrange
+        var roundWind = Yaku.RoundWind;
+
+        // Act
+        var actual = roundWind.Number;
+
+        // Assert
+        Assert.Equal(18, actual);
+    }
+
+    [Fact]
     public void Name_場風牌が返る()
     {
         // Arrange

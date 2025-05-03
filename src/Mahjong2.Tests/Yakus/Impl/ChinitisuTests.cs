@@ -8,7 +8,18 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class ChinitisuTests
 {
     [Fact]
-    public void Name_清一色が返る()
+    public void Number_32を返す()
+    {
+        // Arrange
+        var chinitsu = Yaku.Chinitsu;
+        // Act
+        var actual = chinitsu.Number;
+        // Assert
+        Assert.Equal(32, actual);
+    }
+
+    [Fact]
+    public void Name_清一色を返す()
     {
         // Arrange
         var chinitsu = Yaku.Chinitsu;
@@ -21,7 +32,7 @@ public class ChinitisuTests
     }
 
     [Fact]
-    public void HanOpen_5が返る()
+    public void HanOpen_5を返す()
     {
         // Arrange
         var chinitsu = Yaku.Chinitsu;
@@ -34,7 +45,7 @@ public class ChinitisuTests
     }
 
     [Fact]
-    public void HanClosed_6が返る()
+    public void HanClosed_6を返す()
     {
         // Arrange
         var chinitsu = Yaku.Chinitsu;
@@ -47,7 +58,7 @@ public class ChinitisuTests
     }
 
     [Fact]
-    public void IsYakuman_Falseが返る()
+    public void IsYakuman_Falseを返す()
     {
         // Arrange
         var chinitsu = Yaku.Chinitsu;

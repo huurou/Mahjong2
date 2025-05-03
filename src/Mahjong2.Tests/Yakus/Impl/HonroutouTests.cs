@@ -8,7 +8,18 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class HonroutouTests
 {
     [Fact]
-    public void Name_混老頭が返る()
+    public void Number_22を返す()
+    {
+        // Arrange
+        var honroutou = Yaku.Honrotou;
+        // Act
+        var actual = honroutou.Number;
+        // Assert
+        Assert.Equal(22, actual);
+    }
+
+    [Fact]
+    public void Name_混老頭を返す()
     {
         // Arrange
         var honroutou = Yaku.Honrotou;
@@ -21,7 +32,7 @@ public class HonroutouTests
     }
 
     [Fact]
-    public void HanOpen_2が返る()
+    public void HanOpen_2を返す()
     {
         // Arrange
         var honroutou = Yaku.Honrotou;
@@ -34,7 +45,7 @@ public class HonroutouTests
     }
 
     [Fact]
-    public void HanClosed_2が返る()
+    public void HanClosed_2を返す()
     {
         // Arrange
         var honroutou = Yaku.Honrotou;
@@ -47,7 +58,7 @@ public class HonroutouTests
     }
 
     [Fact]
-    public void IsYakuman_Falseが返る()
+    public void IsYakuman_Falseを返す()
     {
         // Arrange
         var honroutou = Yaku.Honrotou;

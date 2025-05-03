@@ -5,6 +5,19 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class UradoraTests
 {
     [Fact]
+    public void Number_52を返す()
+    {
+        // Arrange
+        var uradora = new Uradora();
+
+        // Act
+        var actual = uradora.Number;
+
+        // Assert
+        Assert.Equal(52, actual);
+    }
+
+    [Fact]
     public void Name_裏ドラを返す()
     {
         // Arrange

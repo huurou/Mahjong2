@@ -7,7 +7,18 @@ namespace Mahjong2.Tests.Yakus.Impl;
 public class ChuurenpoutouTests
 {
     [Fact]
-    public void Name_九蓮宝燈が返る()
+    public void Number_34を返す()
+    {
+        // Arrange
+        var chuurenpoutou = Yaku.Chuurenpoutou;
+        // Act
+        var actual = chuurenpoutou.Number;
+        // Assert
+        Assert.Equal(34, actual);
+    }
+
+    [Fact]
+    public void Name_九蓮宝燈を返す()
     {
         // Arrange
         var chuurenpoutou = Yaku.Chuurenpoutou;
@@ -20,7 +31,7 @@ public class ChuurenpoutouTests
     }
 
     [Fact]
-    public void HanOpen_0が返る()
+    public void HanOpen_0を返す()
     {
         // Arrange
         var chuurenpoutou = Yaku.Chuurenpoutou;
@@ -33,7 +44,7 @@ public class ChuurenpoutouTests
     }
 
     [Fact]
-    public void HanClosed_13が返る()
+    public void HanClosed_13を返す()
     {
         // Arrange
         var chuurenpoutou = Yaku.Chuurenpoutou;
@@ -46,7 +57,7 @@ public class ChuurenpoutouTests
     }
 
     [Fact]
-    public void IsYakuman_Trueが返る()
+    public void IsYakuman_Trueを返す()
     {
         // Arrange
         var chuurenpoutou = Yaku.Chuurenpoutou;

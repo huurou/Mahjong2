@@ -8,7 +8,7 @@ namespace Mahjong2.Lib.Fus;
 /// 符の集合を表現するクラス
 /// </summary>
 [CollectionBuilder(typeof(FuListBuilder), "Create")]
-public record FuList() : IEnumerable<Fu>
+public record FuList() : IEnumerable<Fu>, IEquatable<FuList>
 {
     /// <summary>
     /// 符の数を取得します
@@ -53,6 +53,21 @@ public record FuList() : IEnumerable<Fu>
     IEnumerator IEnumerable.GetEnumerator()
     {
         return GetEnumerator();
+    }
+
+    public virtual bool Equals(FuList? other)
+    {
+        if (other is null) { return false; }
+        return this.SequenceEqual(other);
+    }
+
+    /// <summary>
+    /// オブジェクトのハッシュコードを計算します
+    /// </summary>
+    /// <returns>このオブジェクトのハッシュコード</returns>
+    public override int GetHashCode()
+    {
+        return fus_.Aggregate(0, (hash, tile) => hash * 31 + tile.GetHashCode());
     }
 
     public static class FuListBuilder
