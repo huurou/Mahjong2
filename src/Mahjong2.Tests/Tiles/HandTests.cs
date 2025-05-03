@@ -47,14 +47,14 @@ public class HandTests
         var fuuroList = new FuuroList([chi, pon]);
 
         // Act
-        var result = hand.CombineFuuro(fuuroList);
+        var actual = hand.CombineFuuro(fuuroList);
 
         // Assert
-        Assert.Equal(4, result.Count);
-        Assert.Equal(tileList1, result[0]);
-        Assert.Equal(tileList2, result[1]);
-        Assert.Equal(fuuroTileList1, result[2]);
-        Assert.Equal(fuuroTileList2, result[3]);
+        Assert.Equal(4, actual.Count);
+        Assert.Equal(tileList1, actual[0]);
+        Assert.Equal(tileList2, actual[1]);
+        Assert.Equal(fuuroTileList1, actual[2]);
+        Assert.Equal(fuuroTileList2, actual[3]);
     }
 
     [Fact]
@@ -68,12 +68,12 @@ public class HandTests
         var emptyFuuroList = new FuuroList();
 
         // Act
-        var result = hand.CombineFuuro(emptyFuuroList);
+        var actual = hand.CombineFuuro(emptyFuuroList);
 
         // Assert
-        Assert.Equal(2, result.Count);
-        Assert.Equal(tileList1, result[0]);
-        Assert.Equal(tileList2, result[1]);
+        Assert.Equal(2, actual.Count);
+        Assert.Equal(tileList1, actual[0]);
+        Assert.Equal(tileList2, actual[1]);
     }
 
     [Fact]
@@ -90,5 +90,58 @@ public class HandTests
         Assert.Equal(2, hand.Count);
         Assert.Equal(tileList1, hand[0]);
         Assert.Equal(tileList2, hand[1]);
+    }
+
+    [Fact]
+    public void GetWinGroups_和了牌を含むグループが複数_重複なく返す()
+    {
+        // Arrange
+        var winTile = Tile.Man1;
+        var tileList1 = new TileList(man: "11"); // Man1を2枚含む
+        var tileList2 = new TileList(man: "123"); // Man1を1枚含む
+        var tileList3 = new TileList(pin: "456"); // Man1を含まない
+        var hand = new Hand([tileList1, tileList2, tileList3]);
+
+        // Act
+        var actual = hand.GetWinGroups(winTile);
+
+        // Assert
+        Assert.Equal(2, actual.Count);
+        Assert.Contains(tileList1, actual);
+        Assert.Contains(tileList2, actual);
+        Assert.DoesNotContain(tileList3, actual);
+    }
+
+    [Fact]
+    public void GetWinGroups_和了牌を含むグループが1つだけ_そのグループのみ返す()
+    {
+        // Arrange
+        var winTile = Tile.Pin4;
+        var tileList1 = new TileList(pin: "444"); // Pin4を含む
+        var tileList2 = new TileList(man: "123"); // Pin4を含まない
+        var hand = new Hand([tileList1, tileList2]);
+
+        // Act
+        var actual = hand.GetWinGroups(winTile);
+
+        // Assert
+        Assert.Single(actual);
+        Assert.Equal(tileList1, actual[0]);
+    }
+
+    [Fact]
+    public void GetWinGroups_和了牌を含むグループがない_空リストを返す()
+    {
+        // Arrange
+        var winTile = Tile.Sou9;
+        var tileList1 = new TileList(man: "123");
+        var tileList2 = new TileList(pin: "456");
+        var hand = new Hand([tileList1, tileList2]);
+
+        // Act
+        var actual = hand.GetWinGroups(winTile);
+
+        // Assert
+        Assert.Empty(actual);
     }
 }
