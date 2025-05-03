@@ -189,6 +189,5 @@ public class SanshokudoukouTests
 
         // Assert
         Assert.False(actual);
-
     }
 }

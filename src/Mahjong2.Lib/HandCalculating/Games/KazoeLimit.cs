@@ -1,4 +1,4 @@
-﻿namespace Mahjong2.Lib.Scores;
+﻿namespace Mahjong2.Lib.HandCalculating.Games;
 
 /// <summary>
 /// 数え役満のルール

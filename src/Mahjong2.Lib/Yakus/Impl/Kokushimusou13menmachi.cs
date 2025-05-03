@@ -15,6 +15,5 @@ public record Kokushimusou13menmachi : Yaku
     {
         return Kokushimusou.Valid(hand) &&
             hand.SelectMany(x => x).Count(x => x == winTile) == 2;
-
     }
 }

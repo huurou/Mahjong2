@@ -1,6 +1,7 @@
-using Mahjong2.Lib.Scores;
+using Mahjong2.Lib.HandCalculating.Games;
+using Mahjong2.Lib.HandCalculating.Scores;
 
-namespace Mahjong2.Tests.Scores;
+namespace Mahjong2.Tests.HandCalculating.Scores;
 
 /// <summary>
 /// ScoreCalculatorクラスのテスト
@@ -821,5 +822,4 @@ public class ScoreCalculatorTests
         Assert.IsType<ArgumentException>(exception);
         Assert.Equal("数え役満のルールが不正です。 (Parameter 'gameRules')", exception.Message);
     }
-
 }

@@ -1,7 +1,7 @@
-﻿using Mahjong2.Lib.HandCalculating;
+﻿using Mahjong2.Lib.HandCalculating.HandDeviding;
 using Mahjong2.Lib.Tiles;
 
-namespace Mahjong2.Tests.HandCalculating
+namespace Mahjong2.Tests.HandCalculating.HandDeviding
 {
     public class HandDeviderTests
     {

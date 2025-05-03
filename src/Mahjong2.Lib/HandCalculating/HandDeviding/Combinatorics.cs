@@ -1,4 +1,4 @@
-﻿namespace Mahjong2.Lib.HandCalculating;
+﻿namespace Mahjong2.Lib.HandCalculating.HandDeviding;
 
 public static class Combinatorics
 {

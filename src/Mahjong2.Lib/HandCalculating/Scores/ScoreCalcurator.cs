@@ -1,4 +1,6 @@
-﻿namespace Mahjong2.Lib.Scores;
+﻿using Mahjong2.Lib.HandCalculating.Games;
+
+namespace Mahjong2.Lib.HandCalculating.Scores;
 
 /// <summary>
 /// 麻雀の点数計算を行うクラス

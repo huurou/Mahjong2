@@ -14,7 +14,7 @@ public record YakuList() : IEnumerable<Yaku>
     /// 副露時の合計翻数
     /// </summary>
     public int HanOpen => yakus_.Sum(x => x.HanOpen);
-    
+
     /// <summary>
     /// 門前時の合計翻数
     /// </summary>

@@ -1,5 +1,4 @@
-// filepath: d:\source\repos\Mahjong2\src\Mahjong2.Tests\Yakus\Impl\HouteiTests.cs
-using Mahjong2.Lib.Scores;
+using Mahjong2.Lib.HandCalculating.Games;
 using Mahjong2.Lib.Yakus;
 using Mahjong2.Lib.Yakus.Impl;
 

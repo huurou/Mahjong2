@@ -1,4 +1,4 @@
-using Mahjong2.Lib.Scores;
+using Mahjong2.Lib.HandCalculating.Games;
 
 namespace Mahjong2.Lib.Yakus.Impl;
 

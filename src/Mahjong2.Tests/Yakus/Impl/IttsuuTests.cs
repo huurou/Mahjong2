@@ -1,4 +1,3 @@
-// filepath: d:\source\repos\Mahjong2\src\Mahjong2.Tests\Yakus\Impl\IttsuuTests.cs
 using Mahjong2.Lib.Fuuros;
 using Mahjong2.Lib.Tiles;
 using Mahjong2.Lib.Yakus;

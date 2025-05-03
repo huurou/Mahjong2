@@ -1,5 +1,5 @@
 using Mahjong2.Lib.Fus;
-using Mahjong2.Lib.Scores;
+using Mahjong2.Lib.HandCalculating.Games;
 
 namespace Mahjong2.Lib.Yakus.Impl;
 
@@ -25,7 +25,6 @@ public record Pinfu : Yaku
         {
             // ロンなら副底と面前符だけ
             return fuList.Contains(Fu.Futei) && fuList.Contains(Fu.MenzenFu) && fuList.Count == 2;
-
         }
     }
 }

@@ -1,6 +1,6 @@
-using Mahjong2.Lib.HandCalculating;
+using Mahjong2.Lib.HandCalculating.HandDeviding;
 
-namespace Mahjong2.Tests.HandCalculating
+namespace Mahjong2.Tests.HandCalculating.HandDeviding
 {
     public class CombinatoricsTests
     {

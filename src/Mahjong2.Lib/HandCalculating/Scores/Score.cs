@@ -1,4 +1,4 @@
-﻿namespace Mahjong2.Lib.Scores;
+﻿namespace Mahjong2.Lib.HandCalculating.Scores;
 
 /// <summary>
 /// 点数 <para/>

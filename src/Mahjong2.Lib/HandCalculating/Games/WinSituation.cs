@@ -1,4 +1,4 @@
-﻿namespace Mahjong2.Lib.Scores;
+﻿namespace Mahjong2.Lib.HandCalculating.Games;
 
 /// <summary>
 /// 和了時の状況

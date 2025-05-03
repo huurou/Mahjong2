@@ -1,5 +1,5 @@
 ﻿using Mahjong2.Lib.Fuuros;
-using Mahjong2.Lib.Scores;
+using Mahjong2.Lib.HandCalculating.Games;
 using Mahjong2.Lib.Tiles;
 using Mahjong2.Lib.Yakus.Impl;
 

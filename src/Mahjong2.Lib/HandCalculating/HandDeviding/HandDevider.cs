@@ -2,7 +2,7 @@
 using Mahjong2.Lib.Tiles.NumberTiles;
 using System.Reflection;
 
-namespace Mahjong2.Lib.HandCalculating;
+namespace Mahjong2.Lib.HandCalculating.HandDeviding;
 
 /// <summary>
 /// 手牌を分解するクラス

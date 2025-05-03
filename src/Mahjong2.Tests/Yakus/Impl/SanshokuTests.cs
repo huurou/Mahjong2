@@ -78,7 +78,7 @@ public class SanshokuTests
     {
         // Arrange
         var hand = new Hand([new(man: "123"), new(pin: "123"), new(pin: "55"), new(man: "789")]);
-        var fuuroList = new FuuroList([new Chi(new (sou: "123"))]);
+        var fuuroList = new FuuroList([new Chi(new(sou: "123"))]);
 
         // Act
         var actual = Sanshoku.Valid(hand, fuuroList);
