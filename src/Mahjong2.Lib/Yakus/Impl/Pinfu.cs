@@ -1,5 +1,7 @@
 using Mahjong2.Lib.Fus;
 using Mahjong2.Lib.HandCalculating.Games;
+using Mahjong2.Lib.Fuuros;
+using Mahjong2.Lib.Tiles;
 
 namespace Mahjong2.Lib.Yakus.Impl;
 
@@ -8,6 +10,7 @@ namespace Mahjong2.Lib.Yakus.Impl;
 /// </summary>
 public record Pinfu : Yaku
 {
+    public override int Number => 11;
     public override string Name => "平和";
     public override int HanOpen => 0;
     public override int HanClosed => 1;
@@ -25,6 +28,7 @@ public record Pinfu : Yaku
         {
             // ロンなら副底と面前符だけ
             return fuList.Contains(Fu.Futei) && fuList.Contains(Fu.MenzenFu) && fuList.Count == 2;
+
         }
     }
 }

@@ -8,6 +8,7 @@ namespace Mahjong2.Lib.Yakus.Impl;
 /// </summary>
 public record Ryanpeikou : Yaku
 {
+    public override int Number => 31;
     public override string Name => "二盃口";
     public override int HanOpen => 0;
     public override int HanClosed => 3;

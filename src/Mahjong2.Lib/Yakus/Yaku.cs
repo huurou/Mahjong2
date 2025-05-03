@@ -5,7 +5,7 @@ namespace Mahjong2.Lib.Yakus;
 /// <summary>
 /// 役を表現するクラス
 /// </summary>
-public abstract record Yaku
+public abstract record Yaku : IComparable<Yaku>
 {
     #region シングルトンプロパティ
 
@@ -65,7 +65,7 @@ public abstract record Yaku
     public static Daisharin Daisharin { get; } = new();
 
     // ダブル役満
-    public static DaisuushiiDouble DaisuushiiDaburu { get; } = new();
+    public static DaisuushiiDouble DaisuushiiDouble { get; } = new();
     public static Kokushimusou13menmachi Kokushimusou13menmachi { get; } = new();
     public static SuuankouTanki SuuankouTanki { get; } = new();
     public static JunseiChuurenpoutou JunseiChuurenpoutou { get; } = new();
@@ -83,6 +83,11 @@ public abstract record Yaku
     #endregion シングルトンプロパティ
 
     /// <summary>
+    /// 役の番号
+    /// ソート用
+    /// </summary>
+    public abstract int Number { get; }
+    /// <summary>
     /// 役の名前
     /// </summary>
     public abstract string Name { get; }
@@ -98,6 +103,11 @@ public abstract record Yaku
     /// 役満かどうか
     /// </summary>
     public abstract bool IsYakuman { get; }
+
+    public int CompareTo(Yaku? other)
+    {
+        return other is null ? 1 : Number.CompareTo(other.Number);
+    }
 
     public sealed override string ToString()
     {
