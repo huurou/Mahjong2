@@ -10,7 +10,7 @@ namespace Mahjong2.Lib.HandCalculating.HandDeviding;
 public static class HandDevider
 {
     /// <summary>
-    /// 牌リストを実現可能な組み合わせに分解し、組み合わせのリストを返します
+    /// 牌リストを実現可能な組み合わせに分解し、組み合わされた手牌のリストを返します
     /// </summary>
     /// <param name="tileList">分解する牌リスト</param>
     /// <returns>可能な手牌の組み合わせのリスト</returns>

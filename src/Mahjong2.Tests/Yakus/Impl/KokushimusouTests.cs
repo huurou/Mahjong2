@@ -62,10 +62,10 @@ public class KokushimusouTests
     public void Valid_老頭牌が重複_成立する()
     {
         // Arrange
-        var hand = new Hand([new(man: "119", pin: "19", sou: "19", honor: "tnsphrc")]);
+        var tileList = new TileList(man: "119", pin: "19", sou: "19", honor: "tnsphrc");
 
         // Act
-        var actual = Kokushimusou.Valid(hand);
+        var actual = Kokushimusou.Valid(tileList);
 
         // Assert
         Assert.True(actual);
@@ -75,10 +75,10 @@ public class KokushimusouTests
     public void Valid_風牌が重複_成立する()
     {
         // Arrange
-        var hand = new Hand([new(man: "19", pin: "19", sou: "19", honor: "ttnsphrc")]);
+        var tileList = new TileList(man: "19", pin: "19", sou: "19", honor: "ttnsphrc");
 
         // Act
-        var actual = Kokushimusou.Valid(hand);
+        var actual = Kokushimusou.Valid(tileList);
 
         // Assert
         Assert.True(actual);
@@ -88,10 +88,10 @@ public class KokushimusouTests
     public void Valid_三元牌が重複_成立する()
     {
         // Arrange
-        var hand = new Hand([new(man: "19", pin: "19", sou: "19", honor: "tnsphrcc")]);
+        var tileList = new TileList(man: "19", pin: "19", sou: "19", honor: "tnsphrcc");
 
         // Act
-        var actual = Kokushimusou.Valid(hand);
+        var actual = Kokushimusou.Valid(tileList);
 
         // Assert
         Assert.True(actual);
@@ -101,10 +101,10 @@ public class KokushimusouTests
     public void Valid_全ての么九牌が揃っていない_成立しない()
     {
         // Arrange
-        var hand = new Hand([new(man: "119", pin: "19", sou: "19", honor: "tnsphr")]);
+        var tileList = new TileList(man: "119", pin: "19", sou: "19", honor: "tnsphr");
 
         // Act
-        var actual = Kokushimusou.Valid(hand);
+        var actual = Kokushimusou.Valid(tileList);
 
         // Assert
         Assert.False(actual);
@@ -114,10 +114,10 @@ public class KokushimusouTests
     public void Valid_中張牌が含まれる_成立しない()
     {
         // Arrange
-        var hand = new Hand([new(man: "159", pin: "19", sou: "19", honor: "tnsphrc")]);
+        var tileList = new TileList(man: "159", pin: "19", sou: "19", honor: "tnsphrc");
 
         // Act
-        var actual = Kokushimusou.Valid(hand);
+        var actual = Kokushimusou.Valid(tileList);
 
         // Assert
         Assert.False(actual);

@@ -14,6 +14,7 @@ public record FuuroList() : IEnumerable<Fuuro>
     public int Count => fuuros_.Count;
     /// <summary>
     /// 門前でない副露が存在するかどうかを取得します
+    /// 空の場合はfalse
     /// </summary>
     public bool HasOpen => fuuros_.Any(x => x.IsOpen);
 

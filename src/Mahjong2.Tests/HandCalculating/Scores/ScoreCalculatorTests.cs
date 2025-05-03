@@ -775,20 +775,6 @@ public class ScoreCalculatorTests
     }
 
     [Fact]
-    public void Calc_符が0_例外をスロー()
-    {
-        // Arrange
-        var winSituation = new WinSituation();
-        var gameRules = new GameRules();
-
-        // Act
-        var exception = Record.Exception(() => ScoreCalculator.Calc(0, 1, winSituation, gameRules));
-
-        // Assert
-        Assert.IsType<ArgumentException>(exception);
-    }
-
-    [Fact]
     public void Calc_翻が0_例外をスロー()
     {
         // Arrange

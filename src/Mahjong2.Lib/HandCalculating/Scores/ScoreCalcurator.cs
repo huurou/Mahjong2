@@ -29,7 +29,6 @@ public static class ScoreCalculator
     /// <exception cref="ArgumentException">翻が0以下の場合にスロー</exception>
     public static Score Calc(int fu, int han, WinSituation winSituation, GameRules gameRules, bool isYakuman = false)
     {
-        if (fu <= 0) { throw new ArgumentException("符は1以上を指定してください。", nameof(fu)); }
         if (han <= 0) { throw new ArgumentException("翻は1以上を指定してください。", nameof(han)); }
         // 役満でないときのみ数え役満のルールを適用する
         if (!isYakuman && han >= 13)

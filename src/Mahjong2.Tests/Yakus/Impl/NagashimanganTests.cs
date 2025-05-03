@@ -1,3 +1,4 @@
+using Mahjong2.Lib.Fuuros;
 using Mahjong2.Lib.HandCalculating.Games;
 using Mahjong2.Lib.Yakus;
 using Mahjong2.Lib.Yakus.Impl;
@@ -6,6 +7,19 @@ namespace Mahjong2.Tests.Yakus.Impl;
 
 public class NagashimanganTests
 {
+    [Fact]
+    public void Number_9が返る()
+    {
+        // Arrange
+        var nagashimangan = Yaku.Nagashimangan;
+
+        // Act
+        var actual = nagashimangan.Number;
+
+        // Assert
+        Assert.Equal(9, actual);
+    }
+
     [Fact]
     public void Name_流し満貫が返る()
     {

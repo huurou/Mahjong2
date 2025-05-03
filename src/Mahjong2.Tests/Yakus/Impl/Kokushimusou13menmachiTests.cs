@@ -62,11 +62,11 @@ public class Kokushimusou13menmachiTests
     public void Valid_老頭牌が重複_成立する()
     {
         // Arrange
-        var hand = new Hand([new(man: "119", pin: "19", sou: "19", honor: "tnsphrc")]);
+        var tileList = new TileList(man: "119", pin: "19", sou: "19", honor: "tnsphrc");
         var winTile = Tile.Man1;
 
         // Act
-        var actual = Kokushimusou13menmachi.Valid(hand, winTile);
+        var actual = Kokushimusou13menmachi.Valid(tileList, winTile);
 
         // Assert
         Assert.True(actual);
@@ -76,11 +76,11 @@ public class Kokushimusou13menmachiTests
     public void Valid_風牌が重複_成立する()
     {
         // Arrange
-        var hand = new Hand([new(man: "19", pin: "19", sou: "19", honor: "ttnsphrc")]);
+        var tileList = new TileList(man: "19", pin: "19", sou: "19", honor: "ttnsphrc");
         var winTile = Tile.Ton;
 
         // Act
-        var actual = Kokushimusou13menmachi.Valid(hand, winTile);
+        var actual = Kokushimusou13menmachi.Valid(tileList, winTile);
 
         // Assert
         Assert.True(actual);
@@ -90,11 +90,11 @@ public class Kokushimusou13menmachiTests
     public void Valid_三元牌が重複_成立する()
     {
         // Arrange
-        var hand = new Hand([new(man: "19", pin: "19", sou: "19", honor: "tnsphrcc")]);
+        var tileList = new TileList(man: "19", pin: "19", sou: "19", honor: "tnsphrcc");
         var winTile = Tile.Chun;
 
         // Act
-        var actual = Kokushimusou13menmachi.Valid(hand, winTile);
+        var actual = Kokushimusou13menmachi.Valid(tileList, winTile);
 
         // Assert
         Assert.True(actual);
@@ -104,11 +104,11 @@ public class Kokushimusou13menmachiTests
     public void Valid_和了牌が一枚しかない_成立しない()
     {
         // Arrange
-        var hand = new Hand([new(man: "19", pin: "19", sou: "19", honor: "tnsphrc")]);
+        var tileList = new TileList(man: "19", pin: "19", sou: "19", honor: "tnsphrc");
         var winTile = Tile.Man1;
 
         // Act
-        var actual = Kokushimusou13menmachi.Valid(hand, winTile);
+        var actual = Kokushimusou13menmachi.Valid(tileList, winTile);
 
         // Assert
         Assert.False(actual);
@@ -118,11 +118,11 @@ public class Kokushimusou13menmachiTests
     public void Valid_国士無双ではない_成立しない()
     {
         // Arrange
-        var hand = new Hand([new(man: "119", pin: "19", sou: "19", honor: "ttnsph")]);
+        var tileList = new TileList(man: "119", pin: "19", sou: "19", honor: "ttnsph");
         var winTile = Tile.Man1;
 
         // Act
-        var actual = Kokushimusou13menmachi.Valid(hand, winTile);
+        var actual = Kokushimusou13menmachi.Valid(tileList, winTile);
 
         // Assert
         Assert.False(actual);
@@ -132,11 +132,11 @@ public class Kokushimusou13menmachiTests
     public void Valid_中張牌が含まれる_成立しない()
     {
         // Arrange
-        var hand = new Hand([new(man: "159", pin: "19", sou: "19", honor: "tnsphrc")]);
+        var tileList = new TileList(man: "159", pin: "19", sou: "19", honor: "tnsphrc");
         var winTile = Tile.Man5;
 
         // Act
-        var actual = Kokushimusou13menmachi.Valid(hand, winTile);
+        var actual = Kokushimusou13menmachi.Valid(tileList, winTile);
 
         // Assert
         Assert.False(actual);
