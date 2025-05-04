@@ -36,11 +36,21 @@ public record YakuList() : IEnumerable<Yaku>, IEquatable<YakuList>
         yakus_ = [.. yakus];
     }
 
+    /// <summary>
+    /// 指定された役を追加した新しい<see cref="YakuList"/>を返します
+    /// </summary>
+    /// <param name="yaku">追加する役</param>
+    /// <returns>指定された役を含む新しい<see cref="YakuList"/></returns>
     public YakuList Add(Yaku yaku)
     {
         return [.. yakus_.Add(yaku)];
     }
 
+    /// <summary>
+    /// 指定された役のコレクションを追加した新しい<see cref="YakuList"/>を返します
+    /// </summary>
+    /// <param name="yakus">追加する役のコレクション</param>
+    /// <returns>指定された役を全て含む新しい<see cref="YakuList"/></returns>
     public YakuList AddRange(IEnumerable<Yaku> yakus)
     {
         return [.. yakus_.AddRange(yakus)];
@@ -64,6 +74,11 @@ public record YakuList() : IEnumerable<Yaku>, IEquatable<YakuList>
         return GetEnumerator();
     }
 
+    /// <summary>
+    /// 指定された<see cref="YakuList"/>オブジェクトとこのインスタンスが等しいかどうかを判断します
+    /// </summary>
+    /// <param name="other">比較対象の<see cref="YakuList"/>オブジェクト</param>
+    /// <returns>等しい場合はtrue、それ以外の場合はfalse</returns>
     public virtual bool Equals(YakuList? other)
     {
         if (other is null) { return false; }
@@ -103,8 +118,10 @@ public record YakuList() : IEnumerable<Yaku>, IEquatable<YakuList>
         public static YakuList Create(ReadOnlySpan<Yaku> values)
         {
             // [.. ]を使用すると無限ループが発生する
+#pragma warning disable IDE0028 // コレクションの初期化を簡略化します
 #pragma warning disable IDE0306 // コレクションの初期化を簡略化します
             return new(values.ToArray());
+#pragma warning restore IDE0028 // コレクションの初期化を簡略化します
 #pragma warning restore IDE0306 // コレクションの初期化を簡略化します
         }
     }

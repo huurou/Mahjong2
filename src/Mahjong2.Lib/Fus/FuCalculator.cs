@@ -51,32 +51,32 @@ public static class FuCalculator
         // 手牌の明刻
         foreach (var minko in fuuroList.Where(x => x.IsPon).Select(x => x.TileList))
         {
-            fuList = [.. fuList, minko[0].IsChuchan ? Fu.MinkoChuchan : Fu.MinkoYaochu];
+            fuList = fuList.Add(minko[0].IsChuchan ? Fu.MinkoChuchan : Fu.MinkoYaochu);
         }
         // シャンポン待ちロン和了のとき明刻扱いになる
         if (!winSituation.IsTsumo && winGroup.IsKoutsu)
         {
-            fuList = [.. fuList, winGroup[0].IsChuchan ? Fu.MinkoChuchan : Fu.MinkoYaochu];
+            fuList = fuList.Add(winGroup[0].IsChuchan ? Fu.MinkoChuchan : Fu.MinkoYaochu);
         }
         // 手牌の暗刻
         foreach (var anko in hand.Where(x => x.IsKoutsu && x != winGroup))
         {
-            fuList = [.. fuList, anko[0].IsChuchan ? Fu.AnkoChuchan : Fu.AnkoYaochu];
+            fuList = fuList.Add(anko[0].IsChuchan ? Fu.AnkoChuchan : Fu.AnkoYaochu);
         }
         // シャンポン待ちツモ和了のとき暗刻扱いになる
         if (winSituation.IsTsumo && winGroup.IsKoutsu)
         {
-            fuList = [.. fuList, winGroup[0].IsChuchan ? Fu.AnkoChuchan : Fu.AnkoYaochu];
+            fuList = fuList.Add(winGroup[0].IsChuchan ? Fu.AnkoChuchan : Fu.AnkoYaochu);
         }
         // 明槓
         foreach (var minkan in fuuroList.Where(x => x.IsMinkan).Select(x => x.TileList))
         {
-            fuList = [.. fuList, minkan[0].IsChuchan ? Fu.MinkanChuchan : Fu.MinkanYaochu];
+            fuList = fuList.Add(minkan[0].IsChuchan ? Fu.MinkanChuchan : Fu.MinkanYaochu);
         }
         // 暗槓
         foreach (var ankan in fuuroList.Where(x => x.IsAnkan).Select(x => x.TileList))
         {
-            fuList = [.. fuList, ankan[0].IsChuchan ? Fu.AnkanChuchan : Fu.AnkanYaochu];
+            fuList = fuList.Add(ankan[0].IsChuchan ? Fu.AnkanChuchan : Fu.AnkanYaochu);
         }
         return fuList;
     }
@@ -90,18 +90,18 @@ public static class FuCalculator
             if (numberWinTile.Number == 3 && winGroup.IndexOf(winTile) == 2 ||
                 numberWinTile.Number == 7 && winGroup.IndexOf(winTile) == 0)
             {
-                fuList = [.. fuList, Fu.WaitPenchan];
+                fuList = fuList.Add(Fu.WaitPenchan);
             }
             // カンチャン待ち
             if (winGroup.IndexOf(winTile) == 1)
             {
-                fuList = [.. fuList, Fu.WaitKanchan];
+                fuList = fuList.Add(Fu.WaitKanchan);
             }
         }
         // 単騎待ち
         if (winGroup.IsToitsu)
         {
-            fuList = [.. fuList, Fu.WaitTanki];
+            fuList = fuList.Add(Fu.WaitTanki);
         }
         return fuList;
     }
@@ -114,21 +114,21 @@ public static class FuCalculator
             if (gameRules.PinzumoEnabled && fuList.Count == 0 && !fuuroList.HasOpen) { }
             else
             {
-                fuList = [.. fuList, Fu.TsumoFu];
+                fuList = fuList.Add(Fu.TsumoFu);
             }
         }
         // 食い平和のロンアガリは副底を30符にする
         if (!winSituation.IsTsumo && fuuroList.HasOpen && fuList.Total == 0)
         {
-            fuList = [.. fuList, Fu.FuteiOpenPinfu];
+            fuList = fuList.Add(Fu.FuteiOpenPinfu);
         }
         else
         {
-            fuList = [.. fuList, Fu.Futei];
+            fuList = fuList.Add(Fu.Futei);
             // 門前ロン
             if (!winSituation.IsTsumo && !fuuroList.HasOpen)
             {
-                fuList = [.. fuList, Fu.MenzenFu];
+                fuList = fuList.Add(Fu.MenzenFu);
             }
         }
         return fuList;

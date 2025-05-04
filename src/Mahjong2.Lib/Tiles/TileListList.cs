@@ -97,7 +97,7 @@ public record TileListList() : IEnumerable<TileList>, IEquatable<TileListList>, 
     public int CompareTo(TileListList? other)
     {
         if (other is null) { return 1; }
-        var min = Math.Min(this.Count, other.Count);
+        var min = Math.Min(Count, other.Count);
         for (var i = 0; i < min; i++)
         {
             if (this[i] > other[i]) { return 1; }

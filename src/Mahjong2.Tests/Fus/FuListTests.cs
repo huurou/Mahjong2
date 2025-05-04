@@ -163,4 +163,81 @@ public class FuListTests
         Assert.Contains(Fu.TsumoFu, fuList);
         Assert.Equal(30, fuList.Total); // 20 + 2 = 22 → 30に切り上げ
     }
+
+    [Fact]
+    public void Equals_同じ内容の場合_等価と判定されること()
+    {
+        // Arrange
+        var fuList1 = new FuList([Fu.Futei, Fu.TsumoFu]);
+        var fuList2 = new FuList([Fu.Futei, Fu.TsumoFu]);
+
+        // Act & Assert
+        Assert.Equal(fuList1, fuList2);
+        Assert.True(fuList1.Equals(fuList2));
+    }
+
+    [Fact]
+    public void Equals_内容が異なる場合_等価でないと判定されること()
+    {
+        // Arrange
+        var fuList1 = new FuList([Fu.Futei, Fu.TsumoFu]);
+        var fuList2 = new FuList([Fu.Futei, Fu.WaitKanchan]);
+
+        // Act & Assert
+        Assert.NotEqual(fuList1, fuList2);
+        Assert.False(fuList1.Equals(fuList2));
+    }
+
+    [Fact]
+    public void Equals_順序が異なる場合_等価でないと判定されること()
+    {
+        // Arrange
+        var fuList1 = new FuList([Fu.Futei, Fu.TsumoFu]);
+        var fuList2 = new FuList([Fu.TsumoFu, Fu.Futei]);
+
+        // Act & Assert
+        Assert.NotEqual(fuList1, fuList2);
+        Assert.False(fuList1.Equals(fuList2));
+    }
+
+    [Fact]
+    public void Equals_nullと比較した場合_等価でないと判定されること()
+    {
+        // Arrange
+        var fuList = new FuList([Fu.Futei, Fu.TsumoFu]);
+        FuList? nullFuList = null;
+
+        // Act & Assert
+        Assert.False(fuList.Equals(nullFuList));
+    }
+
+    [Fact]
+    public void GetHashCode_同じ内容の場合_同じハッシュコードが生成されること()
+    {
+        // Arrange
+        var fuList1 = new FuList([Fu.Futei, Fu.TsumoFu]);
+        var fuList2 = new FuList([Fu.Futei, Fu.TsumoFu]);
+
+        // Act
+        var hashCode1 = fuList1.GetHashCode();
+        var hashCode2 = fuList2.GetHashCode();
+
+        // Assert
+        Assert.Equal(hashCode1, hashCode2);
+    }
+
+    [Fact]
+    public void GetHashCode_内容が異なる場合_異なるハッシュコードが生成されること()
+    {
+        // Arrange
+        var fuList1 = new FuList([Fu.Futei, Fu.TsumoFu]);
+        var fuList2 = new FuList([Fu.Futei, Fu.WaitKanchan]);
+
+        // Act
+        var hashCode1 = fuList1.GetHashCode();
+        var hashCode2 = fuList2.GetHashCode();
+
+        // Assert
+        Assert.NotEqual(hashCode1, hashCode2);
+    }
 }

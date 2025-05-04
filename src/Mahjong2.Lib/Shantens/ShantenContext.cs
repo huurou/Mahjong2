@@ -12,7 +12,7 @@ public record ShantenContext(TileList TileList)
     /// <summary>
     /// 現在処理中の牌
     /// </summary>
-    public Tile Tile { get; init; } = Tile.Man1;
+    public NumberTile Tile { get; init; } = Tiles.Tile.Man1;
 
     /// <summary>
     /// 面子の数
@@ -51,7 +51,7 @@ public record ShantenContext(TileList TileList)
     public ShantenContext ScanHonor()
     {
         var context = this;
-        foreach (var honor in Tile.Honors)
+        foreach (var honor in Tiles.Tile.Honors)
         {
             context = context.TileList.CountOf(honor) switch
             {
@@ -81,13 +81,16 @@ public record ShantenContext(TileList TileList)
     public int ScanNumber()
     {
         var context = this;
-        var allTiles = Tile.All.ToList();
+        var allTiles = Tiles.Tile.All.ToList();
         while (context.TileList.CountOf(context.Tile) == 0)
         {
             // 今のTileの次の種類の牌を取得する
-            var nextTile = allTiles[allTiles.IndexOf(context.Tile) + 1];
-            context = context with { Tile = nextTile };
-            if (context.Tile.IsHonor)
+            var _nextTile = allTiles[allTiles.IndexOf(context.Tile) + 1];
+            if (_nextTile is NumberTile nextTile)
+            {
+                context = context with { Tile = nextTile };
+            }
+            else
             {
                 return context.CalcShanten();
             }
@@ -108,30 +111,28 @@ public record ShantenContext(TileList TileList)
     /// <returns>シャンテン数</returns>
     private int ScanNumber1()
     {
-        if (Tile is not NumberTile tile) { throw new InvalidOperationException($"Tile:{Tile}"); }
-
         List<int> shantens = [];
-        if (tile.TryGetAtDistance(1, out var tile1) && tile.TryGetAtDistance(2, out var tile2) && tile.TryGetAtDistance(3, out var tile3) &&
+        if (Tile.TryGetAtDistance(1, out var tile1) && Tile.TryGetAtDistance(2, out var tile2) && Tile.TryGetAtDistance(3, out var tile3) &&
             TileList.CountOf(tile1) == 1 && TileList.CountOf(tile2) > 0 && TileList.CountOf(tile3) != 4)
         {
-            shantens.Add(RemoveShuntsu().ScanNumber());
+            shantens.Add(RemoveShuntsu(tile1, tile2).ScanNumber());
         }
         else
         {
             shantens.Add(RemoveIsolation().ScanNumber());
-            if (tile.TryGetAtDistance(1, out tile1) && tile.TryGetAtDistance(2, out tile2) &&
+            if (Tile.TryGetAtDistance(1, out tile1) && Tile.TryGetAtDistance(2, out tile2) &&
                 TileList.CountOf(tile2) > 0)
             {
                 if (TileList.CountOf(tile1) > 0)
                 {
-                    shantens.Add(RemoveShuntsu().ScanNumber());
+                    shantens.Add(RemoveShuntsu(tile1, tile2).ScanNumber());
                 }
-                shantens.Add(RemoveKanchan().ScanNumber());
+                shantens.Add(RemoveKanchan(tile2).ScanNumber());
             }
-            if (tile.TryGetAtDistance(1, out tile1) &&
+            if (Tile.TryGetAtDistance(1, out tile1) &&
                 TileList.CountOf(tile1) > 0)
             {
-                shantens.Add(RemoveRyanmen().ScanNumber());
+                shantens.Add(RemoveRyanmen(tile1).ScanNumber());
             }
         }
         return shantens.Min();
@@ -143,14 +144,12 @@ public record ShantenContext(TileList TileList)
     /// <returns>シャンテン数</returns>
     private int ScanNumber2()
     {
-        if (Tile is not NumberTile tile) { throw new InvalidOperationException($"Tile:{Tile}"); }
-
         List<int> shantens = [];
         shantens.Add(RemoveToitsu().ScanNumber());
-        if (tile.TryGetAtDistance(1, out var tile1) && tile.TryGetAtDistance(2, out var tile2) &&
+        if (Tile.TryGetAtDistance(1, out var tile1) && Tile.TryGetAtDistance(2, out var tile2) &&
             TileList.CountOf(tile1) > 0 && TileList.CountOf(tile2) > 0)
         {
-            shantens.Add(RemoveShuntsu().ScanNumber());
+            shantens.Add(RemoveShuntsu(tile1, tile2).ScanNumber());
         }
         return shantens.Min();
     }
@@ -161,33 +160,31 @@ public record ShantenContext(TileList TileList)
     /// <returns>シャンテン数</returns>
     private int ScanNumber3()
     {
-        if (Tile is not NumberTile tile) { throw new InvalidOperationException($"Tile:{Tile}"); }
-
         List<int> shantens = [];
         shantens.Add(RemoveKoutsu().ScanNumber());
         var toitsuRemoved = RemoveToitsu();
-        if (tile.TryGetAtDistance(1, out var tile1) && tile.TryGetAtDistance(2, out var tile2) &&
+        if (Tile.TryGetAtDistance(1, out var tile1) && Tile.TryGetAtDistance(2, out var tile2) &&
             TileList.CountOf(tile1) > 0 && TileList.CountOf(tile2) > 0)
         {
-            shantens.Add(toitsuRemoved.RemoveShuntsu().ScanNumber());
+            shantens.Add(toitsuRemoved.RemoveShuntsu(tile1, tile2).ScanNumber());
         }
         else
         {
-            if (tile.TryGetAtDistance(2, out tile2) &&
+            if (Tile.TryGetAtDistance(2, out tile2) &&
                 toitsuRemoved.TileList.CountOf(tile2) > 0)
             {
-                shantens.Add(toitsuRemoved.RemoveKanchan().ScanNumber());
+                shantens.Add(toitsuRemoved.RemoveKanchan(tile2).ScanNumber());
             }
-            if (tile.TryGetAtDistance(1, out tile1) &&
+            if (Tile.TryGetAtDistance(1, out tile1) &&
                 toitsuRemoved.TileList.CountOf(tile1) > 0)
             {
-                shantens.Add(toitsuRemoved.RemoveRyanmen().ScanNumber());
+                shantens.Add(toitsuRemoved.RemoveRyanmen(tile1).ScanNumber());
             }
         }
-        if (tile.TryGetAtDistance(1, out tile1) && tile.TryGetAtDistance(2, out tile2) &&
+        if (Tile.TryGetAtDistance(1, out tile1) && Tile.TryGetAtDistance(2, out tile2) &&
             TileList.CountOf(tile1) >= 2 && TileList.CountOf(tile2) >= 2)
         {
-            shantens.Add(RemoveShuntsu().RemoveShuntsu().ScanNumber());
+            shantens.Add(RemoveShuntsu(tile1, tile2).RemoveShuntsu(tile1, tile2).ScanNumber());
         }
         return shantens.Min();
     }
@@ -198,41 +195,40 @@ public record ShantenContext(TileList TileList)
     /// <returns>シャンテン数</returns>
     private int ScanNumber4()
     {
-        if (Tile is not NumberTile tile) { throw new InvalidOperationException($"Tile:{Tile}"); }
-
         List<int> shantens = [];
         var koutsuRemoved = RemoveKoutsu();
-        if (tile.TryGetAtDistance(2, out var tile2) &&
+        NumberTile? tile1;
+        if (Tile.TryGetAtDistance(2, out var tile2) &&
             koutsuRemoved.TileList.CountOf(tile2) > 0)
         {
-            if (tile.TryGetAtDistance(1, out var tile1_) &&
-                koutsuRemoved.TileList.CountOf(tile1_) > 0)
+            if (Tile.TryGetAtDistance(1, out tile1) &&
+                koutsuRemoved.TileList.CountOf(tile1) > 0)
             {
-                shantens.Add(koutsuRemoved.RemoveShuntsu().ScanNumber());
+                shantens.Add(koutsuRemoved.RemoveShuntsu(tile1, tile2).ScanNumber());
             }
-            shantens.Add(koutsuRemoved.RemoveKanchan().ScanNumber());
+            shantens.Add(koutsuRemoved.RemoveKanchan(tile2).ScanNumber());
         }
-        if (tile.TryGetAtDistance(1, out var tile1) &&
+        if (Tile.TryGetAtDistance(1, out tile1) &&
             koutsuRemoved.TileList.CountOf(tile1) > 0)
         {
-            shantens.Add(koutsuRemoved.RemoveRyanmen().ScanNumber());
+            shantens.Add(koutsuRemoved.RemoveRyanmen(tile1).ScanNumber());
         }
         shantens.Add(koutsuRemoved.RemoveIsolation().ScanNumber());
         var toitsuRemoved = RemoveToitsu();
-        if (tile.TryGetAtDistance(2, out tile2) &&
+        if (Tile.TryGetAtDistance(2, out tile2) &&
             toitsuRemoved.TileList.CountOf(tile2) > 0)
         {
-            if (tile.TryGetAtDistance(1, out var tile1_) &&
-                toitsuRemoved.TileList.CountOf(tile1_) > 0)
+            if (Tile.TryGetAtDistance(1, out tile1) &&
+                toitsuRemoved.TileList.CountOf(tile1) > 0)
             {
-                shantens.Add(toitsuRemoved.RemoveShuntsu().ScanNumber());
+                shantens.Add(toitsuRemoved.RemoveShuntsu(tile1, tile2).ScanNumber());
             }
-            shantens.Add(toitsuRemoved.RemoveKanchan().ScanNumber());
+            shantens.Add(toitsuRemoved.RemoveKanchan(tile2).ScanNumber());
         }
-        if (tile.TryGetAtDistance(1, out tile1) &&
+        if (Tile.TryGetAtDistance(1, out tile1) &&
             toitsuRemoved.TileList.CountOf(tile1) > 0)
         {
-            shantens.Add(toitsuRemoved.RemoveRyanmen().ScanNumber());
+            shantens.Add(toitsuRemoved.RemoveRyanmen(tile1).ScanNumber());
         }
         return shantens.Min();
     }
@@ -282,17 +278,13 @@ public record ShantenContext(TileList TileList)
     /// 順子を除去した新しいコンテキストを返す
     /// </summary>
     /// <returns>更新されたシャンテンコンテキスト</returns>
-    private ShantenContext RemoveShuntsu()
+    private ShantenContext RemoveShuntsu(NumberTile tile1, NumberTile tile2)
     {
-        if (Tile is NumberTile tile && tile.TryGetAtDistance(1, out var tile1) && tile.TryGetAtDistance(2, out var tile2))
+        return this with
         {
-            return this with
-            {
-                TileList = TileList.Remove([Tile, tile1, tile2]),
-                MentsuCount = MentsuCount + 1,
-            };
-        }
-        else { throw new InvalidOperationException($"Tile:{Tile}"); }
+            TileList = TileList.Remove([Tile, tile1, tile2]),
+            MentsuCount = MentsuCount + 1,
+        };
     }
 
     /// <summary>
@@ -312,34 +304,26 @@ public record ShantenContext(TileList TileList)
     /// 両面を除去した新しいコンテキストを返す
     /// </summary>
     /// <returns>更新されたシャンテンコンテキスト</returns>
-    private ShantenContext RemoveRyanmen()
+    private ShantenContext RemoveRyanmen(NumberTile tile1)
     {
-        if (Tile is NumberTile tile && tile.TryGetAtDistance(1, out var tile1))
+        return this with
         {
-            return this with
-            {
-                TileList = TileList.Remove([Tile, tile1]),
-                TatsuCount = TatsuCount + 1,
-            };
-        }
-        else { throw new InvalidOperationException($"Tile:{Tile}"); }
+            TileList = TileList.Remove([Tile, tile1]),
+            TatsuCount = TatsuCount + 1,
+        };
     }
 
     /// <summary>
     /// 嵌張を除去した新しいコンテキストを返す
     /// </summary>
     /// <returns>更新されたシャンテンコンテキスト</returns>
-    private ShantenContext RemoveKanchan()
+    private ShantenContext RemoveKanchan(NumberTile tile2)
     {
-        if (Tile is NumberTile tile && tile.TryGetAtDistance(2, out var tile2))
+        return this with
         {
-            return this with
-            {
-                TileList = TileList.Remove([Tile, tile2]),
-                TatsuCount = TatsuCount + 1,
-            };
-        }
-        else { throw new InvalidOperationException($"Tile:{Tile}"); }
+            TileList = TileList.Remove([Tile, tile2]),
+            TatsuCount = TatsuCount + 1,
+        };
     }
 
     /// <summary>

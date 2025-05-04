@@ -176,4 +176,139 @@ public class YakuListTests
         Assert.Contains(Yaku.Pinfu, newList);
         Assert.Contains(Yaku.Sanshoku, newList);
     }
+
+    [Fact]
+    public void AddRange_空の役リストに追加_新しい役リストに全ての役が含まれる()
+    {
+        // Arrange
+        var emptyList = new YakuList();
+        var yakus = new List<Yaku> { Yaku.Tanyao, Yaku.Pinfu };
+
+        // Act
+        var result = emptyList.AddRange(yakus);
+
+        // Assert
+        Assert.Empty(emptyList); // 元のリストは不変
+        Assert.Equal(2, result.Count);
+        Assert.Contains(Yaku.Tanyao, result);
+        Assert.Contains(Yaku.Pinfu, result);
+    }
+
+    [Fact]
+    public void AddRange_中身がある役リストに追加_既存と新規の役がすべて含まれる()
+    {
+        // Arrange
+        var initialYakus = new List<Yaku> { Yaku.Tanyao };
+        var yakuList = new YakuList(initialYakus);
+        var additionalYakus = new List<Yaku> { Yaku.Pinfu, Yaku.Sanshoku };
+
+        // Act
+        var result = yakuList.AddRange(additionalYakus);
+
+        // Assert
+        Assert.Single(yakuList); // 元のリストは不変
+        Assert.Equal(3, result.Count);
+        Assert.Contains(Yaku.Tanyao, result);
+        Assert.Contains(Yaku.Pinfu, result);
+        Assert.Contains(Yaku.Sanshoku, result);
+    }
+
+    [Fact]
+    public void AddRange_重複する役を追加_全ての役が含まれる()
+    {
+        // Arrange
+        var yakuList = new YakuList([Yaku.Tanyao]);
+
+        // Act
+        var result = yakuList.Add(Yaku.Tanyao);
+
+        // Assert
+        Assert.Single(yakuList); // 元のリストは不変
+        Assert.Equal(2, result.Count); // 重複も許可される
+        Assert.Equal(2, result.Count(y => y == Yaku.Tanyao));
+    }
+
+    [Fact]
+    public void Equals_同じ役を含む_trueを返す()
+    {
+        // Arrange
+        var yakus1 = new List<Yaku> { Yaku.Tanyao, Yaku.Pinfu };
+        var yakuList1 = new YakuList(yakus1);
+        var yakus2 = new List<Yaku> { Yaku.Tanyao, Yaku.Pinfu };
+        var yakuList2 = new YakuList(yakus2);
+
+        // Act & Assert
+        Assert.True(yakuList1.Equals(yakuList2));
+        Assert.True(yakuList2.Equals(yakuList1));
+        Assert.Equal(yakuList1, yakuList2); // 演算子のテスト
+    }
+
+    [Fact]
+    public void Equals_異なる役を含む_falseを返す()
+    {
+        // Arrange
+        var yakuList1 = new YakuList([Yaku.Tanyao, Yaku.Pinfu]);
+        var yakuList2 = new YakuList([Yaku.Tanyao, Yaku.Sanshoku]);
+
+        // Act & Assert
+        Assert.False(yakuList1.Equals(yakuList2));
+        Assert.False(yakuList2.Equals(yakuList1));
+        Assert.NotEqual(yakuList1, yakuList2); // 演算子のテスト
+    }
+
+    [Fact]
+    public void Equals_順序が異なる_falseを返す()
+    {
+        // Arrange
+        var yakuList1 = new YakuList([Yaku.Tanyao, Yaku.Pinfu]);
+        var yakuList2 = new YakuList([Yaku.Pinfu, Yaku.Tanyao]);
+
+        // Act & Assert
+        Assert.False(yakuList1.Equals(yakuList2));
+        Assert.False(yakuList2.Equals(yakuList1));
+        Assert.NotEqual(yakuList1, yakuList2); // 演算子のテスト
+    }
+
+    [Fact]
+    public void Equals_nullとの比較_falseを返す()
+    {
+        // Arrange
+        var yakuList = new YakuList([Yaku.Tanyao]);
+        YakuList? nullYakuList = null;
+
+        // Act & Assert
+        Assert.False(yakuList.Equals(nullYakuList));
+    }
+
+    [Fact]
+    public void GetHashCode_同じ内容_同じハッシュコードを返す()
+    {
+        // Arrange
+        var yakus1 = new List<Yaku> { Yaku.Tanyao, Yaku.Pinfu };
+        var yakuList1 = new YakuList(yakus1);
+        var yakus2 = new List<Yaku> { Yaku.Tanyao, Yaku.Pinfu };
+        var yakuList2 = new YakuList(yakus2);
+
+        // Act
+        var hashCode1 = yakuList1.GetHashCode();
+        var hashCode2 = yakuList2.GetHashCode();
+
+        // Assert
+        Assert.Equal(hashCode1, hashCode2);
+    }
+
+    [Fact]
+    public void GetHashCode_異なる内容_異なるハッシュコードを返す()
+    {
+        // Arrange
+        var yakuList1 = new YakuList([Yaku.Tanyao, Yaku.Pinfu]);
+        var yakuList2 = new YakuList([Yaku.Tanyao, Yaku.Sanshoku]);
+
+        // Act
+        var hashCode1 = yakuList1.GetHashCode();
+        var hashCode2 = yakuList2.GetHashCode();
+
+        // Assert
+        Assert.NotEqual(hashCode1, hashCode2);
+    }
 }

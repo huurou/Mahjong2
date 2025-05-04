@@ -35,6 +35,11 @@ public record FuList() : IEnumerable<Fu>, IEquatable<FuList>
         fus_ = [.. fus];
     }
 
+    public FuList Add(Fu fu)
+    {
+        return [.. fus_.Add(fu)];
+    }
+
     /// <summary>
     /// 符リストの文字列表現を取得します
     /// 「合計符数 符1,符2,...」の形式で表示します
@@ -55,6 +60,11 @@ public record FuList() : IEnumerable<Fu>, IEquatable<FuList>
         return GetEnumerator();
     }
 
+    /// <summary>
+    /// 指定されたFuListオブジェクトと現在のFuListオブジェクトが等しいかどうかを判断します
+    /// </summary>
+    /// <param name="other">比較対象のFuListオブジェクト</param>
+    /// <returns>指定されたFuListが現在のFuListと等しい場合はtrue、それ以外の場合はfalse</returns>
     public virtual bool Equals(FuList? other)
     {
         if (other is null) { return false; }
@@ -75,8 +85,10 @@ public record FuList() : IEnumerable<Fu>, IEquatable<FuList>
         public static FuList Create(ReadOnlySpan<Fu> values)
         {
             // [.. ]を使用すると無限ループが発生する
+#pragma warning disable IDE0028 // コレクションの初期化を簡略化します
 #pragma warning disable IDE0306 // コレクションの初期化を簡略化します
             return new(values.ToArray());
+#pragma warning restore IDE0028 // コレクションの初期化を簡略化します
 #pragma warning restore IDE0306 // コレクションの初期化を簡略化します
         }
     }

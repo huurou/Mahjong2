@@ -174,10 +174,10 @@ public class FuCalculatorTests
     public void Calc_自風牌雀頭_自風牌雀頭符が加算される()
     {
         // Arrange
-        var hand = new Hand([new(man: "123"), new(man: "456"), new(sou: "123"), new(sou: "678"), new(honor: "tt")]);
+        var hand = new Hand([new(man: "123"), new(man: "456"), new(sou: "123"), new(sou: "678"), new(honor: "ss")]);
         var winTile = Tile.Sou6;
         var winGroup = new TileList(sou: "678");
-        var winSituation = new WinSituation { PlayerWind = Wind.East, RoundWind = Wind.South };
+        var winSituation = new WinSituation { PlayerWind = Wind.West, RoundWind = Wind.South };
 
         // Act
         var actual = FuCalculator.Calc(hand, winTile, winGroup, winSituation: winSituation);
@@ -210,10 +210,10 @@ public class FuCalculatorTests
     public void Calc_客風牌雀頭_雀頭符なし()
     {
         // Arrange
-        var hand = new Hand([new(man: "123"), new(man: "456"), new(sou: "123"), new(sou: "678"), new(honor: "pp")]);
+        var hand = new Hand([new(man: "123"), new(man: "456"), new(sou: "123"), new(sou: "678"), new(honor: "tt")]);
         var winTile = Tile.Sou6;
         var winGroup = new TileList(sou: "678");
-        var winSituation = new WinSituation { PlayerWind = Wind.East, RoundWind = Wind.South };
+        var winSituation = new WinSituation { PlayerWind = Wind.North, RoundWind = Wind.South };
 
         // Act
         var actual = FuCalculator.Calc(hand, winTile, winGroup, winSituation: winSituation);
