@@ -72,7 +72,7 @@ public class IppatsuTests
     }
 
     [Fact]
-    public void Valid_一発とリーチがあり面前の場合_成立する()
+    public void Valid_一発と立直があり面前の場合_成立する()
     {
         // Arrange
         var winSituation = new WinSituation

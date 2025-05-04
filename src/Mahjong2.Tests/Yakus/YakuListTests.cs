@@ -142,4 +142,38 @@ public class YakuListTests
         Assert.Contains(Yaku.Tanyao, enumerated);
         Assert.Contains(Yaku.Pinfu, enumerated);
     }
+
+    [Fact]
+    public void Add_役を追加_新しいYakuListに役が含まれる()
+    {
+        // Arrange
+        var yakuList = new YakuList();
+        var yaku = Yaku.Tanyao;
+
+        // Act
+        var newList = yakuList.Add(yaku);
+
+        // Assert
+        Assert.Empty(yakuList); // 元のリストは不変
+        Assert.Single(newList);
+        Assert.Contains(yaku, newList);
+    }
+
+    [Fact]
+    public void AddRange_複数役を追加_新しいYakuListに全て含まれる()
+    {
+        // Arrange
+        var yakuList = new YakuList();
+        var yakus = new List<Yaku> { Yaku.Tanyao, Yaku.Pinfu, Yaku.Sanshoku };
+
+        // Act
+        var newList = yakuList.AddRange(yakus);
+
+        // Assert
+        Assert.Empty(yakuList); // 元のリストは不変
+        Assert.Equal(3, newList.Count);
+        Assert.Contains(Yaku.Tanyao, newList);
+        Assert.Contains(Yaku.Pinfu, newList);
+        Assert.Contains(Yaku.Sanshoku, newList);
+    }
 }

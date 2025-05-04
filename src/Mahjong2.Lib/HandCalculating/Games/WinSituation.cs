@@ -11,7 +11,7 @@ public record WinSituation
     public bool IsTsumo { get; init; } = false;
 
     /// <summary>
-    /// リーチしているかどうか
+    /// 立直しているかどうか
     /// </summary>
     public bool IsRiichi { get; init; } = false;
 
@@ -41,7 +41,7 @@ public record WinSituation
     public bool IsHoutei { get; init; } = false;
 
     /// <summary>
-    /// ダブルリーチかどうか
+    /// ダブル立直かどうか
     /// </summary>
     public bool IsDoubleRiichi { get; init; } = false;
 

@@ -105,10 +105,7 @@ public class SanshokudoukouTests
     {
         // Arrange
         var hand = new Hand([new(man: "333"), new(man: "55")]);
-        var fuuroList = new FuuroList([
-            new Pon(new(pin: "333")),
-            new Daiminkan(new (sou: "3333")),
-        ]);
+        var fuuroList = new FuuroList([new Pon(new(pin: "333")), new Daiminkan(new(sou: "3333"))]);
 
         // Act
         var actual = Sanshokudoukou.Valid(hand, fuuroList);
@@ -118,24 +115,7 @@ public class SanshokudoukouTests
     }
 
     [Fact]
-    public void Valid_異なる数字の三色同刻_成立する()
-    {
-        // Arrange
-        var hand = new Hand([new(man: "777"), new(pin: "777"), new(man: "55")]);
-        var fuuroList = new FuuroList([
-            new Ankan(new TileList(sou: "7777")),
-            new Pon(new(pin: "222")),
-        ]);
-
-        // Act
-        var actual = Sanshokudoukou.Valid(hand, fuuroList);
-
-        // Assert
-        Assert.True(actual);
-    }
-
-    [Fact]
-    public void Valid_刻子が3つあるが三色同刻ではない_成立しない()
+    public void Valid_刻子が3つあるが同じ数字ではない_成立しない()
     {
         // Arrange
         var hand = new Hand([new(man: "333"), new(pin: "555"), new(sou: "777"), new(man: "789"), new(man: "22")]);

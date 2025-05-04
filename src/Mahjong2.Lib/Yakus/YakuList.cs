@@ -8,7 +8,7 @@ namespace Mahjong2.Lib.Yakus;
 /// 役のコレクションを表現するクラス
 /// </summary>
 [CollectionBuilder(typeof(YakuListBuilder), "Create")]
-public record YakuList() : IEnumerable<Yaku>
+public record YakuList() : IEnumerable<Yaku>, IEquatable<YakuList>
 {
     /// <summary>
     /// 役リストの要素数を取得します
@@ -36,6 +36,16 @@ public record YakuList() : IEnumerable<Yaku>
         yakus_ = [.. yakus];
     }
 
+    public YakuList Add(Yaku yaku)
+    {
+        return [.. yakus_.Add(yaku)];
+    }
+
+    public YakuList AddRange(IEnumerable<Yaku> yakus)
+    {
+        return [.. yakus_.AddRange(yakus)];
+    }
+
     /// <summary>
     /// <see cref="YakuList"/>内の役を反復処理する列挙子を返します
     /// </summary>
@@ -52,6 +62,23 @@ public record YakuList() : IEnumerable<Yaku>
     IEnumerator IEnumerable.GetEnumerator()
     {
         return GetEnumerator();
+    }
+
+    public virtual bool Equals(YakuList? other)
+    {
+        if (other is null) { return false; }
+        if (ReferenceEquals(this, other)) { return true; }
+
+        return yakus_.SequenceEqual(other.yakus_);
+    }
+
+    /// <summary>
+    /// オブジェクトのハッシュコードを計算します
+    /// </summary>
+    /// <returns>このオブジェクトのハッシュコード</returns>
+    public override int GetHashCode()
+    {
+        return yakus_.Aggregate(0, (hash, tile) => hash * 31 + tile.GetHashCode());
     }
 
     /// <summary>

@@ -231,4 +231,64 @@ public class TileMethodTests
         // Assert
         Assert.Equal(expectedOrder, sortedTiles);
     }
+
+    [Theory]
+    [InlineData("Man1", "Man2")]
+    [InlineData("Man2", "Man3")]
+    [InlineData("Man3", "Man4")]
+    [InlineData("Man4", "Man5")]
+    [InlineData("Man5", "Man6")]
+    [InlineData("Man6", "Man7")]
+    [InlineData("Man7", "Man8")]
+    [InlineData("Man8", "Man9")]
+    [InlineData("Man9", "Man1")]
+    [InlineData("Pin1", "Pin2")]
+    [InlineData("Pin2", "Pin3")]
+    [InlineData("Pin3", "Pin4")]
+    [InlineData("Pin4", "Pin5")]
+    [InlineData("Pin5", "Pin6")]
+    [InlineData("Pin6", "Pin7")]
+    [InlineData("Pin7", "Pin8")]
+    [InlineData("Pin8", "Pin9")]
+    [InlineData("Pin9", "Pin1")]
+    [InlineData("Sou1", "Sou2")]
+    [InlineData("Sou2", "Sou3")]
+    [InlineData("Sou3", "Sou4")]
+    [InlineData("Sou4", "Sou5")]
+    [InlineData("Sou5", "Sou6")]
+    [InlineData("Sou6", "Sou7")]
+    [InlineData("Sou7", "Sou8")]
+    [InlineData("Sou8", "Sou9")]
+    [InlineData("Sou9", "Sou1")]
+    [InlineData("Ton", "Nan")]
+    [InlineData("Nan", "Sha")]
+    [InlineData("Sha", "Pei")]
+    [InlineData("Pei", "Ton")]
+    [InlineData("Haku", "Hatsu")]
+    [InlineData("Hatsu", "Chun")]
+    [InlineData("Chun", "Haku")]
+    public void GetActualDora_正しいドラが返る(string indicatorName, string expectedName)
+    {
+        // Arrange
+        var indicator = typeof(Tile).GetProperty(indicatorName)!.GetValue(null) as Tile;
+        var expected = typeof(Tile).GetProperty(expectedName)!.GetValue(null) as Tile;
+
+        // Act
+        var actual = Tile.GetActualDora(indicator!);
+
+        // Assert
+        Assert.Equal(expected, actual);
+    }
+
+    [Fact]
+    public void GetActualDora_不正な牌を渡した場合_例外が発生する()
+    {
+        // Arrange
+        var dummy = new DummyTile();
+
+        // Act & Assert
+        Assert.Throws<ArgumentException>(() => Tile.GetActualDora(dummy));
+    }
+
+    private record DummyTile : Tile { }
 }

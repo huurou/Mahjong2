@@ -246,7 +246,11 @@ public abstract record Tile : IComparable<Tile>
     /// </summary>
     public bool IsRoutou => this is NumberTile numberTile && numberTile.Number is 1 or 9;
 
-    // ドラ表示牌から実際のドラを取得する
+    /// <summary>
+    /// ドラ表示牌から実際のドラを取得する
+    /// </summary>
+    /// <param name="doraIndicator">ドラ表示牌</param>
+    /// <returns>実際のドラ</returns>
     public static Tile GetActualDora(Tile doraIndicator)
     {
         return doraIndicator switch
