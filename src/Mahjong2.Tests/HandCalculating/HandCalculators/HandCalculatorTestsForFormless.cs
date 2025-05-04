@@ -1,7 +1,7 @@
-﻿using Mahjong2.Lib.HandCalculating;
-using Mahjong2.Lib.HandCalculating.Games;
-using Mahjong2.Lib.Tiles;
-using Mahjong2.Lib.Yakus;
+﻿using Mahjong2.Lib.Internals.HandCalculating;
+using Mahjong2.Lib.Internals.HandCalculating.Games;
+using Mahjong2.Lib.Internals.Tiles;
+using Mahjong2.Lib.Internals.Yakus;
 
 namespace Mahjong2.Tests.HandCalculating.HandCalculators;
 
@@ -197,7 +197,7 @@ public class HandCalculatorTestsForFormless
         // Assert
         Assert.Contains(Yaku.Tsuuiisou, actual.YakuList);
     }
-    
+
     [Fact]
     public void Calc_字一色七対子版_成立_役リストに字一色が含まれ七対子は含まれない()
     {

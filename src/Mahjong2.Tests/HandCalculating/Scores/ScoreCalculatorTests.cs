@@ -1,5 +1,5 @@
-using Mahjong2.Lib.HandCalculating.Games;
-using Mahjong2.Lib.HandCalculating.Scores;
+using Mahjong2.Lib.Internals.HandCalculating.Games;
+using Mahjong2.Lib.Internals.HandCalculating.Scores;
 
 namespace Mahjong2.Tests.HandCalculating.Scores;
 

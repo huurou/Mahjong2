@@ -1,4 +1,4 @@
-using Mahjong2.Lib.Fus;
+using Mahjong2.Lib.Internals.Fus;
 using System.Collections;
 
 namespace Mahjong2.Tests.Fus;

@@ -1,7 +1,7 @@
-﻿using Mahjong2.Lib.HandCalculating;
-using Mahjong2.Lib.HandCalculating.Games;
-using Mahjong2.Lib.Tiles;
-using Mahjong2.Lib.Yakus;
+﻿using Mahjong2.Lib.Internals.HandCalculating;
+using Mahjong2.Lib.Internals.HandCalculating.Games;
+using Mahjong2.Lib.Internals.Tiles;
+using Mahjong2.Lib.Internals.Yakus;
 
 namespace Mahjong2.Tests.HandCalculating.HandCalculators;
 
@@ -87,7 +87,7 @@ public class HandCalculatorTestsForKokushimusou
         // Arrange
         var tileList = new TileList(man: "19", pin: "19", sou: "19", honor: "ttnsphrc");
         var winTile = Tile.Man1;
-        var winSituation = new WinSituation { IsRenhou = true, IsTsumo = false , PlayerWind = Wind.South };
+        var winSituation = new WinSituation { IsRenhou = true, IsTsumo = false, PlayerWind = Wind.South };
         var gameRules = new GameRules { RenhouAsYakumanEnabled = false };
 
         // Act

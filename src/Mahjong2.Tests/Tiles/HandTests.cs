@@ -1,5 +1,5 @@
-using Mahjong2.Lib.Fuuros;
-using Mahjong2.Lib.Tiles;
+using Mahjong2.Lib.Internals.Fuuros;
+using Mahjong2.Lib.Internals.Tiles;
 
 namespace Mahjong2.Tests.Tiles;
 
@@ -82,7 +82,7 @@ public class HandTests
         // Arrange
         var tileList1 = new TileList(man: "123");
         var tileList2 = new TileList(pin: "456");
-        
+
         // Act
         var hand = Hand.HandBuilder.Create([tileList1, tileList2]);
 

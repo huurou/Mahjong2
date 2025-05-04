@@ -1,5 +1,5 @@
-using Mahjong2.Lib.Shantens;
-using Mahjong2.Lib.Tiles;
+using Mahjong2.Lib.Internals.Shantens;
+using Mahjong2.Lib.Internals.Tiles;
 
 namespace Mahjong2.Tests.Shantens;
 

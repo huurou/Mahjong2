@@ -1,5 +1,5 @@
-using Mahjong2.Lib.Tiles;
-using Mahjong2.Lib.Tiles.NumberTiles;
+using Mahjong2.Lib.Internals.Tiles;
+using Mahjong2.Lib.Internals.Tiles.NumberTiles;
 
 namespace Mahjong2.Tests.Tiles;
 

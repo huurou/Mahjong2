@@ -1,4 +1,4 @@
-using Mahjong2.Lib.HandCalculating.HandDeviding;
+using Mahjong2.Lib.Internals.HandCalculating.HandDeviding;
 
 namespace Mahjong2.Tests.HandCalculating.HandDeviding
 {

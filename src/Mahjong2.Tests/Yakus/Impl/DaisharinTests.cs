@@ -1,6 +1,6 @@
-using Mahjong2.Lib.HandCalculating.Games;
-using Mahjong2.Lib.Tiles;
-using Mahjong2.Lib.Yakus.Impl;
+using Mahjong2.Lib.Internals.HandCalculating.Games;
+using Mahjong2.Lib.Internals.Yakus.Impl;
+using Mahjong2.Lib.Internals.Tiles;
 
 namespace Mahjong2.Tests.Yakus.Impl;
 

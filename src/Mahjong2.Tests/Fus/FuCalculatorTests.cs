@@ -1,7 +1,7 @@
-using Mahjong2.Lib.Fus;
-using Mahjong2.Lib.Fuuros;
-using Mahjong2.Lib.HandCalculating.Games;
-using Mahjong2.Lib.Tiles;
+using Mahjong2.Lib.Internals.Fus;
+using Mahjong2.Lib.Internals.Fuuros;
+using Mahjong2.Lib.Internals.HandCalculating.Games;
+using Mahjong2.Lib.Internals.Tiles;
 
 namespace Mahjong2.Tests.Fus;
 
@@ -408,7 +408,7 @@ public class FuCalculatorTests
         var hand = new Hand([new(man: "123"), new(man: "456"), new(pin: "456"), new(sou: "66")]);
         var winTile = Tile.Pin6;
         var winGroup = new TileList(pin: "456");
-        var fuuroList = new FuuroList([new Lib.Fuuros.Ankan(new(pin: "2222"))]);
+        var fuuroList = new FuuroList([new Lib.Internals.Fuuros.Ankan(new(pin: "2222"))]);
 
         // Act
         var actual = FuCalculator.Calc(hand, winTile, winGroup, fuuroList);
@@ -426,7 +426,7 @@ public class FuCalculatorTests
         var hand = new Hand([new(man: "123"), new(man: "456"), new(pin: "456"), new(sou: "66")]);
         var winTile = Tile.Pin6;
         var winGroup = new TileList(pin: "456");
-        var fuuroList = new FuuroList([new Lib.Fuuros.Ankan(new(honor: "cccc"))]);
+        var fuuroList = new FuuroList([new Lib.Internals.Fuuros.Ankan(new(honor: "cccc"))]);
 
         // Act
         var actual = FuCalculator.Calc(hand, winTile, winGroup, fuuroList);

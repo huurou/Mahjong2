@@ -1,5 +1,5 @@
-using Mahjong2.Lib.Fuuros;
-using Mahjong2.Lib.Tiles;
+using Mahjong2.Lib.Internals.Fuuros;
+using Mahjong2.Lib.Internals.Tiles;
 
 namespace Mahjong2.Tests.Fuuros;
 

@@ -1,4 +1,4 @@
-using Mahjong2.Lib.Yakus.Impl;
+using Mahjong2.Lib.Internals.Yakus.Impl;
 
 namespace Mahjong2.Tests.Yakus.Impl;
 
