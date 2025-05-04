@@ -5,7 +5,7 @@ namespace Mahjong2.Lib.Tiles.NumberTiles;
 /// <summary>
 /// 萬子
 /// </summary>
-public abstract record ManTile : NumberTile
+internal abstract record ManTile : NumberTile
 {
     /// <summary>
     /// 数字から対応する萬子を取得します
@@ -81,63 +81,63 @@ public abstract record ManTile : NumberTile
 /// <summary>
 /// 一萬
 /// </summary>
-public record Man1() : ManTile
+internal record Man1() : ManTile
 {
     public override int Number => 1;
 }
 /// <summary>
 /// 二萬
 /// </summary>
-public record Man2() : ManTile
+internal record Man2() : ManTile
 {
     public override int Number => 2;
 }
 /// <summary>
 /// 三萬
 /// </summary>
-public record Man3() : ManTile
+internal record Man3() : ManTile
 {
     public override int Number => 3;
 }
 /// <summary>
 /// 四萬
 /// </summary>
-public record Man4() : ManTile
+internal record Man4() : ManTile
 {
     public override int Number => 4;
 }
 /// <summary>
 /// 五萬
 /// </summary>
-public record Man5() : ManTile
+internal record Man5() : ManTile
 {
     public override int Number => 5;
 }
 /// <summary>
 /// 六萬
 /// </summary>
-public record Man6() : ManTile
+internal record Man6() : ManTile
 {
     public override int Number => 6;
 }
 /// <summary>
 /// 七萬
 /// </summary>
-public record Man7() : ManTile
+internal record Man7() : ManTile
 {
     public override int Number => 7;
 }
 /// <summary>
 /// 八萬
 /// </summary>
-public record Man8() : ManTile
+internal record Man8() : ManTile
 {
     public override int Number => 8;
 }
 /// <summary>
 /// 九萬
 /// </summary>
-public record Man9() : ManTile
+internal record Man9() : ManTile
 {
     public override int Number => 9;
 }

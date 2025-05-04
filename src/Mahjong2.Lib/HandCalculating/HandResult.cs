@@ -15,7 +15,7 @@ namespace Mahjong2.Lib.HandCalculating;
 /// <param name="YakuList">役のリスト</param>
 /// <param name="FuList">符のリスト</param>
 /// <param name="ErrorMessage">エラーメッセージ</param>
-public record HandResult(int Fu, int Han, Score Score, YakuList YakuList, FuList FuList, string? ErrorMessage)
+internal record HandResult(int Fu, int Han, Score Score, YakuList YakuList, FuList FuList, string? ErrorMessage)
 {
     public static HandResult Create(YakuList yakuList, FuList? fuList = null, FuuroList? fuuroList = null, WinSituation? winSituation = null, GameRules? gameRules = null)
     {

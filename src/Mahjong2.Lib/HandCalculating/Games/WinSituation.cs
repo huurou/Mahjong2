@@ -3,7 +3,7 @@
 /// <summary>
 /// 和了時の状況
 /// </summary>
-public record WinSituation
+internal record WinSituation
 {
     /// <summary>
     /// ツモアガリかどうか

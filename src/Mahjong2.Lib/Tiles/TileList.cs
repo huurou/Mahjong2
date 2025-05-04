@@ -10,7 +10,7 @@ namespace Mahjong2.Lib.Tiles;
 /// 牌の集合を表現するクラス
 /// </summary>
 [CollectionBuilder(typeof(TileListBuilder), "Create")]
-public record TileList() : IEnumerable<Tile>, IComparable<TileList>, IEquatable<TileList>
+internal record TileList() : IEnumerable<Tile>, IComparable<TileList>, IEquatable<TileList>
 {
     /// <summary>
     /// 全ての牌が萬子かどうか
@@ -318,7 +318,7 @@ public record TileList() : IEnumerable<Tile>, IComparable<TileList>, IEquatable<
         return string.Join("", this);
     }
 
-    public static class TileListBuilder
+    internal static class TileListBuilder
     {
         /// <summary>
         /// 指定された牌の配列から新しいTileListを作成します

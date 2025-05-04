@@ -3,7 +3,7 @@
 /// <summary>
 /// 点数に関わるルール
 /// </summary>
-public record GameRules
+internal record GameRules
 {
     /// <summary>
     /// 喰いタンあり/なし

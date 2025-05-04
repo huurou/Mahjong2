@@ -9,7 +9,7 @@ namespace Mahjong2.Lib.Fuuros;
 /// 副露の集合を表現するクラス
 /// </summary>
 [CollectionBuilder(typeof(FuuroListBuilder), "Create")]
-public record FuuroList() : IEnumerable<Fuuro>
+internal record FuuroList() : IEnumerable<Fuuro>
 {
     public int Count => fuuros_.Count;
     /// <summary>
@@ -67,7 +67,7 @@ public record FuuroList() : IEnumerable<Fuuro>
     /// <summary>
     /// 副露リストを構築するためのビルダークラス
     /// </summary>
-    public static class FuuroListBuilder
+    internal static class FuuroListBuilder
     {
         /// <summary>
         /// 指定された副露の配列から副露リストを作成します

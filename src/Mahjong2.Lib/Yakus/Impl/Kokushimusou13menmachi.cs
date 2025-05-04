@@ -5,7 +5,7 @@ namespace Mahjong2.Lib.Yakus.Impl;
 /// <summary>
 /// 国士無双十三面待ち
 /// </summary>
-public record Kokushimusou13menmachi : Yaku
+internal record Kokushimusou13menmachi : Yaku
 {
     public override int Number => 45;
     public override string Name => "国士無双十三面待ち";

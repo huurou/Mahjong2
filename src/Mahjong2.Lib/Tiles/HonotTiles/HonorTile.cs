@@ -5,7 +5,7 @@ namespace Mahjong2.Lib.Tiles.HonotTiles;
 /// <summary>
 /// 字牌
 /// </summary>
-public abstract record HonorTile : Tile, IComparable<HonorTile>
+internal abstract record HonorTile : Tile, IComparable<HonorTile>
 {
     /// <summary>
     /// 文字から字牌に変換を試みます

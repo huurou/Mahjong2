@@ -5,7 +5,7 @@ namespace Mahjong2.Lib.Tiles.NumberTiles;
 /// <summary>
 /// 筒子
 /// </summary>
-public abstract record PinTile : NumberTile
+internal abstract record PinTile : NumberTile
 {
     /// <summary>
     /// 数字から対応する筒子を取得します
@@ -69,63 +69,63 @@ public abstract record PinTile : NumberTile
 /// <summary>
 /// 一筒
 /// </summary>
-public record Pin1() : PinTile
+internal record Pin1() : PinTile
 {
     public override int Number => 1;
 }
 /// <summary>
 /// 二筒
 /// </summary>
-public record Pin2() : PinTile
+internal record Pin2() : PinTile
 {
     public override int Number => 2;
 }
 /// <summary>
 /// 三筒
 /// </summary>
-public record Pin3() : PinTile
+internal record Pin3() : PinTile
 {
     public override int Number => 3;
 }
 /// <summary>
 /// 四筒
 /// </summary>
-public record Pin4() : PinTile
+internal record Pin4() : PinTile
 {
     public override int Number => 4;
 }
 /// <summary>
 /// 五筒
 /// </summary>
-public record Pin5() : PinTile
+internal record Pin5() : PinTile
 {
     public override int Number => 5;
 }
 /// <summary>
 /// 六筒
 /// </summary>
-public record Pin6() : PinTile
+internal record Pin6() : PinTile
 {
     public override int Number => 6;
 }
 /// <summary>
 /// 七筒
 /// </summary>
-public record Pin7() : PinTile
+internal record Pin7() : PinTile
 {
     public override int Number => 7;
 }
 /// <summary>
 /// 八筒
 /// </summary>
-public record Pin8() : PinTile
+internal record Pin8() : PinTile
 {
     public override int Number => 8;
 }
 /// <summary>
 /// 九筒
 /// </summary>
-public record Pin9() : PinTile
+internal record Pin9() : PinTile
 {
     public override int Number => 9;
 }

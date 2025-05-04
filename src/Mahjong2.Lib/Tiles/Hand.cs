@@ -7,7 +7,7 @@ namespace Mahjong2.Lib.Tiles;
 /// 晒していない手牌 <see cref="TileListList"/>のラッパー
 /// </summary>
 [CollectionBuilder(typeof(HandBuilder), "Create")]
-public record Hand : TileListList
+internal record Hand : TileListList
 {
     /// <summary>
     /// 空の手牌を作成します
@@ -42,7 +42,7 @@ public record Hand : TileListList
     /// <summary>
     /// <see cref="HandBuilder"/>のコレクションビルダーを提供するクラスです
     /// </summary>
-    public static class HandBuilder
+    internal static class HandBuilder
     {
         /// <summary>
         /// 指定した<see cref="TileList"/>の配列から新しい<see cref="HandBuilder"/>を作成します

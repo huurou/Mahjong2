@@ -7,4 +7,4 @@
 /// </summary>
 /// <param name="Main">ツモ: 親の点数 ロン:手の点数</param>
 /// <param name="Sub">ツモ: 子の点数 ロン:なし</param>
-public record Score(int Main, int Sub = 0);
+internal record Score(int Main, int Sub = 0);

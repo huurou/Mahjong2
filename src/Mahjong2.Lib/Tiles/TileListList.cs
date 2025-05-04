@@ -8,7 +8,7 @@ namespace Mahjong2.Lib.Tiles;
 /// 牌の集合の集合を表現するクラス
 /// </summary>
 [CollectionBuilder(typeof(TileListListBuilder), "Create")]
-public record TileListList() : IEnumerable<TileList>, IEquatable<TileListList>, IComparable<TileListList>
+internal record TileListList() : IEnumerable<TileList>, IEquatable<TileListList>, IComparable<TileListList>
 {
     /// <summary>
     /// 要素数を取得します
@@ -109,7 +109,7 @@ public record TileListList() : IEnumerable<TileList>, IEquatable<TileListList>, 
     /// <summary>
     /// TileListListのコレクションビルダーを提供するクラスです
     /// </summary>
-    public static class TileListListBuilder
+    internal static class TileListListBuilder
     {
         /// <summary>
         /// 指定した牌リストの配列から新しい<see cref="TileListList"/>を作成します

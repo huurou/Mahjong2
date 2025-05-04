@@ -1,6 +1,6 @@
 ﻿namespace Mahjong2.Lib.HandCalculating.HandDeviding;
 
-public static class Combinatorics
+internal static class Combinatorics
 {
     /// <summary>
     /// source の要素から長さ k の順列 (k-permutations) を遅延生成します。

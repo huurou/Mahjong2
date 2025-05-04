@@ -6,7 +6,7 @@ namespace Mahjong2.Lib.Yakus.Impl;
 /// <summary>
 /// 字一色
 /// </summary>
-public record Tsuuiisou : Yaku
+internal record Tsuuiisou : Yaku
 {
     public override int Number => 41;
     public override string Name => "字一色";

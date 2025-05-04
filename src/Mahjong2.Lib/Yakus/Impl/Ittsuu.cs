@@ -7,7 +7,7 @@ namespace Mahjong2.Lib.Yakus.Impl;
 /// <summary>
 /// 一気通貫
 /// </summary>
-public record Ittsuu : Yaku
+internal record Ittsuu : Yaku
 {
     public override int Number => 20;
     public override string Name => "一気通貫";

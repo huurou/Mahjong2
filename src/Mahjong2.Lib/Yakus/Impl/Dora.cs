@@ -3,7 +3,7 @@ namespace Mahjong2.Lib.Yakus.Impl;
 /// <summary>
 /// ドラ
 /// </summary>
-public record Dora : Yaku
+internal record Dora : Yaku
 {
     public override int Number => 51;
     public override string Name => "ドラ";

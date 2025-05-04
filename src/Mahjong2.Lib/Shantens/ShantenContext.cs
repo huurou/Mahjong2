@@ -7,7 +7,7 @@ namespace Mahjong2.Lib.Shantens;
 /// シャンテン数計算のためのコンテキスト
 /// </summary>
 /// <param name="TileList">計算対象の牌リスト</param>
-public record ShantenContext(TileList TileList)
+internal record ShantenContext(TileList TileList)
 {
     /// <summary>
     /// 現在処理中の牌

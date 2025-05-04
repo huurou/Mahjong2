@@ -10,7 +10,7 @@ namespace Mahjong2.Lib.Shantens;
 /// 雀頭や面子、塔子などに含まれない牌を管理します。
 /// </summary>
 [CollectionBuilder(typeof(IsolationSetBuilder), "Create")]
-public record IsolationSet() : IEnumerable<Tile>
+internal record IsolationSet() : IEnumerable<Tile>
 {
     /// <summary>
     /// 要素数を取得します。
@@ -49,7 +49,7 @@ public record IsolationSet() : IEnumerable<Tile>
     /// <summary>
     /// IsolationSetのコレクションビルダーを提供するクラスです。
     /// </summary>
-    public static class IsolationSetBuilder
+    internal static class IsolationSetBuilder
     {
         /// <summary>
         /// ReadOnlySpanからIsolationSetを作成します。

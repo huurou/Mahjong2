@@ -5,7 +5,7 @@ namespace Mahjong2.Lib.Shantens;
 /// <summary>
 /// 手牌のシャンテン数を計算するクラス
 /// </summary>
-public static class ShantenCalculator
+internal static class ShantenCalculator
 {
     /// <summary>
     /// 和了を表すシャンテン数

@@ -5,7 +5,7 @@ namespace Mahjong2.Lib.Yakus;
 /// <summary>
 /// 役を表現するクラス
 /// </summary>
-public abstract record Yaku : IComparable<Yaku>
+internal abstract record Yaku : IComparable<Yaku>
 {
     #region シングルトンプロパティ
 

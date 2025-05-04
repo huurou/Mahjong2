@@ -7,7 +7,7 @@ namespace Mahjong2.Lib.Tiles;
 /// <summary>
 /// 牌を表現するクラス
 /// </summary>
-public abstract record Tile : IComparable<Tile>
+internal abstract record Tile : IComparable<Tile>
 {
     #region シングルトンプロパティ
 

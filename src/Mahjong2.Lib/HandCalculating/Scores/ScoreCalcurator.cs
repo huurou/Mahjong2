@@ -5,7 +5,7 @@ namespace Mahjong2.Lib.HandCalculating.Scores;
 /// <summary>
 /// 麻雀の点数計算を行うクラス
 /// </summary>
-public static class ScoreCalculator
+internal static class ScoreCalculator
 {
     /// <summary>
     /// 基本満貫点

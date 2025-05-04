@@ -5,7 +5,7 @@ namespace Mahjong2.Lib.Tiles.HonotTiles;
 /// <summary>
 /// 風牌
 /// </summary>
-public abstract record WindTile : HonorTile, IComparable<WindTile>
+internal abstract record WindTile : HonorTile, IComparable<WindTile>
 {
     /// <summary>
     /// 文字から風牌に変換を試みます
@@ -71,16 +71,16 @@ public abstract record WindTile : HonorTile, IComparable<WindTile>
 /// <summary>
 /// 東
 /// </summary>
-public record Ton() : WindTile;
+internal record Ton() : WindTile;
 /// <summary>
 /// 南
 /// </summary>
-public record Nan() : WindTile;
+internal record Nan() : WindTile;
 /// <summary>
 /// 西
 /// </summary>
-public record Sha() : WindTile;
+internal record Sha() : WindTile;
 /// <summary>
 /// 北
 /// </summary>
-public record Pei() : WindTile;
+internal record Pei() : WindTile;

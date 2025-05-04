@@ -6,7 +6,7 @@ using Mahjong2.Lib.Tiles.NumberTiles;
 
 namespace Mahjong2.Lib.Fus;
 
-public static class FuCalculator
+internal static class FuCalculator
 {
     public static FuList Calc(
         Hand hand,

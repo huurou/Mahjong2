@@ -13,7 +13,7 @@ namespace Mahjong2.Lib.HandCalculating;
 /// <summary>
 /// 麻雀の手牌から役と点数の計算を行います
 /// </summary>
-public static class HandCalculator
+internal static class HandCalculator
 {
     /// <summary>
     /// 手牌・状況・ルールをもとに和了結果を計算します。

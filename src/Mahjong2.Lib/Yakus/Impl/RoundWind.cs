@@ -8,7 +8,7 @@ namespace Mahjong2.Lib.Yakus.Impl;
 /// <summary>
 /// 場風牌
 /// </summary>
-public record RoundWind : Yaku
+internal record RoundWind : Yaku
 {
     public override int Number => 18;
     public override string Name => "場風牌";

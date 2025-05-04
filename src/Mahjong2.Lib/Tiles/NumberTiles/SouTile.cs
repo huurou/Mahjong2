@@ -5,7 +5,7 @@ namespace Mahjong2.Lib.Tiles.NumberTiles;
 /// <summary>
 /// 索子
 /// </summary>
-public abstract record SouTile : NumberTile
+internal abstract record SouTile : NumberTile
 {
     /// <summary>
     /// 数字から対応する索子を取得します
@@ -69,63 +69,63 @@ public abstract record SouTile : NumberTile
 /// <summary>
 /// 一索
 /// </summary>
-public record Sou1() : SouTile
+internal record Sou1() : SouTile
 {
     public override int Number => 1;
 }
 /// <summary>
 /// 二索
 /// </summary>
-public record Sou2() : SouTile
+internal record Sou2() : SouTile
 {
     public override int Number => 2;
 }
 /// <summary>
 /// 三索
 /// </summary>
-public record Sou3() : SouTile
+internal record Sou3() : SouTile
 {
     public override int Number => 3;
 }
 /// <summary>
 /// 四索
 /// </summary>
-public record Sou4() : SouTile
+internal record Sou4() : SouTile
 {
     public override int Number => 4;
 }
 /// <summary>
 /// 五索
 /// </summary>
-public record Sou5() : SouTile
+internal record Sou5() : SouTile
 {
     public override int Number => 5;
 }
 /// <summary>
 /// 六索
 /// </summary>
-public record Sou6() : SouTile
+internal record Sou6() : SouTile
 {
     public override int Number => 6;
 }
 /// <summary>
 /// 七索
 /// </summary>
-public record Sou7() : SouTile
+internal record Sou7() : SouTile
 {
     public override int Number => 7;
 }
 /// <summary>
 /// 八索
 /// </summary>
-public record Sou8() : SouTile
+internal record Sou8() : SouTile
 {
     public override int Number => 8;
 }
 /// <summary>
 /// 九索
 /// </summary>
-public record Sou9() : SouTile
+internal record Sou9() : SouTile
 {
     public override int Number => 9;
 }

@@ -6,7 +6,7 @@ namespace Mahjong2.Lib.Tiles.NumberTiles;
 /// 数牌
 /// </summary>
 /// <param name="Number">絵柄の数字</param>
-public abstract record NumberTile : Tile, IComparable<NumberTile>
+internal abstract record NumberTile : Tile, IComparable<NumberTile>
 {
     public abstract int Number { get; }
 

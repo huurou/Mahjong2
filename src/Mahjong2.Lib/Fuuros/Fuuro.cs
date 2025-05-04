@@ -6,7 +6,7 @@ namespace Mahjong2.Lib.Fuuros;
 /// 副露を表現するクラス
 /// </summary>
 /// <param name="TileList">副露を構成する牌のリスト</param>
-public abstract record Fuuro(TileList TileList)
+internal abstract record Fuuro(TileList TileList)
 {
     /// <summary>
     /// チーかどうか
@@ -50,7 +50,7 @@ public abstract record Fuuro(TileList TileList)
 /// チー
 /// </summary>
 /// <param name="TileList"></param>
-public record Chi : Fuuro
+internal record Chi : Fuuro
 {
     public Chi(TileList tileList) : base(tileList)
     {
@@ -77,7 +77,7 @@ public record Chi : Fuuro
 /// ポン
 /// </summary>
 /// <param name="TileList"></param>
-public record Pon : Fuuro
+internal record Pon : Fuuro
 {
     public Pon(TileList tileList) : base(tileList)
     {
@@ -104,7 +104,7 @@ public record Pon : Fuuro
 /// 槓
 /// </summary>
 /// <param name="TileList"></param>
-public abstract record Kan : Fuuro
+internal abstract record Kan : Fuuro
 {
     public Kan(TileList tileList) : base(tileList)
     {
@@ -120,7 +120,7 @@ public abstract record Kan : Fuuro
 /// 暗槓
 /// </summary>
 /// <param name="TileList"></param>
-public record Ankan(TileList TileList) : Kan(TileList)
+internal record Ankan(TileList TileList) : Kan(TileList)
 {
     public override bool IsAnkan => true;
     public override bool IsMinkan => false;
@@ -138,7 +138,7 @@ public record Ankan(TileList TileList) : Kan(TileList)
 /// 明槓
 /// </summary>
 /// <param name="TileList"></param>
-public abstract record Minkan(TileList TileList) : Kan(TileList)
+internal abstract record Minkan(TileList TileList) : Kan(TileList)
 {
     public override bool IsAnkan => false;
     public override bool IsMinkan => true;
@@ -149,7 +149,7 @@ public abstract record Minkan(TileList TileList) : Kan(TileList)
 /// 大明槓
 /// </summary>
 /// <param name="TileList"></param>
-public record Daiminkan(TileList TileList) : Minkan(TileList)
+internal record Daiminkan(TileList TileList) : Minkan(TileList)
 {
     public override bool IsDaiminkan => true;
     public override bool IsShouminkan => false;
@@ -164,7 +164,7 @@ public record Daiminkan(TileList TileList) : Minkan(TileList)
 /// 小明槓
 /// </summary>
 /// <param name="TileList"></param>
-public record Shouminkan(TileList TileList) : Minkan(TileList)
+internal record Shouminkan(TileList TileList) : Minkan(TileList)
 {
     public override bool IsDaiminkan => false;
     public override bool IsShouminkan => true;
@@ -179,7 +179,7 @@ public record Shouminkan(TileList TileList) : Minkan(TileList)
 /// 抜き
 /// </summary>
 /// <param name="TileList"></param>
-public record Nuki(TileList TileList) : Fuuro(TileList)
+internal record Nuki(TileList TileList) : Fuuro(TileList)
 {
     public override bool IsChi => false;
     public override bool IsPon => false;

@@ -5,7 +5,7 @@ namespace Mahjong2.Lib.Tiles.HonotTiles;
 /// <summary>
 /// 三元牌
 /// </summary>
-public abstract record DragonTile : HonorTile, IComparable<DragonTile>
+internal abstract record DragonTile : HonorTile, IComparable<DragonTile>
 {
     /// <summary>
     /// 文字から三元牌に変換を試みます
@@ -68,12 +68,12 @@ public abstract record DragonTile : HonorTile, IComparable<DragonTile>
 /// <summary>
 /// 白
 /// </summary>
-public record Haku() : DragonTile;
+internal record Haku() : DragonTile;
 /// <summary>
 /// 發
 /// </summary>
-public record Hatsu() : DragonTile;
+internal record Hatsu() : DragonTile;
 /// <summary>
 /// 中
 /// </summary>
-public record Chun() : DragonTile;
+internal record Chun() : DragonTile;

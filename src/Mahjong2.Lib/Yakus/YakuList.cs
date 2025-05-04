@@ -8,7 +8,7 @@ namespace Mahjong2.Lib.Yakus;
 /// 役のコレクションを表現するクラス
 /// </summary>
 [CollectionBuilder(typeof(YakuListBuilder), "Create")]
-public record YakuList() : IEnumerable<Yaku>, IEquatable<YakuList>
+internal record YakuList() : IEnumerable<Yaku>, IEquatable<YakuList>
 {
     /// <summary>
     /// 役リストの要素数を取得します
@@ -108,7 +108,7 @@ public record YakuList() : IEnumerable<Yaku>, IEquatable<YakuList>
     /// <summary>
     /// YakuListのビルダークラス
     /// </summary>
-    public static class YakuListBuilder
+    internal static class YakuListBuilder
     {
         /// <summary>
         /// 指定された役の配列から新しい<see cref="YakuList"/>を作成します
