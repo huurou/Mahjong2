@@ -89,7 +89,7 @@ public class ChunTests
     {
         // Arrange
         var hand = new Hand([new(pin: "11"), new(man: "234"), new(sou: "234")]);
-        var fuuroList = new FuuroList([new Daiminkan(new TileList(honor: "cccc"))]);
+        var fuuroList = new FuuroList([new Minkan(new TileList(honor: "cccc"))]);
 
         // Act
         var actual = Chun.Valid(hand, fuuroList);

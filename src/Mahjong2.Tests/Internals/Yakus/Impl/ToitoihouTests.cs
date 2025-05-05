@@ -91,7 +91,7 @@ public class ToitoihouTests
     {
         // Arrange
         var hand = new Hand([new(man: "11"), new(pin: "333"), new(sou: "333")]);
-        var fuuroList = new FuuroList([new Daiminkan(new(honor: "tttt")), new Pon(new(honor: "ccc"))]);
+        var fuuroList = new FuuroList([new Minkan(new(honor: "tttt")), new Pon(new(honor: "ccc"))]);
 
         // Act
         var actual = Toitoihou.Valid(hand, fuuroList);

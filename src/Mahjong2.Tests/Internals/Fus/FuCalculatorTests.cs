@@ -40,7 +40,7 @@ public class FuCalculatorTests
         var actual = FuCalculator.Calc(hand, winTile, winGroup, fuuroList);
 
         // Assert
-        var expected = new FuList([Fu.FuteiOpenPinfu]);
+        var expected = new FuList([Fu.FuteiOpenPinfuFu]);
         Assert.Equal(expected, actual);
         Assert.Equal(30, actual.Total);
     }
@@ -58,7 +58,7 @@ public class FuCalculatorTests
         var actual = FuCalculator.Calc(hand, winTile, winGroup, winSituation: winSituation);
 
         // Assert
-        var expected = new FuList([Fu.Futei, Fu.TsumoFu, Fu.AnkoChuchan]);
+        var expected = new FuList([Fu.FuteiFu, Fu.TsumoFu, Fu.AnkoChuchanFu]);
         Assert.Equal(expected, actual);
         Assert.Equal(30, actual.Total);
     }
@@ -76,7 +76,7 @@ public class FuCalculatorTests
         var actual = FuCalculator.Calc(hand, winTile, winGroup, winSituation: winSituation);
 
         // Assert
-        var expected = new FuList([Fu.Futei]);
+        var expected = new FuList([Fu.FuteiFu]);
         Assert.Equal(expected, actual);
         Assert.Equal(20, actual.Total);
     }
@@ -95,7 +95,7 @@ public class FuCalculatorTests
         var actual = FuCalculator.Calc(hand, winTile, winGroup, winSituation: winSituation, gameRules: gameRules);
 
         // Assert
-        var expected = new FuList([Fu.Futei, Fu.TsumoFu]);
+        var expected = new FuList([Fu.FuteiFu, Fu.TsumoFu]);
         Assert.Equal(expected, actual);
         Assert.Equal(30, actual.Total);
     }
@@ -112,7 +112,7 @@ public class FuCalculatorTests
         var actual = FuCalculator.Calc(hand, winTile, winGroup);
 
         // Assert
-        var expected = new FuList([Fu.Futei, Fu.MenzenFu, Fu.WaitPenchan]);
+        var expected = new FuList([Fu.FuteiFu, Fu.MenzenFu, Fu.WaitPenchanFu]);
         Assert.Equal(expected, actual);
         Assert.Equal(40, actual.Total);
     }
@@ -129,7 +129,7 @@ public class FuCalculatorTests
         var actual = FuCalculator.Calc(hand, winTile, winGroup);
 
         // Assert
-        var expected = new FuList([Fu.Futei, Fu.MenzenFu, Fu.WaitPenchan]);
+        var expected = new FuList([Fu.FuteiFu, Fu.MenzenFu, Fu.WaitPenchanFu]);
         Assert.Equal(expected, actual);
         Assert.Equal(40, actual.Total);
     }
@@ -147,7 +147,7 @@ public class FuCalculatorTests
         var actual = FuCalculator.Calc(hand, winTile, winGroup, winSituation: winSituation);
 
         // Assert
-        var expected = new FuList([Fu.Futei, Fu.MenzenFu, Fu.WaitKanchan]);
+        var expected = new FuList([Fu.FuteiFu, Fu.MenzenFu, Fu.WaitKanchanFu]);
         Assert.Equal(expected, actual);
         Assert.Equal(40, actual.Total);
     }
@@ -165,7 +165,7 @@ public class FuCalculatorTests
         var actual = FuCalculator.Calc(hand, winTile, winGroup, winSituation: winSituation);
 
         // Assert
-        var expected = new FuList([Fu.Futei, Fu.MenzenFu, Fu.WaitTanki]);
+        var expected = new FuList([Fu.FuteiFu, Fu.MenzenFu, Fu.WaitTankiFu]);
         Assert.Equal(expected, actual);
         Assert.Equal(40, actual.Total);
     }
@@ -183,7 +183,7 @@ public class FuCalculatorTests
         var actual = FuCalculator.Calc(hand, winTile, winGroup, winSituation: winSituation);
 
         // Assert
-        var expected = new FuList([Fu.Futei, Fu.MenzenFu, Fu.JantouPlayerWind]);
+        var expected = new FuList([Fu.FuteiFu, Fu.MenzenFu, Fu.JantouPlayerWindFu]);
         Assert.Equal(expected, actual);
         Assert.Equal(40, actual.Total);
     }
@@ -201,7 +201,7 @@ public class FuCalculatorTests
         var actual = FuCalculator.Calc(hand, winTile, winGroup, winSituation: winSituation);
 
         // Assert
-        var expected = new FuList([Fu.Futei, Fu.MenzenFu, Fu.JantouRoundWind]);
+        var expected = new FuList([Fu.FuteiFu, Fu.MenzenFu, Fu.JantouRoundWindFu]);
         Assert.Equal(expected, actual);
         Assert.Equal(40, actual.Total);
     }
@@ -219,7 +219,7 @@ public class FuCalculatorTests
         var actual = FuCalculator.Calc(hand, winTile, winGroup, winSituation: winSituation);
 
         // Assert
-        var expected = new FuList([Fu.Futei, Fu.MenzenFu]);
+        var expected = new FuList([Fu.FuteiFu, Fu.MenzenFu]);
         Assert.Equal(expected, actual);
         Assert.Equal(30, actual.Total);
     }
@@ -237,7 +237,7 @@ public class FuCalculatorTests
         var actual = FuCalculator.Calc(hand, winTile, winGroup, winSituation: winSituation);
 
         // Assert
-        var expected = new FuList([Fu.Futei, Fu.MenzenFu, Fu.JantouPlayerWind]);
+        var expected = new FuList([Fu.FuteiFu, Fu.MenzenFu, Fu.JantouPlayerWindFu]);
         Assert.Equal(expected, actual);
         Assert.Equal(40, actual.Total);
     }
@@ -255,7 +255,7 @@ public class FuCalculatorTests
         var actual = FuCalculator.Calc(hand, winTile, winGroup, winSituation: winSituation);
 
         // Assert
-        var expected = new FuList([Fu.Futei, Fu.MenzenFu, Fu.JantouDragon]);
+        var expected = new FuList([Fu.FuteiFu, Fu.MenzenFu, Fu.JantouDragonFu]);
         Assert.Equal(expected, actual);
         Assert.Equal(40, actual.Total);
     }
@@ -273,7 +273,7 @@ public class FuCalculatorTests
         var actual = FuCalculator.Calc(hand, winTile, winGroup, fuuroList);
 
         // Assert
-        var expected = new FuList([Fu.Futei, Fu.MinkoChuchan]);
+        var expected = new FuList([Fu.FuteiFu, Fu.MinkoChuchanFu]);
         Assert.Equal(expected, actual);
         Assert.Equal(30, actual.Total);
     }
@@ -291,7 +291,7 @@ public class FuCalculatorTests
         var actual = FuCalculator.Calc(hand, winTile, winGroup, fuuroList);
 
         // Assert
-        var expected = new FuList([Fu.Futei, Fu.MinkoChuchan, Fu.MinkoYaochu]);
+        var expected = new FuList([Fu.FuteiFu, Fu.MinkoChuchanFu, Fu.MinkoYaochuFu]);
         Assert.Equal(expected, actual);
         Assert.Equal(30, actual.Total);
     }
@@ -308,7 +308,7 @@ public class FuCalculatorTests
         var actual = FuCalculator.Calc(hand, winTile, winGroup);
 
         // Assert
-        var expected = new FuList([Fu.Futei, Fu.MenzenFu, Fu.MinkoChuchan]);
+        var expected = new FuList([Fu.FuteiFu, Fu.MenzenFu, Fu.MinkoChuchanFu]);
         Assert.Equal(expected, actual);
         Assert.Equal(40, actual.Total);
     }
@@ -325,7 +325,7 @@ public class FuCalculatorTests
         var actual = FuCalculator.Calc(hand, winTile, winGroup);
 
         // Assert
-        var expected = new FuList([Fu.Futei, Fu.MenzenFu, Fu.AnkoChuchan]);
+        var expected = new FuList([Fu.FuteiFu, Fu.MenzenFu, Fu.AnkoChuchanFu]);
         Assert.Equal(expected, actual);
         Assert.Equal(40, actual.Total);
     }
@@ -342,7 +342,7 @@ public class FuCalculatorTests
         var actual = FuCalculator.Calc(hand, winTile, winGroup);
 
         // Assert
-        var expected = new FuList([Fu.Futei, Fu.MenzenFu, Fu.AnkoYaochu]);
+        var expected = new FuList([Fu.FuteiFu, Fu.MenzenFu, Fu.AnkoYaochuFu]);
         Assert.Equal(expected, actual);
         Assert.Equal(40, actual.Total);
     }
@@ -360,7 +360,7 @@ public class FuCalculatorTests
         var actual = FuCalculator.Calc(hand, winTile, winGroup, winSituation: winSituation);
 
         // Assert
-        var expected = new FuList([Fu.Futei, Fu.TsumoFu, Fu.AnkoChuchan]);
+        var expected = new FuList([Fu.FuteiFu, Fu.TsumoFu, Fu.AnkoChuchanFu]);
         Assert.Equal(expected, actual);
         Assert.Equal(30, actual.Total);
     }
@@ -372,13 +372,13 @@ public class FuCalculatorTests
         var hand = new Hand([new(man: "123"), new(man: "456"), new(pin: "456"), new(sou: "66")]);
         var winTile = Tile.Pin6;
         var winGroup = new TileList(pin: "456");
-        var fuuroList = new FuuroList([new Daiminkan(new(pin: "2222"))]);
+        var fuuroList = new FuuroList([new Minkan(new(pin: "2222"))]);
 
         // Act
         var actual = FuCalculator.Calc(hand, winTile, winGroup, fuuroList);
 
         // Assert
-        var expected = new FuList([Fu.Futei, Fu.MinkanChuchan]);
+        var expected = new FuList([Fu.FuteiFu, Fu.MinkanChuchanFu]);
         Assert.Equal(expected, actual);
         Assert.Equal(30, actual.Total);
     }
@@ -390,13 +390,13 @@ public class FuCalculatorTests
         var hand = new Hand([new(man: "123"), new(man: "456"), new(pin: "456"), new(sou: "66")]);
         var winTile = Tile.Pin6;
         var winGroup = new TileList(pin: "456");
-        var fuuroList = new FuuroList([new Daiminkan(new(honor: "cccc"))]);
+        var fuuroList = new FuuroList([new Minkan(new(honor: "cccc"))]);
 
         // Act
         var actual = FuCalculator.Calc(hand, winTile, winGroup, fuuroList);
 
         // Assert
-        var expected = new FuList([Fu.Futei, Fu.MinkanYaochu]);
+        var expected = new FuList([Fu.FuteiFu, Fu.MinkanYaochuFu]);
         Assert.Equal(expected, actual);
         Assert.Equal(40, actual.Total);
     }
@@ -408,13 +408,13 @@ public class FuCalculatorTests
         var hand = new Hand([new(man: "123"), new(man: "456"), new(pin: "456"), new(sou: "66")]);
         var winTile = Tile.Pin6;
         var winGroup = new TileList(pin: "456");
-        var fuuroList = new FuuroList([new Lib.Internals.Fuuros.Ankan(new(pin: "2222"))]);
+        var fuuroList = new FuuroList([new Ankan(new(pin: "2222"))]);
 
         // Act
         var actual = FuCalculator.Calc(hand, winTile, winGroup, fuuroList);
 
         // Assert
-        var expected = new FuList([Fu.Futei, Fu.MenzenFu, Fu.AnkanChuchan]);
+        var expected = new FuList([Fu.FuteiFu, Fu.MenzenFu, Fu.AnkanChuchanFu]);
         Assert.Equal(expected, actual);
         Assert.Equal(50, actual.Total);
     }
@@ -426,13 +426,13 @@ public class FuCalculatorTests
         var hand = new Hand([new(man: "123"), new(man: "456"), new(pin: "456"), new(sou: "66")]);
         var winTile = Tile.Pin6;
         var winGroup = new TileList(pin: "456");
-        var fuuroList = new FuuroList([new Lib.Internals.Fuuros.Ankan(new(honor: "cccc"))]);
+        var fuuroList = new FuuroList([new Ankan(new(honor: "cccc"))]);
 
         // Act
         var actual = FuCalculator.Calc(hand, winTile, winGroup, fuuroList);
 
         // Assert
-        var expected = new FuList([Fu.Futei, Fu.MenzenFu, Fu.AnkanYaochu]);
+        var expected = new FuList([Fu.FuteiFu, Fu.MenzenFu, Fu.AnkanYaochuFu]);
         Assert.Equal(expected, actual);
         Assert.Equal(70, actual.Total);
     }

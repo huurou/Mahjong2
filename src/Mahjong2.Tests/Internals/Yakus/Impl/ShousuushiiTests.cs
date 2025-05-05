@@ -104,7 +104,7 @@ public class ShousuushiiTests
     {
         // Arrange
         var hand = new Hand([new(pin: "123"), new(honor: "ttt"), new(honor: "pp")]);
-        var fuuroList = new FuuroList([new Pon(new(honor: "sss")), new Daiminkan(new(honor: "nnnn"))]);
+        var fuuroList = new FuuroList([new Pon(new(honor: "sss")), new Minkan(new(honor: "nnnn"))]);
 
         // Act
         var actual = Shousuushii.Valid(hand, fuuroList);

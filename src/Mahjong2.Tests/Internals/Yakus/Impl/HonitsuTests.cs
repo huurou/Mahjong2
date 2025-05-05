@@ -89,7 +89,7 @@ public class HonitsuTests
     {
         // Arrange
         var hand = new Hand([new(pin: "123"), new(pin: "456"), new(pin: "789"), new(pin: "99")]);
-        var fuuroList = new FuuroList([new Daiminkan(new TileList(honor: "hhhh"))]);
+        var fuuroList = new FuuroList([new Minkan(new TileList(honor: "hhhh"))]);
 
         // Act
         var actual = Honitsu.Valid(hand, fuuroList);
@@ -105,7 +105,7 @@ public class HonitsuTests
         var hand = new Hand([new(sou: "11"), new(sou: "456"), new(sou: "789")]);
         var fuuroList = new FuuroList([
             new Pon(new (honor: "ccc")),
-            new Daiminkan(new (sou: "1111")),
+            new Minkan(new (sou: "1111")),
         ]);
 
         // Act

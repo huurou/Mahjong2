@@ -77,7 +77,7 @@ public class SankantsuTests
     {
         // Arrange
         var hand = new Hand([new(pin: "11"), new(pin: "234"),]);
-        var fuuroList = new FuuroList([new Daiminkan(new(man: "5555")), new Ankan(new(pin: "2222")), new Daiminkan(new(sou: "8888"))]);
+        var fuuroList = new FuuroList([new Minkan(new(man: "5555")), new Ankan(new(pin: "2222")), new Minkan(new(sou: "8888"))]);
 
         // Act
         var actual = Sankantsu.Valid(hand, fuuroList);
@@ -91,7 +91,7 @@ public class SankantsuTests
     {
         // Arrange
         var hand = new Hand([new(pin: "11"), new(man: "1111"), new(man: "456")]);
-        var fuuroList = new FuuroList([new Daiminkan(new(pin: "2222")), new Daiminkan(new(sou: "8888"))]);
+        var fuuroList = new FuuroList([new Minkan(new(pin: "2222")), new Minkan(new(sou: "8888"))]);
 
         // Act
         var actual = Sankantsu.Valid(hand, fuuroList);
@@ -105,7 +105,7 @@ public class SankantsuTests
     {
         // Arrange
         var hand = new Hand([new(pin: "11"), new(man: "123"), new(pin: "456")]);
-        var fuuroList = new FuuroList([new Daiminkan(new(pin: "2222")), new Daiminkan(new(sou: "8888"))]);
+        var fuuroList = new FuuroList([new Minkan(new(pin: "2222")), new Minkan(new(sou: "8888"))]);
 
         // Act
         var actual = Sankantsu.Valid(hand, fuuroList);

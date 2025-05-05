@@ -105,7 +105,7 @@ public class ShousangenTests
     {
         // Arrange
         var hand = new Hand([new(pin: "123"), new(pin: "456"), new(honor: "hh"), new(honor: "rrr")]);
-        var fuuroList = new FuuroList([new Daiminkan(new(honor: "cccc"))]);
+        var fuuroList = new FuuroList([new Minkan(new(honor: "cccc"))]);
 
         // Act
         var actual = Shousangen.Valid(hand, fuuroList);

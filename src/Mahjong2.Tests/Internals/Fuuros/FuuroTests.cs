@@ -23,8 +23,6 @@ public class FuuroTests
         Assert.False(chi.IsKan);
         Assert.False(chi.IsAnkan);
         Assert.False(chi.IsMinkan);
-        Assert.False(chi.IsDaiminkan);
-        Assert.False(chi.IsShouminkan);
         Assert.False(chi.IsNuki);
         Assert.True(chi.IsOpen);
     }
@@ -59,8 +57,6 @@ public class FuuroTests
         Assert.False(pon.IsKan);
         Assert.False(pon.IsAnkan);
         Assert.False(pon.IsMinkan);
-        Assert.False(pon.IsDaiminkan);
-        Assert.False(pon.IsShouminkan);
         Assert.False(pon.IsNuki);
         Assert.True(pon.IsOpen);
     }
@@ -95,54 +91,28 @@ public class FuuroTests
         Assert.True(ankan.IsKan);
         Assert.True(ankan.IsAnkan);
         Assert.False(ankan.IsMinkan);
-        Assert.False(ankan.IsDaiminkan);
-        Assert.False(ankan.IsShouminkan);
         Assert.False(ankan.IsNuki);
         Assert.False(ankan.IsOpen);
     }
 
     [Fact]
-    public void Daiminkan_正しい槓子の牌リストで初期化_正常に作成できる()
+    public void Minkan_正しい槓子の牌リストで初期化_正常に作成できる()
     {
         // Arrange
         var tiles = new TileList(sou: "9999");
 
         // Act
-        var daiminkan = new Daiminkan(tiles);
+        var minkan = new Minkan(tiles);
 
         // Assert
-        Assert.Equal(tiles, daiminkan.TileList);
-        Assert.False(daiminkan.IsChi);
-        Assert.False(daiminkan.IsPon);
-        Assert.True(daiminkan.IsKan);
-        Assert.False(daiminkan.IsAnkan);
-        Assert.True(daiminkan.IsMinkan);
-        Assert.True(daiminkan.IsDaiminkan);
-        Assert.False(daiminkan.IsShouminkan);
-        Assert.False(daiminkan.IsNuki);
-        Assert.True(daiminkan.IsOpen);
-    }
-
-    [Fact]
-    public void Shouminkan_正しい槓子の牌リストで初期化_正常に作成できる()
-    {
-        // Arrange
-        var tiles = new TileList(honor: "tttt"); // 東
-
-        // Act
-        var shouminkan = new Shouminkan(tiles);
-
-        // Assert
-        Assert.Equal(tiles, shouminkan.TileList);
-        Assert.False(shouminkan.IsChi);
-        Assert.False(shouminkan.IsPon);
-        Assert.True(shouminkan.IsKan);
-        Assert.False(shouminkan.IsAnkan);
-        Assert.True(shouminkan.IsMinkan);
-        Assert.False(shouminkan.IsDaiminkan);
-        Assert.True(shouminkan.IsShouminkan);
-        Assert.False(shouminkan.IsNuki);
-        Assert.True(shouminkan.IsOpen);
+        Assert.Equal(tiles, minkan.TileList);
+        Assert.False(minkan.IsChi);
+        Assert.False(minkan.IsPon);
+        Assert.True(minkan.IsKan);
+        Assert.False(minkan.IsAnkan);
+        Assert.True(minkan.IsMinkan);
+        Assert.False(minkan.IsNuki);
+        Assert.True(minkan.IsOpen);
     }
 
     [Fact]
@@ -158,13 +128,9 @@ public class FuuroTests
         Assert.Throws<ArgumentException>(() => new Ankan(notKantsu2));
         Assert.Throws<ArgumentException>(() => new Ankan(notKantsu3));
 
-        Assert.Throws<ArgumentException>(() => new Daiminkan(notKantsu1));
-        Assert.Throws<ArgumentException>(() => new Daiminkan(notKantsu2));
-        Assert.Throws<ArgumentException>(() => new Daiminkan(notKantsu3));
-
-        Assert.Throws<ArgumentException>(() => new Shouminkan(notKantsu1));
-        Assert.Throws<ArgumentException>(() => new Shouminkan(notKantsu2));
-        Assert.Throws<ArgumentException>(() => new Shouminkan(notKantsu3));
+        Assert.Throws<ArgumentException>(() => new Minkan(notKantsu1));
+        Assert.Throws<ArgumentException>(() => new Minkan(notKantsu2));
+        Assert.Throws<ArgumentException>(() => new Minkan(notKantsu3));
     }
 
     [Fact]
@@ -183,8 +149,6 @@ public class FuuroTests
         Assert.False(nuki.IsKan);
         Assert.False(nuki.IsAnkan);
         Assert.False(nuki.IsMinkan);
-        Assert.False(nuki.IsDaiminkan);
-        Assert.False(nuki.IsShouminkan);
         Assert.True(nuki.IsNuki);
         Assert.False(nuki.IsOpen);
     }
@@ -232,31 +196,17 @@ public class FuuroTests
     }
 
     [Fact]
-    public void Daiminkan_ToString_正しい文字列表現を返す()
+    public void Minkan_ToString_正しい文字列表現を返す()
     {
         // Arrange
         var tiles = new TileList(sou: "9999");
-        var daiminkan = new Daiminkan(tiles);
+        var minkan = new Minkan(tiles);
 
         // Act
-        var result = daiminkan.ToString();
+        var result = minkan.ToString();
 
         // Assert
-        Assert.Equal($"大明槓-{tiles}", result);
-    }
-
-    [Fact]
-    public void Shouminkan_ToString_正しい文字列表現を返す()
-    {
-        // Arrange
-        var tiles = new TileList(honor: "tttt");
-        var shouminkan = new Shouminkan(tiles);
-
-        // Act
-        var result = shouminkan.ToString();
-
-        // Assert
-        Assert.Equal($"小明槓-{tiles}", result);
+        Assert.Equal($"明槓-{tiles}", result);
     }
 
     [Fact]

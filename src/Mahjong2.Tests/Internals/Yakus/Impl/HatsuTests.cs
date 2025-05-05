@@ -89,7 +89,7 @@ public class HatsuTests
     {
         // Arrange
         var hand = new Hand([new(pin: "11"), new(man: "234"), new(sou: "234")]);
-        var fuuroList = new FuuroList([new Daiminkan(new TileList(honor: "rrrr"))]);
+        var fuuroList = new FuuroList([new Minkan(new TileList(honor: "rrrr"))]);
 
         // Act
         var actual = Hatsu.Valid(hand, fuuroList);

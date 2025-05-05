@@ -23,12 +23,12 @@ internal record Pinfu : Yaku
         {
             // ピンヅモありならツモでもツモ符はつかない
             // ピンヅモなしなら平和不成立
-            return gameRules.PinzumoEnabled && fuList.Contains(Fu.Futei) && fuList.Count == 1;
+            return gameRules.PinzumoEnabled && fuList.Contains(Fu.FuteiFu) && fuList.Count == 1;
         }
         else
         {
             // ロンなら副底と面前符だけ
-            return fuList.Contains(Fu.Futei) && fuList.Contains(Fu.MenzenFu) && fuList.Count == 2;
+            return fuList.Contains(Fu.FuteiFu) && fuList.Contains(Fu.MenzenFu) && fuList.Count == 2;
 
         }
     }

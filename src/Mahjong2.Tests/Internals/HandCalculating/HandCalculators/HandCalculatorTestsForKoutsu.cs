@@ -291,7 +291,7 @@ public class HandCalculatorTestsForKoutsu
         // Arrange
         var tileList = new TileList(man: "123", sou: "99");
         var winTile = Tile.Sou9;
-        var fuuroList = new FuuroList([new Ankan(new(man: "5555")), new Daiminkan(new(pin: "5555")), new Ankan(new(sou: "5555"))]);
+        var fuuroList = new FuuroList([new Ankan(new(man: "5555")), new Minkan(new(pin: "5555")), new Ankan(new(sou: "5555"))]);
 
         // Act
         var actual = HandCalculator.Calc(tileList, winTile, fuuroList);
@@ -306,7 +306,7 @@ public class HandCalculatorTestsForKoutsu
         // Arrange
         var tileList = new TileList(honor: "cc");
         var winTile = Tile.Chun;
-        var fuuroList = new FuuroList([new Ankan(new(man: "1111")), new Daiminkan(new(pin: "1111")), new Ankan(new(sou: "1111")), new Shouminkan(new(honor: "hhhh"))]);
+        var fuuroList = new FuuroList([new Ankan(new(man: "1111")), new Minkan(new(pin: "1111")), new Ankan(new(sou: "1111")), new Minkan(new(honor: "hhhh"))]);
 
         // Act
         var actual = HandCalculator.Calc(tileList, winTile, fuuroList);

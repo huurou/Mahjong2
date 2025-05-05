@@ -6,6 +6,10 @@ https://github.com/mjx-project/mjx/tree/master
 麻雀AI強化学習環境らしい
 https://note.com/oshizo/n/nbbcfb4e24908
 
+パオのこと何も考えてなかった
+
+役のenumの数字は天鳳かなにかに合わせたい
+
 ## 2025/05/04
 
 一通り実装した カバレッジも99% AI様々すぎる

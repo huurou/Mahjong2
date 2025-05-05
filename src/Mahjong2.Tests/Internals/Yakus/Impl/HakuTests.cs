@@ -89,7 +89,7 @@ public class HakuTests
     {
         // Arrange
         var hand = new Hand([new(pin: "11"), new(man: "234"), new(sou: "234")]);
-        var fuuroList = new FuuroList([new Daiminkan(new TileList(honor: "hhhh"))]);
+        var fuuroList = new FuuroList([new Minkan(new TileList(honor: "hhhh"))]);
 
         // Act
         var actual = Haku.Valid(hand, fuuroList);

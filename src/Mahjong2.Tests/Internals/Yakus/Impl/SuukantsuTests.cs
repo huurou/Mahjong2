@@ -78,9 +78,9 @@ public class SuukantsuTests
         // Arrange
         var hand = new Hand([new(pin: "11")]);
         var fuuroList = new FuuroList([
-            new Daiminkan(new (man: "5555")),
+            new Minkan(new (man: "5555")),
             new Ankan(new (pin: "2222")),
-            new Daiminkan(new (sou: "8888")),
+            new Minkan(new (sou: "8888")),
             new Ankan(new (honor: "tttt")),
         ]);
 
@@ -97,8 +97,8 @@ public class SuukantsuTests
         // Arrange
         var hand = new Hand([new(pin: "11"), new(man: "1111")]);
         var fuuroList = new FuuroList([
-            new Daiminkan(new (pin: "2222")),
-            new Daiminkan(new (sou: "8888")),
+            new Minkan(new (pin: "2222")),
+            new Minkan(new (sou: "8888")),
             new Ankan(new (honor: "hhhh")),
         ]);
 
@@ -115,8 +115,8 @@ public class SuukantsuTests
         // Arrange
         var hand = new Hand([new(pin: "11"), new(man: "123")]);
         var fuuroList = new FuuroList([
-            new Daiminkan(new (pin: "2222")),
-            new Daiminkan(new (sou: "8888")),
+            new Minkan(new (pin: "2222")),
+            new Minkan(new (sou: "8888")),
             new Ankan(new (honor: "nnnn")),
         ]);
 

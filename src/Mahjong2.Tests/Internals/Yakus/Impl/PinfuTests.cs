@@ -73,7 +73,7 @@ public class PinfuTests
     public void Valid_ツモアガリでピンヅモあり_成立()
     {
         // Arrange
-        var fuList = new FuList([Fu.Futei]);
+        var fuList = new FuList([Fu.FuteiFu]);
         var winSituation = new WinSituation { IsTsumo = true };
         var gameRules = new GameRules { PinzumoEnabled = true };
 
@@ -89,7 +89,7 @@ public class PinfuTests
     {
         // Arrange
         // ピンヅモなしのときはツモ符がついて30符になる
-        var fuList = new FuList([Fu.Futei, Fu.TsumoFu]);
+        var fuList = new FuList([Fu.FuteiFu, Fu.TsumoFu]);
         var winSituation = new WinSituation { IsTsumo = true };
         var gameRules = new GameRules { PinzumoEnabled = false };
 
@@ -104,7 +104,7 @@ public class PinfuTests
     public void Valid_ツモアガリでツモ符がある_不成立()
     {
         // Arrange
-        var fuList = new FuList([Fu.Futei, Fu.TsumoFu]);
+        var fuList = new FuList([Fu.FuteiFu, Fu.TsumoFu]);
         var winSituation = new WinSituation { IsTsumo = true };
         var gameRules = new GameRules { PinzumoEnabled = true };
 
@@ -119,7 +119,7 @@ public class PinfuTests
     public void Valid_ロンアガリで副底と面前符だけ_成立()
     {
         // Arrange
-        var fuList = new FuList([Fu.Futei, Fu.MenzenFu]);
+        var fuList = new FuList([Fu.FuteiFu, Fu.MenzenFu]);
         var winSituation = new WinSituation { IsTsumo = false };
         var gameRules = new GameRules();
 
@@ -134,7 +134,7 @@ public class PinfuTests
     public void Valid_ロンアガリで他の符がある_不成立()
     {
         // Arrange
-        var fuList = new FuList([Fu.Futei, Fu.MenzenFu, Fu.WaitKanchan]);
+        var fuList = new FuList([Fu.FuteiFu, Fu.MenzenFu, Fu.WaitKanchanFu]);
         var winSituation = new WinSituation { IsTsumo = false };
         var gameRules = new GameRules();
 

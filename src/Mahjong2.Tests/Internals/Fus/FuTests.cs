@@ -8,25 +8,25 @@ namespace Mahjong2.Tests.Internals.Fus
     public class FuTests
     {
         [Theory]
-        [InlineData(nameof(Fu.Futei), 1)]
+        [InlineData(nameof(Fu.FuteiFu), 1)]
         [InlineData(nameof(Fu.MenzenFu), 2)]
         [InlineData(nameof(Fu.ChiitoitsuFu), 3)]
-        [InlineData(nameof(Fu.FuteiOpenPinfu), 4)]
+        [InlineData(nameof(Fu.FuteiOpenPinfuFu), 4)]
         [InlineData(nameof(Fu.TsumoFu), 5)]
-        [InlineData(nameof(Fu.WaitKanchan), 6)]
-        [InlineData(nameof(Fu.WaitPenchan), 7)]
-        [InlineData(nameof(Fu.WaitTanki), 8)]
-        [InlineData(nameof(Fu.JantouPlayerWind), 9)]
-        [InlineData(nameof(Fu.JantouRoundWind), 10)]
-        [InlineData(nameof(Fu.JantouDragon), 11)]
-        [InlineData(nameof(Fu.MinkoChuchan), 12)]
-        [InlineData(nameof(Fu.MinkoYaochu), 13)]
-        [InlineData(nameof(Fu.AnkoChuchan), 14)]
-        [InlineData(nameof(Fu.AnkoYaochu), 15)]
-        [InlineData(nameof(Fu.MinkanChuchan), 16)]
-        [InlineData(nameof(Fu.MinkanYaochu), 17)]
-        [InlineData(nameof(Fu.AnkanChuchan), 18)]
-        [InlineData(nameof(Fu.AnkanYaochu), 19)]
+        [InlineData(nameof(Fu.WaitKanchanFu), 6)]
+        [InlineData(nameof(Fu.WaitPenchanFu), 7)]
+        [InlineData(nameof(Fu.WaitTankiFu), 8)]
+        [InlineData(nameof(Fu.JantouPlayerWindFu), 9)]
+        [InlineData(nameof(Fu.JantouRoundWindFu), 10)]
+        [InlineData(nameof(Fu.JantouDragonFu), 11)]
+        [InlineData(nameof(Fu.MinkoChuchanFu), 12)]
+        [InlineData(nameof(Fu.MinkoYaochuFu), 13)]
+        [InlineData(nameof(Fu.AnkoChuchanFu), 14)]
+        [InlineData(nameof(Fu.AnkoYaochuFu), 15)]
+        [InlineData(nameof(Fu.MinkanChuchanFu), 16)]
+        [InlineData(nameof(Fu.MinkanYaochuFu), 17)]
+        [InlineData(nameof(Fu.AnkanChuchanFu), 18)]
+        [InlineData(nameof(Fu.AnkanYaochuFu), 19)]
         public void Fuクラス_番号取得_期待値を返す(string propertyName, int expectedValue)
         {
             // Arrange
@@ -40,24 +40,24 @@ namespace Mahjong2.Tests.Internals.Fus
         }
 
         [Theory]
-        [InlineData(nameof(Fu.Futei), 20)]
-        [InlineData(nameof(Fu.MinkoChuchan), 2)]
-        [InlineData(nameof(Fu.MinkoYaochu), 4)]
-        [InlineData(nameof(Fu.AnkoChuchan), 4)]
-        [InlineData(nameof(Fu.AnkoYaochu), 8)]
-        [InlineData(nameof(Fu.MinkanChuchan), 8)]
-        [InlineData(nameof(Fu.MinkanYaochu), 16)]
-        [InlineData(nameof(Fu.AnkanChuchan), 16)]
-        [InlineData(nameof(Fu.AnkanYaochu), 32)]
-        [InlineData(nameof(Fu.JantouPlayerWind), 2)]
-        [InlineData(nameof(Fu.JantouRoundWind), 2)]
-        [InlineData(nameof(Fu.JantouDragon), 2)]
-        [InlineData(nameof(Fu.WaitKanchan), 2)]
-        [InlineData(nameof(Fu.WaitPenchan), 2)]
-        [InlineData(nameof(Fu.WaitTanki), 2)]
+        [InlineData(nameof(Fu.FuteiFu), 20)]
+        [InlineData(nameof(Fu.MinkoChuchanFu), 2)]
+        [InlineData(nameof(Fu.MinkoYaochuFu), 4)]
+        [InlineData(nameof(Fu.AnkoChuchanFu), 4)]
+        [InlineData(nameof(Fu.AnkoYaochuFu), 8)]
+        [InlineData(nameof(Fu.MinkanChuchanFu), 8)]
+        [InlineData(nameof(Fu.MinkanYaochuFu), 16)]
+        [InlineData(nameof(Fu.AnkanChuchanFu), 16)]
+        [InlineData(nameof(Fu.AnkanYaochuFu), 32)]
+        [InlineData(nameof(Fu.JantouPlayerWindFu), 2)]
+        [InlineData(nameof(Fu.JantouRoundWindFu), 2)]
+        [InlineData(nameof(Fu.JantouDragonFu), 2)]
+        [InlineData(nameof(Fu.WaitKanchanFu), 2)]
+        [InlineData(nameof(Fu.WaitPenchanFu), 2)]
+        [InlineData(nameof(Fu.WaitTankiFu), 2)]
         [InlineData(nameof(Fu.MenzenFu), 10)]
         [InlineData(nameof(Fu.TsumoFu), 2)]
-        [InlineData(nameof(Fu.FuteiOpenPinfu), 30)]
+        [InlineData(nameof(Fu.FuteiOpenPinfuFu), 30)]
         [InlineData(nameof(Fu.ChiitoitsuFu), 25)]
         public void Fuクラス_値取得_期待値を返す(string propertyName, int expectedValue)
         {
@@ -75,23 +75,23 @@ namespace Mahjong2.Tests.Internals.Fus
         public void ToString_フォーマット確認_正しい形式の文字列を返す()
         {
             // Arrange
-            var futei = Fu.Futei;
-            var futeiOpenPinfu = Fu.FuteiOpenPinfu;
+            var futei = Fu.FuteiFu;
+            var futeiOpenPinfu = Fu.FuteiOpenPinfuFu;
             var chiitoitsu = Fu.ChiitoitsuFu;
-            var minkoChuchan = Fu.MinkoChuchan;
-            var minkoYaochu = Fu.MinkoYaochu;
-            var ankoChuchan = Fu.AnkoChuchan;
-            var ankoYaochu = Fu.AnkoYaochu;
-            var minkanChuchan = Fu.MinkanChuchan;
-            var minkanYaochu = Fu.MinkanYaochu;
-            var ankanChuchan = Fu.AnkanChuchan;
-            var ankanYaochu = Fu.AnkanYaochu;
-            var jantouPlayerWind = Fu.JantouPlayerWind;
-            var jantouRoundWind = Fu.JantouRoundWind;
-            var jantouDragon = Fu.JantouDragon;
-            var waitKanchan = Fu.WaitKanchan;
-            var waitPenchan = Fu.WaitPenchan;
-            var waitTanki = Fu.WaitTanki;
+            var minkoChuchan = Fu.MinkoChuchanFu;
+            var minkoYaochu = Fu.MinkoYaochuFu;
+            var ankoChuchan = Fu.AnkoChuchanFu;
+            var ankoYaochu = Fu.AnkoYaochuFu;
+            var minkanChuchan = Fu.MinkanChuchanFu;
+            var minkanYaochu = Fu.MinkanYaochuFu;
+            var ankanChuchan = Fu.AnkanChuchanFu;
+            var ankanYaochu = Fu.AnkanYaochuFu;
+            var jantouPlayerWind = Fu.JantouPlayerWindFu;
+            var jantouRoundWind = Fu.JantouRoundWindFu;
+            var jantouDragon = Fu.JantouDragonFu;
+            var waitKanchan = Fu.WaitKanchanFu;
+            var waitPenchan = Fu.WaitPenchanFu;
+            var waitTanki = Fu.WaitTankiFu;
             var menzenFu = Fu.MenzenFu;
             var tsumoFu = Fu.TsumoFu;
 

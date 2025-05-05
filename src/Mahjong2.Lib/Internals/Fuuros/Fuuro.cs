@@ -29,14 +29,6 @@ internal abstract record Fuuro(TileList TileList)
     /// </summary>
     public abstract bool IsMinkan { get; }
     /// <summary>
-    /// 大明槓かどうか
-    /// </summary>
-    public abstract bool IsDaiminkan { get; }
-    /// <summary>
-    /// 小明槓かどうか
-    /// </summary>
-    public abstract bool IsShouminkan { get; }
-    /// <summary>
     /// 抜きかどうか
     /// </summary>
     public abstract bool IsNuki { get; }
@@ -62,8 +54,6 @@ internal record Chi : Fuuro
     public override bool IsKan => false;
     public override bool IsAnkan => false;
     public override bool IsMinkan => false;
-    public override bool IsDaiminkan => false;
-    public override bool IsShouminkan => false;
     public override bool IsNuki => false;
     public override bool IsOpen => true;
 
@@ -89,8 +79,6 @@ internal record Pon : Fuuro
     public override bool IsKan => false;
     public override bool IsAnkan => false;
     public override bool IsMinkan => false;
-    public override bool IsDaiminkan => false;
-    public override bool IsShouminkan => false;
     public override bool IsNuki => false;
     public override bool IsOpen => true;
 
@@ -124,8 +112,6 @@ internal record Ankan(TileList TileList) : Kan(TileList)
 {
     public override bool IsAnkan => true;
     public override bool IsMinkan => false;
-    public override bool IsDaiminkan => false;
-    public override bool IsShouminkan => false;
     public override bool IsOpen => false;
 
     public sealed override string ToString()
@@ -138,40 +124,15 @@ internal record Ankan(TileList TileList) : Kan(TileList)
 /// 明槓
 /// </summary>
 /// <param name="TileList"></param>
-internal abstract record Minkan(TileList TileList) : Kan(TileList)
+internal record Minkan(TileList TileList) : Kan(TileList)
 {
     public override bool IsAnkan => false;
     public override bool IsMinkan => true;
     public override bool IsOpen => true;
-}
-
-/// <summary>
-/// 大明槓
-/// </summary>
-/// <param name="TileList"></param>
-internal record Daiminkan(TileList TileList) : Minkan(TileList)
-{
-    public override bool IsDaiminkan => true;
-    public override bool IsShouminkan => false;
 
     public sealed override string ToString()
     {
-        return $"大明槓-{TileList}";
-    }
-}
-
-/// <summary>
-/// 小明槓
-/// </summary>
-/// <param name="TileList"></param>
-internal record Shouminkan(TileList TileList) : Minkan(TileList)
-{
-    public override bool IsDaiminkan => false;
-    public override bool IsShouminkan => true;
-
-    public sealed override string ToString()
-    {
-        return $"小明槓-{TileList}";
+        return $"明槓-{TileList}";
     }
 }
 
@@ -186,8 +147,6 @@ internal record Nuki(TileList TileList) : Fuuro(TileList)
     public override bool IsKan => false;
     public override bool IsAnkan => false;
     public override bool IsMinkan => false;
-    public override bool IsDaiminkan => false;
-    public override bool IsShouminkan => false;
     public override bool IsNuki => true;
     public override bool IsOpen => false;
 

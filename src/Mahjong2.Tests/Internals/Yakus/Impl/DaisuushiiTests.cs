@@ -93,8 +93,8 @@ public class DaisuushiiTests
         var hand = new Hand([new(pin: "11")]);
         var fuuroList = new FuuroList([
             new Ankan(new TileList(honor: "tttt")),
-            new Daiminkan(new TileList(honor: "ssss")),
-            new Daiminkan(new TileList(honor: "nnnn")),
+            new Minkan(new TileList(honor: "ssss")),
+            new Minkan(new TileList(honor: "nnnn")),
             new Ankan(new TileList(honor: "pppp")),
         ]);
 
@@ -111,7 +111,7 @@ public class DaisuushiiTests
         // Arrange
         var hand = new Hand([new(pin: "11"), new(honor: "ttt"), new(honor: "sss")]);
         var fuuroList = new FuuroList([
-            new Daiminkan(new TileList(honor: "nnnn")),
+            new Minkan(new TileList(honor: "nnnn")),
             new Ankan(new TileList(honor: "pppp")),
         ]);
 

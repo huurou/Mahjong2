@@ -105,7 +105,7 @@ public class SanshokudoukouTests
     {
         // Arrange
         var hand = new Hand([new(man: "333"), new(man: "55")]);
-        var fuuroList = new FuuroList([new Pon(new(pin: "333")), new Daiminkan(new(sou: "3333"))]);
+        var fuuroList = new FuuroList([new Pon(new(pin: "333")), new Minkan(new(sou: "3333"))]);
 
         // Act
         var actual = Sanshokudoukou.Valid(hand, fuuroList);

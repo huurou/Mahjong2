@@ -91,7 +91,7 @@ public class HonroutouTests
         var hand = new Hand([new(man: "111"), new(honor: "東東東"), new(honor: "白白白")]);
         var fuuroList = new FuuroList([
             new Pon(new (man: "999")),
-            new Daiminkan(new (honor: "中中中中")),
+            new Minkan(new (honor: "中中中中")),
         ]);
 
         // Act

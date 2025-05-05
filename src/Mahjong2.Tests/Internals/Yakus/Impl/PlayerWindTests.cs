@@ -153,7 +153,7 @@ public class PlayerWindTests
     {
         // Arrange
         var hand = new Hand([new(pin: "11"), new(man: "234"), new(sou: "234")]);
-        var fuuroList = new FuuroList([new Daiminkan(new TileList(honor: "tttt"))]);
+        var fuuroList = new FuuroList([new Minkan(new TileList(honor: "tttt"))]);
         var winSituation = new WinSituation { PlayerWind = Wind.East };
 
         // Act
