@@ -35,9 +35,9 @@ internal abstract record DragonTile : HonorTile, IComparable<DragonTile>
     {
         if (other is null) { return 1; }
 
-        return GetDragonTileTypeValue(this).CompareTo(GetDragonTileTypeValue(other));
+        return GetDragonTileNum(this).CompareTo(GetDragonTileNum(other));
 
-        static int GetDragonTileTypeValue(DragonTile dragonTile)
+        static int GetDragonTileNum(DragonTile dragonTile)
         {
             return dragonTile switch
             {

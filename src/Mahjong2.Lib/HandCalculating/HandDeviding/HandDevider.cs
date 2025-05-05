@@ -23,9 +23,9 @@ internal static class HandDevider
         {
             var copiedTileList = tileList;
             copiedTileList = copiedTileList.Remove(toitsuTile, 2);
-            var man = FindValidCombinations(copiedTileList, typeof(ManTile));
-            var pin = FindValidCombinations(copiedTileList, typeof(PinTile));
-            var sou = FindValidCombinations(copiedTileList, typeof(SouTile));
+            var man = FindValidCombinations<ManTile>(copiedTileList);
+            var pin = FindValidCombinations<PinTile>(copiedTileList);
+            var sou = FindValidCombinations<SouTile>(copiedTileList);
             TileListList honor = [.. Tile.Honors.Where(x => copiedTileList.CountOf(x) == 3).Select(x => new TileList(Enumerable.Repeat(x, 3)))];
             List<List<TileListList>> suits = [[[[.. Enumerable.Repeat(toitsuTile, 2)]]]];
             if (man.Count != 0) { suits.Add(man); }
@@ -73,12 +73,12 @@ internal static class HandDevider
     /// 指定された牌種類の有効な面子の組み合わせを探す
     /// </summary>
     /// <param name="tileList">雀頭候補を除いた牌リスト</param>
-    /// <param name="tileType">探索する牌の種類</param>
+    /// <typeparam name="TTileKind">探索する牌種類の型</typeparam>
     /// <returns>有効な面子の組み合わせのリスト</returns>
-    private static List<TileListList> FindValidCombinations(TileList tileList, Type tileType)
+    private static List<TileListList> FindValidCombinations<TTileKind>(TileList tileList)
     {
         // 指定の牌種類のTileListを作成する
-        var specifiedTypeTileList = new TileList(tileList.Where(tileType.IsInstanceOfType).OrderBy(x => x));
+        var specifiedTypeTileList = new TileList(tileList.Where(typeof(TTileKind).IsInstanceOfType).OrderBy(x => x));
         // nC3全組み合わせを列挙する
         // [1,2,3,4,4]=>[[1,2,3],[1,2,4],[1,3,2],[1,3,4],[1,4,2],[1,4,3],[1,4,4],...]
         var combinations = Combinatorics.Combinations(specifiedTypeTileList, 3).Select(x => new TileList(x));

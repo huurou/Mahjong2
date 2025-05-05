@@ -41,13 +41,13 @@ internal abstract record HonorTile : Tile, IComparable<HonorTile>
         if (other is null) { return 1; }
 
         // 牌の種類での比較を最初に行う
-        var typeComparison = GetHonorTileTypeValue(this).CompareTo(GetHonorTileTypeValue(other));
+        var typeComparison = GetHonorTileNum(this).CompareTo(GetHonorTileNum(other));
         if (typeComparison != 0) { return typeComparison; }
         if (this is WindTile thisWindTile && other is WindTile otherWindTile) { return thisWindTile.CompareTo(otherWindTile); }
         if (this is DragonTile thisDragonTile && other is DragonTile otherDraginTile) { return thisDragonTile.CompareTo(otherDraginTile); }
         throw new InvalidOperationException($"不明な字牌の比較です。");
 
-        static int GetHonorTileTypeValue(HonorTile honorTile)
+        static int GetHonorTileNum(HonorTile honorTile)
         {
             return honorTile switch
             {

@@ -36,9 +36,9 @@ internal abstract record WindTile : HonorTile, IComparable<WindTile>
     {
         if (other is null) { return 1; }
 
-        return GetWindTileTypeValue(this).CompareTo(GetWindTileTypeValue(other));
+        return GetWindTileNum(this).CompareTo(GetWindTileNum(other));
 
-        static int GetWindTileTypeValue(WindTile windTile)
+        static int GetWindTileNum(WindTile windTile)
         {
             return windTile switch
             {
