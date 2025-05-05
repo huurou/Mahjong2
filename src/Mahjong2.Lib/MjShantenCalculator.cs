@@ -1,6 +1,6 @@
 ﻿using Mahjong2.Lib.Internals.Shantens;
 
-namespace Mahjong2.Lib.Scores;
+namespace Mahjong2.Lib;
 
 public static class MjShantenCalculator
 {
@@ -9,7 +9,7 @@ public static class MjShantenCalculator
     /// </summary>
     public const int AGARI_SHANTEN = -1;
 
-    public static int CalculateShanten(IEnumerable<MjTileType> tiles)
+    public static int CalculateShanten(IEnumerable<MjTileKind> tiles)
     {
         return ShantenCalculator.Calc(tiles.ToTileList());
     }

@@ -1,4 +1,4 @@
-﻿namespace Mahjong2.Lib.Scores;
+﻿namespace Mahjong2.Lib;
 
 public enum MjWind
 {

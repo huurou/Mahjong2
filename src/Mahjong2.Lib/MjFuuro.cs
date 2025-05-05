@@ -1,8 +1,8 @@
 ﻿using Mahjong2.Lib.Internals.Fuuros;
 
-namespace Mahjong2.Lib.Scores;
+namespace Mahjong2.Lib;
 
-public record MjFuuro(MjFuuroType Type, List<MjTileType> Tiles);
+public record MjFuuro(MjFuuroType Type, List<MjTileKind> Tiles);
 
 public enum MjFuuroType
 {

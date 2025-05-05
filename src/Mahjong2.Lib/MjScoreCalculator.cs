@@ -3,16 +3,16 @@ using Mahjong2.Lib.Internals.HandCalculating;
 using Mahjong2.Lib.Internals.Tiles;
 using Mahjong2.Lib.Internals.Yakus;
 
-namespace Mahjong2.Lib.Scores;
+namespace Mahjong2.Lib;
 
 public class MjScoreCalculator
 {
     public static MjScore CalculateScore(
-        IEnumerable<MjTileType> tiles,
-        MjTileType? winTile,
+        IEnumerable<MjTileKind> tiles,
+        MjTileKind? winTile,
         IEnumerable<MjFuuro> fuuros,
-        IEnumerable<MjTileType> doraIndicators,
-        IEnumerable<MjTileType> uradoraIndicators
+        IEnumerable<MjTileKind> doraIndicators,
+        IEnumerable<MjTileKind> uradoraIndicators
     )
     {
         var fuuroList = fuuros.ToFuuroList();
