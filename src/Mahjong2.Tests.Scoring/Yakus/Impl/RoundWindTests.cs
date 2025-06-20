@@ -1,6 +1,6 @@
 using Mahjong2.Lib.Scoring.Fuuros;
-using Mahjong2.Lib.Scoring.Tiles;
 using Mahjong2.Lib.Scoring.Games;
+using Mahjong2.Lib.Scoring.Tiles;
 using Mahjong2.Lib.Scoring.Yakus;
 using Mahjong2.Lib.Scoring.Yakus.Impl;
 
@@ -184,10 +184,10 @@ public class RoundWindTests
         // Arrange
         var hand = new Hand([new(pin: "11"), new(man: "234"), new(pin: "234"), new(sou: "234"), new(honor: "ttt")]);
         var fuuroList = new FuuroList();
-        var winSituation = new WinSituation { RoundWind = (Wind)4 };
+        var winSituation = new WinSituation { RoundWind = new(4) };
 
         // Act & Assert
         var exception = Assert.Throws<InvalidOperationException>(() => RoundWind.Valid(hand, fuuroList, winSituation));
-        Assert.Contains($"不明な風です。RoundWind:{winSituation.RoundWind}", exception.Message);
+        Assert.Contains($"不明な風牌です。", exception.Message);
     }
 }

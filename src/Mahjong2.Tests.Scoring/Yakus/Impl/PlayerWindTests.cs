@@ -1,8 +1,8 @@
 using Mahjong2.Lib.Scoring.Fuuros;
-using Mahjong2.Lib.Scoring.Tiles;
-using Mahjong2.Lib.Scoring.Yakus.Impl;
 using Mahjong2.Lib.Scoring.Games;
+using Mahjong2.Lib.Scoring.Tiles;
 using Mahjong2.Lib.Scoring.Yakus;
+using Mahjong2.Lib.Scoring.Yakus.Impl;
 
 namespace Mahjong2.Tests.Scoring.Yakus.Impl;
 
@@ -169,10 +169,10 @@ public class PlayerWindTests
         // Arrange
         var hand = new Hand([new(pin: "11"), new(man: "234"), new(pin: "234"), new(sou: "234"), new(honor: "ttt")]);
         var fuuroList = new FuuroList();
-        var winSituation = new WinSituation { PlayerWind = (Wind)4 };
+        var winSituation = new WinSituation { PlayerWind = new(4) };
 
         // Act & Assert
         var exception = Assert.Throws<InvalidOperationException>(() => PlayerWind.Valid(hand, fuuroList, winSituation));
-        Assert.Contains($"不明な風です。PlayerWind:{winSituation.PlayerWind}", exception.Message);
+        Assert.Contains($"不明な風牌です", exception.Message);
     }
 }

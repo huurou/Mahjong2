@@ -38,8 +38,8 @@ internal static class FuCalculator
         {
             return
                 toitsuTile.IsDragon ? [Fu.JantouDragonFu]
-                : toitsuTile == WindToTile(winSituation.PlayerWind) ? [Fu.JantouPlayerWindFu]
-                : toitsuTile == WindToTile(winSituation.RoundWind) ? [Fu.JantouRoundWindFu]
+                : toitsuTile == winSituation.PlayerWind.ToTile() ? [Fu.JantouPlayerWindFu]
+                : toitsuTile == winSituation.RoundWind.ToTile() ? [Fu.JantouRoundWindFu]
                 : [];
         }
         else { return []; }
@@ -132,17 +132,5 @@ internal static class FuCalculator
             }
         }
         return fuList;
-    }
-
-    private static WindTile WindToTile(Wind wind)
-    {
-        return wind switch
-        {
-            Wind.East => Tile.Ton,
-            Wind.South => Tile.Nan,
-            Wind.West => Tile.Sha,
-            Wind.North => Tile.Pei,
-            _ => throw new ArgumentException("不明な風牌です。", nameof(wind)),
-        };
     }
 }
